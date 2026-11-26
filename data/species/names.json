@@ -1,0 +1,90 @@
+{
+ "komarca": {
+  "de": "Goldbrasse",
+  "pl": "Dorada",
+  "cs": "Mořan zlatý",
+  "sl": "Orada"
+ },
+ "lubin": {
+  "de": "Europäischer Wolfsbarsch",
+  "pl": "Labraks",
+  "cs": "Mořčák evropský",
+  "sl": "Brancin"
+ },
+ "zubatac": {
+  "de": "Zahnbrasse",
+  "pl": "Kielec właściwy",
+  "cs": "Zubatec obecný",
+  "sl": "Zobatec"
+ },
+ "sarag": {
+  "de": "Geißbrasse",
+  "pl": "Sargus",
+  "sl": "Šarg"
+ },
+ "fratar": {
+  "de": "Zweibindenbrasse",
+  "pl": "Amarel",
+  "sl": "Frater"
+ },
+ "arbun": {
+  "de": "Rotbrasse",
+  "sl": "Ribon"
+ },
+ "skrpina": {},
+ "usata": {
+  "de": "Brandbrasse",
+  "it": "Oblada melanurus",
+  "pl": "Oblada",
+  "sl": "Črnorepka"
+ },
+ "skusa": {
+  "de": "Makrele",
+  "pl": "Makrela atlantycka",
+  "cs": "Makrela obecná",
+  "sl": "Skuša"
+ },
+ "lignja": {
+  "de": "Gemeiner Kalmar",
+  "pl": "Kalmar pospolity",
+  "cs": "Oliheň obecná"
+ },
+ "hobotnica": {
+  "de": "Gewöhnlicher Krake",
+  "pl": "Ośmiornica zwyczajna",
+  "cs": "Chobotnice pobřežní"
+ },
+ "trlja": {
+  "de": "Streifenbarbe",
+  "pl": "Barwena"
+ },
+ "kantar": {
+  "de": "Streifenbrasse",
+  "pl": "Kantar",
+  "sl": "Kantar"
+ },
+ "salpa": {
+  "de": "Goldstrieme",
+  "pl": "Salpa",
+  "cs": "Očnatec obecný",
+  "sl": "Salpa"
+ },
+ "cipal": {
+  "de": "Dicklippige Meeräsche",
+  "pl": "Tępogłów grubowargi"
+ },
+ "palamida": {
+  "de": "Pelamide",
+  "pl": "Pelamida",
+  "cs": "Pelamida obecná"
+ },
+ "lampuga": {
+  "de": "Gemeine Goldmakrele",
+  "pl": "Koryfena",
+  "cs": "Zlak nachový"
+ },
+ "gira": {
+  "it": "Spicara",
+  "sl": "Girica"
+ }
+}

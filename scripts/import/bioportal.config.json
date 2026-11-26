@@ -1,0 +1,29 @@
+{
+  "_comment": "Klasifikacija: regex nad poljima matchFields (ili nameField); prvo poklapanje pobjeđuje. Natura 2000 nije na ovom WFS-u (TODO: izvor, npr. EEA Natura 2000 ili ENVI portal).",
+  "wfs": "https://services.bioportal.hr/wfs",
+  "layers": [
+    {
+      "typeName": "dzzpnpis:zasticeno_podrucje_poligoni",
+      "nameField": "naziv",
+      "classify": [
+        { "match": "^(Brijuni|Kornati|Mljet)$", "layer": "nacionalni_park", "rule_key": "nacionalni_park", "priority": 6 },
+        { "match": "^(Limski zaljev|Malostonski zaljev|Malo more)", "layer": "posebni_rezervat_more", "rule_key": "posebni_rezervat_more", "priority": 7 },
+        { "match": "^(Telašćica|Lastovsko otočje)$", "layer": "park_prirode", "rule_key": "park_prirode", "priority": 8 }
+      ]
+    },
+    {
+      "typeName": "dzzpnpis:upravljacke_zonacije_poligoni",
+      "nameField": "naz_podz",
+      "matchFields": ["kod_podz", "naz_podz"],
+      "needs_legal_check": true,
+      "classify": [
+        { "match": "^1A|^1B|zabran[ae] ribolova", "layer": "stroga_zastita", "rule_key": "stroga_zastita", "priority": 2 }
+      ]
+    },
+    {
+      "typeName": "TODO_natura2000",
+      "nameField": "naziv",
+      "classify": [{ "match": ".", "layer": "natura2000", "rule_key": "natura2000", "priority": 11 }]
+    }
+  ]
+}

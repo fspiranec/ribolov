@@ -1,0 +1,203 @@
+{
+ "izvor": "Wikipedia (CC BY-SA), slike: Wikimedia Commons",
+ "vrste": {
+  "komarca": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Sparus_aurata%2C_Alpes-Maritimes%2C_Provence-Alpes-C%C3%B4te_d%27Azur%2C_FR_imported_from_iNaturalist_photo_207799710.jpg/330px-Sparus_aurata%2C_Alpes-Maritimes%2C_Provence-Alpes-C%C3%B4te_d%27Azur%2C_FR_imported_from_iNaturalist_photo_207799710.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Komarča pripada obitelji ljuskavki (Sparidae). Naziv komarča nije jedinstven za hrvatsku obalu Jadrana. U upotrebi je čak tridesetak imena, od kojih su češća orada, ovrata, podlanica, dinigla, lovrata, zlatulja, zlatva, sekulica, štrigavica.",
+    "en": "The gilt-head bream, also known as the gilthead, dourade, gilt-head seabream, European seabream or silver seabream, is a species of marine ray-finned fish belonging to the family Sparidae, the seabreams or porgies. This fish is found in the Eastern Atlantic and the Mediterranean. It is a highly esteemed food fish and an important species in aquaculture."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Komar%C4%8Da",
+    "en": "https://en.wikipedia.org/wiki/Gilt-head_bream"
+   }
+  },
+  "lubin": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Sealife%2C_Bray%2C_Ireland._%286985874908%29.jpg/330px-Sealife%2C_Bray%2C_Ireland._%286985874908%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Lubin pripada obitelji lubina (Moronidae). Uz hrvatsku obalu Jadrana dobio je tridesetak sličnih i različitih imena. Najrasprostranjeniji naziv je lubin, riječ latinskog porijekla koja vuče korijen iz riječi lupus, što znači vuk. Od češćih imena pojavljuju se agač, levrek, brancin, dut, luben, smudut, morski grgeč i dr.",
+    "en": "European seabass, also known as branzino, European bass, sea bass, common bass, white bass, capemouth, white salmon, white mullet, sea dace, levrek or loup de mer, or lavraki (λαβράκι) is a primarily ocean-going fish native to the waters off Europe's western and southern and Africa's northern coasts, though it can also be found in shallow coastal waters and river mouths during the summer months and late autumn. It is one of only six species in its family, Moronidae, collectively called the temperate basses."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Lubin",
+    "en": "https://en.wikipedia.org/wiki/European_seabass"
+   }
+  },
+  "zubatac": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Dentex_dentex_Canary.jpg/330px-Dentex_dentex_Canary.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Zubatac pripada obitelji ljuskavki (Sparidae). Uz komarču i lubina najtraženija je riba Jadrana. Svoje ime duguje velikim očnjacima koji se ističu na njegovu zubalu.",
+    "en": "The common dentex is a species of marine ray-finned fish belonging to the family Sparidae, which includes the seabreams and porgies. This species is found in the northeastern Atlantic Ocean and the Mediterranean Sea. It is a highly valued food fish and is an important target species for fisheries and the population has shown large declines leading the International Union for Conservation of Nature to classify its conservation status as Vulnerable."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Zubatac",
+    "en": "https://en.wikipedia.org/wiki/Common_dentex"
+   }
+  },
+  "sarag": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Sargo_com%C3%BAn_%28Diplodus_sargus%29%2C_Madeira%2C_Portugal%2C_2019-05-31%2C_DD_29.jpg/330px-Sargo_com%C3%BAn_%28Diplodus_sargus%29%2C_Madeira%2C_Portugal%2C_2019-05-31%2C_DD_29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Šarag je riba iz obitelji ljuskavki (Sparidae). U Hrvatskoj je poznato i dvadesetak drugih imena kojima ga nazivaju na različitim dijelovima Jadrana. Češći nazivi su: sarag, sarak, serag, serah, šarak i dr.",
+    "en": "Diplodus sargus, the sargo, common white seabream, or white seabream is a species of marine ray-finned fish belonging to the family Sparidae, which includes the seabreams and porgies. This fish is found in the eastern Atlantic Ocean and in the Mediterranean Sea. It is a target species for commercial fisheries and is grown in aquaculture. D. sargus sensu lato was formerly thought to be a widespread species in the eastern Atlantic and western Indian Oceans but the taxa outside of D, sargus sensu stricto are now recognised as valid species and are part of the D. sargus species complex."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/%C5%A0arag",
+    "en": "https://en.wikipedia.org/wiki/Diplodus_sargus"
+   }
+  },
+  "fratar": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Mojarra_%28Diplodus_vulgaris%29%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2020-07-31%2C_DD_20.jpg/330px-Mojarra_%28Diplodus_vulgaris%29%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2020-07-31%2C_DD_20.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": null,
+    "en": "Diplodus vulgaris, the common two-banded sea bream, is a species of marine ray-finned fish belonging to the family Sparidae, which includes the seabreams and porgies. This species is found in the northeastern Atlantic Ocean and the Mediterranean. It is an important species for fisheries and is grown in aquaculture."
+   },
+   "url": {
+    "hr": null,
+    "en": "https://en.wikipedia.org/wiki/Diplodus_vulgaris"
+   }
+  },
+  "arbun": {
+   "slika": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Pagellus_erythrinus_RO.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "opis": {
+    "hr": "Arbun naziva se još arbul, arbor, ribun, rumenac, višćica, fag.",
+    "en": "The common pandora, also known as king of the breams, pandora, red pandora or Spanish seabream, is a species of marine ray-finned fish belonging to the family Sparidae, which includes the seabreams and porgies. This fish is found in the eastern Atlantic Ocean and the Mediterranean Sea. It is an esteemed fish to eat."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Arbun",
+    "en": "https://en.wikipedia.org/wiki/Common_pandora"
+   }
+  },
+  "skrpina": {
+   "slika": null,
+   "opis": {
+    "hr": null,
+    "en": "Several species of fish share the name red scorpionfish:Pontinus furcirhinus\nScorpaena scrofa"
+   },
+   "url": {
+    "hr": null,
+    "en": "https://en.wikipedia.org/wiki/Red_scorpionfish"
+   }
+  },
+  "usata": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Oblada_%28Oblada_melanura%29%2C_%C4%8Airkewwa%2C_Malta%2C_Malta%2C_2021-08-24%2C_DD_26.jpg/330px-Oblada_%28Oblada_melanura%29%2C_%C4%8Airkewwa%2C_Malta%2C_Malta%2C_2021-08-24%2C_DD_26.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Ušata pripada obitelji ljuskavki (Sparidae). Ostali hrvatski nazivi za ovu ribu su: oćada, ukjata, crnorep, češalj, mrkulja, ukuljata, ušatka, ušetka, usata, čarnorep, crnošiljac, črnorep, osata, ukuljat, hlamina i ušati crnorep. Jedna je od najčešćih i najbrojnijih riba iz skupine tzv. bijele ribe.",
+    "en": "The saddled seabream, also called the saddle bream or oblade, is a species of ray-finned fish belonging to the family Sparidae, which includes the seabreams and porgies. It is the only species in the monospecific genus Oblada. This species is found in the Eastern Atlantic Ocean. It is an important food fish within its range."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/U%C5%A1ata",
+    "en": "https://en.wikipedia.org/wiki/Saddled_seabream"
+   }
+  },
+  "skusa": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Scomber_scombrus_217326414.jpg/330px-Scomber_scombrus_217326414.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Skuša je morska riba iz porodice skušovki (scombridae). U Hrvatskoj je još poznata kao škombra ili vrnut.",
+    "en": "The Atlantic mackerel, also known as Boston mackerel, Norwegian mackerel, Scottish mackerel or just mackerel, is a species of mackerel found in the temperate waters of the Mediterranean Sea, the Black Sea, and the northern Atlantic Ocean, where it is extremely common and occurs in huge shoals in the epipelagic zone down to about 200 m (660 ft). It spends the warmer months close to shore and near the ocean surface, appearing along the coast in spring and departing with the arrival of colder weather in the fall and winter months. During the fall and winter, it migrates out into deeper and more southern water, seeking warmer temperatures."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Sku%C5%A1a",
+    "en": "https://en.wikipedia.org/wiki/Atlantic_mackerel"
+   }
+  },
+  "lignja": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Loligo_vulgaris.jpg/330px-Loligo_vulgaris.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Europska lignja vrsta je morskih životinja koja spada u razred glavonožaca iz porodice Loliginidae.",
+    "en": "The European squid or common squid is a large squid belonging to the family Loliginidae. It occurs abundantly in coastal waters from the North Sea to at least the west coast of Africa. This species lives from sea level to depths of 500 m (1,600 ft). Its mantle is up to 40 cm (16 in) long. The species is extensively exploited by commercial fisheries."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Europska_lignja",
+    "en": "https://en.wikipedia.org/wiki/European_squid"
+   }
+  },
+  "hobotnica": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Octopus2.jpg/330px-Octopus2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Hobotnica je vrsta mekušca iz porodice Octopodidae. Ima 8 krakova s kojima može dostići duljinu i do 3 metra. Hobotnica je odlično prilagođena životu lovca, ali i plijena, jer ima tajno oružje. U tjelesnim naborima krije vrećicu s crnilom koje ispušta kad želi zbuniti svoje neprijatelje. Hobotnica izgleda kao gomoljasta glava s osam nogu, no njezino vrećasto tijelo krije iznimno dobro razvijen mozak i živčani sustav, zbog čega je hobotnica iznenađujuće inteligentna morska životinja.",
+    "en": "The common octopus is a mollusk belonging to the class Cephalopoda. Octopus vulgaris is one of the most studied of all the octopus species, and also one of the most intelligent. It ranges from the eastern Atlantic, extends from the Mediterranean Sea, Black sea and the southern coast of England, to the southern coast of South Africa. It also occurs off the Azores, Canary Islands, and Cape Verde Islands. The species is also common in the Western Atlantic."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Obi%C4%8Dna_hobotnica",
+    "en": "https://en.wikipedia.org/wiki/Common_octopus"
+   }
+  },
+  "trlja": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Mullus_surmuletus.jpg/330px-Mullus_surmuletus.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Trlja kamenjarka morska je riba iz porodice trlja (Mullidae). U Hrvatskoj je još poznata pod imenom trlja od kamena, barbun i trilja.",
+    "en": "The striped red mullet or surmullet is a species of goatfish found in the Mediterranean Sea, eastern North Atlantic Ocean, and the Black Sea. They can be found in water as shallow as 5 metres (16 ft) or as deep as 409 metres (1,342 ft) depending upon the portion of their range that they are in. This species can reach a length of 40 centimetres (16 in) SL though most are only around 25 centimetres (9.8 in). The greatest recorded weight for this species is 1 kilogram (2.2 lb). This is a commercially important species and is also sought after as a game fish."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Trlja_kamenjarka",
+    "en": "https://en.wikipedia.org/wiki/Striped_red_mullet"
+   }
+  },
+  "kantar": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Chopa_%28Spondyliosoma_cantharus%29%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2020-07-21%2C_DD_57.jpg/330px-Chopa_%28Spondyliosoma_cantharus%29%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2020-07-21%2C_DD_57.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Kantar ima dosta drugih naziva kao što su kantara, kantor, konter, manjamorta, grobar, sivac, picigamorte, kantra. To je riba iz porodice ljuskavki, jedna od dvije vrste u rodu Spondyliosoma, druga je Spondyliosoma emarginatum koja živi u Indijskom oceanu.",
+    "en": "The black seabream is a species of marine ray-finned fish belonging to the family Sparidae, which includes the seabreams and porgies. This fish has a wide distribution in the eastern Atlantic Ocean and the Mediterranean and Black Seas. The black seabream is an important food fish, especially in Europe."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Kantar",
+    "en": "https://en.wikipedia.org/wiki/Black_seabream"
+   }
+  },
+  "salpa": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Salema_%28Sarpa_salpa%29%2C_Catania%2C_Sicilia%2C_Italia%2C_2025-04-04%2C_DD_90.jpg/330px-Salema_%28Sarpa_salpa%29%2C_Catania%2C_Sicilia%2C_Italia%2C_2025-04-04%2C_DD_90.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Salpa, je riba koja pripada obitelji ljuskavki (Sparidae). Ostali nazivi su salpuc, salpuša, salpušica, sapa, sapica, sopa i dr.",
+    "en": "The salema porgy, also known as the dreamfish, salema, cow bream, karanteen, salpa, saupe, strepie or goldline, is a species of marine ray-finned fish belonging to the family Sparidae, which includes the seabreams and porgies. It is the only species in the monospecific genus Sarpa. It is found in the eastern Atlantic Ocean, Mediterranean Sea and southwestern Indian Ocean."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Salpa",
+    "en": "https://en.wikipedia.org/wiki/Salema_porgy"
+   }
+  },
+  "cipal": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Chelon_labrosus.jpg/330px-Chelon_labrosus.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Cipli (Mugilidae) su porodica riba iz reda Mugiliformes. Obitava po cijelom svijetu, u obalnim umjerenim i tropskim vodama, a neke se vrste mogu naći i u slatkim vodama. Cipli su važan izvor hrane na Mediteranu još iz vremena Rimskog Carstva. Ova porodica uključuje 75 vrsta u 20 rodova, od čega oko polovice vrsta pripada rodovima Liza and Mugil.",
+    "en": "The thicklip grey mullet, Chelon labrosus, is a coastal fish of the family Mugilidae. It typically is about 32 cm (13 in) long, with 75 cm (30 in) being the maximum recorded. It is named after its thick upper lip and silvery-grey appearance."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Cipli",
+    "en": "https://en.wikipedia.org/wiki/Thicklip_grey_mullet"
+   }
+  },
+  "palamida": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Sarda_sarda.jpg/330px-Sarda_sarda.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Palamida je morska riba iz porodice skušovki (Scombridae). U Hrvatskoj je još poznata kao palovnić, pastirica, polamida, polanda, smucaš, šarica.",
+    "en": "The Atlantic bonito is a large mackerel-like fish of the family Scombridae. It is common in shallow waters of the Atlantic Ocean, the Mediterranean Sea, and the Black Sea, where it is an important commercial and game fish."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Palamida",
+    "en": "https://en.wikipedia.org/wiki/Atlantic_bonito"
+   }
+  },
+  "lampuga": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Common_Dolphinfish_Monterey_Bay.jpg/330px-Common_Dolphinfish_Monterey_Bay.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": null,
+    "en": "The mahi-mahi, common dolphinfish, dolphinfish, dolphin or  dorado is a surface-dwelling ray-finned fish found in off-shore temperate, tropical, and subtropical waters worldwide. It is one of two members of the family Coryphaenidae, the other being the pompano dolphinfish. These fish are most commonly found in the waters around the Gulf of Mexico, Costa Rica, Hawaii, and the Indian Ocean. In Italy it is called corifena, lampuga or pesce capone, and has even given its name to the caponata though eggplant has now taken the place of the fish."
+   },
+   "url": {
+    "hr": null,
+    "en": "https://en.wikipedia.org/wiki/Mahi-mahi"
+   }
+  },
+  "gira": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Spicara_flexuosum.jpg/330px-Spicara_flexuosum.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Gira oblica riba je iz porodice sparida ili Sparidae. Kod nas ima mnogo drugih imena, a neka su čikavica, menula, manula, gera, gira, gira oštrulja, oštrulja, obljak, mrljanka,...Ima proporcionalno tijelo, oblika izduljene kapljice, srebrenkaste je boje, a na oba boka ima izraženu tamnu mrlju kvadratastog oblika. U vrijeme parenja mužjaci po sebi imaju plavozelene fluorescentne šare. Naraste do 20 cm, a jedna od osobitosti je da mijenja spol. Naime, sve manje jedinke su ženke, a kada odrastu na određenu veličinu, mijenjaju spol i postaju mužjaci. Hrane se planktonima, ali i sitnim račićima i organizmima koje može uhvatiti. Možemo je naći na dubinama do 330 m, a zimi dolazi u pliće vode, gdje se lovi radi prehrane. Vrlo je ukusna i kod nas postoji više načina pripreme ove ribe.",
+    "en": "Spicara is a genus of ray-finned fish belonging to the family Sparidae, which includes the seabreams and porgies. These fishes are found in the Atlantic and Indian Oceans. The species in the genus are known as picarels."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Gira_oblica",
+    "en": "https://en.wikipedia.org/wiki/Spicara"
+   }
+  }
+ }
+}

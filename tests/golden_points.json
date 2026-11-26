@@ -1,0 +1,22 @@
+[
+  { "id": "lim", "opis": "Sredina Limskog zaljeva", "lat": 45.132, "lon": 13.70, "date": "2026-07-15", "expect": ["zuto"] },
+  { "id": "scuza_placeholder", "opis": "Uvala Šćuza, približna geometrija", "lat": 44.805, "lon": 13.935, "date": "2026-07-15", "expect": ["zuto"], "upozorenje_sadrzi": "približne" },
+  { "id": "scuza_real", "opis": "Uvala Šćuza kad postoji stvarna geometrija", "lat": 44.805, "lon": 13.935, "date": "2026-07-15", "realScuza": true, "expect": ["crveno"] },
+  { "id": "kornati", "opis": "NP Kornati", "lat": 43.80, "lon": 15.30, "date": "2026-07-15", "expect": ["zuto"] },
+  { "id": "vis_open", "opis": "Otvoreno more kod Visa", "lat": 43.0, "lon": 16.0, "date": "2026-07-15", "expect": ["zeleno"], "podzona": "E-fixture", "natura": true },
+  { "id": "makarska_ljeto", "opis": "Plaža u Makarskoj 15. 7.", "lat": 43.293, "lon": 17.015, "date": "2026-07-15", "expect": ["crveno"] },
+  { "id": "makarska_jesen", "opis": "Ista plaža 15. 11.", "lat": 43.293, "lon": 17.015, "date": "2026-11-15", "expect": ["zeleno", "zuto"] },
+  { "id": "podvodni_noc", "opis": "Podvodni ribolov u 22:00", "lat": 43.0, "lon": 16.0, "date": "2026-07-15", "time": "22:00", "mode": "podvodni", "permit": "sportska", "expect": ["crveno"] },
+  { "id": "podvodni_rekreacijska", "opis": "Podvodni s rekreacijskom dozvolom", "lat": 43.0, "lon": 16.0, "date": "2026-07-15", "time": "12:00", "mode": "podvodni", "permit": "rekreacijska", "expect": ["crveno"] },
+  { "id": "podvodni_dan", "opis": "Podvodni u podne, sportska", "lat": 43.0, "lon": 16.0, "date": "2026-07-15", "time": "12:00", "mode": "podvodni", "permit": "sportska", "expect": ["zeleno"] },
+  { "id": "zagreb", "opis": "Kopno izvan ribolovnog mora", "lat": 45.81, "lon": 15.98, "date": "2026-07-15", "status": "izvan_ribolovnog_mora" },
+  { "id": "hvar_kopno", "opis": "Unutrašnjost otoka Hvara", "lat": 43.17, "lon": 16.60, "date": "2026-07-15", "kopno": true, "expect": ["zeleno", "zuto"], "na_kopnu": true },
+  { "id": "split_luka", "opis": "Luka Split", "lat": 43.503, "lon": 16.44, "date": "2026-07-15", "expect": ["crveno"] },
+  { "id": "hvar_luka_tocka", "opis": "Luka Hvar zadana samo točkom", "lat": 43.1725, "lon": 16.4415, "date": "2026-07-15", "expect": ["zuto"] },
+  { "id": "kornati_granica", "opis": "Oko 45 m izvan granice NP Kornati", "lat": 43.9004, "lon": 15.30, "date": "2026-07-15", "expect": ["zuto"], "upozorenje_sadrzi": "Blizu granice" },
+  { "id": "telascica", "opis": "PP Telašćica", "lat": 43.92, "lon": 15.17, "date": "2026-07-15", "expect": ["zuto"] },
+  { "id": "telascica_1a", "opis": "Zona stroge zaštite u Telašćici", "lat": 43.8825, "lon": 15.185, "date": "2026-07-15", "expect": ["crveno"] },
+  { "id": "neretva", "opis": "Ušće Neretve, brod", "lat": 43.02, "lon": 17.43, "date": "2026-07-15", "mode": "brod", "expect": ["zuto"], "alat_nedopusten": "panula" },
+  { "id": "uzgajaliste_blizu", "opis": "~280 m od uzgajališta ribe", "lat": 43.6045, "lon": 15.7015, "date": "2026-07-15", "expect": ["crveno"] },
+  { "id": "uzgajaliste_dalje", "opis": "~500 m od uzgajališta ribe", "lat": 43.6065, "lon": 15.7015, "date": "2026-07-15", "expect": ["zeleno"] }
+]

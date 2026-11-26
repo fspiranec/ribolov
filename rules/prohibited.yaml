@@ -1,0 +1,23 @@
+# Trajno zabranjene vrste za sportski i rekreacijski ribolov, te strogo zaštićene vrste.
+zadnja_provjera: 2026-11-26
+izvor_default: &izvor
+  izvor: "Pravilnik o sportskom i rekreacijskom ribolovu na moru (NN 48/2026)"
+  url: "https://narodne-novine.nn.hr/"   # TODO: izravna poveznica
+  clanak: "TODO"
+  vrijedi_od: 2026-06-01
+  vrijedi_do: null
+
+zabranjene:
+  - { <<: *izvor, vrsta: { hr: "svi morski psi i raže te sve ostale hrskavične ribe", en: "all sharks, rays and other cartilaginous fish" } }
+  - { <<: *izvor, vrsta: { hr: "albakor, iglan, iglun, jegulja", en: "albacore, marlin (iglan), swordfish, eel" } }
+  - { <<: *izvor, vrsta: { hr: "plavoperajna tuna (osim trofejnog ribolova)", en: "bluefin tuna (except trophy fishing)" } }
+  - { <<: *izvor, vrsta: { hr: "krupni rakovi (jastog, hlap)", en: "large crustaceans (spiny lobster, European lobster)" } }
+  - { <<: *izvor, vrsta: { hr: "bodljikaši, koralji, spužve", en: "echinoderms, corals, sponges" } }
+
+strogo_zasticene:
+  <<: *izvor
+  izvor: "Zakon o zaštiti prirode i Pravilnik o strogo zaštićenim vrstama"   # TODO: NN brojevi
+  needs_legal_check: true
+  vrste:
+    hr: "morske kornjače, morske ptice, dupini, medvjedica, kitovi, velika bijela psina, pilan"
+    en: "sea turtles, seabirds, dolphins, monk seal, whales, great white shark, sawfish"

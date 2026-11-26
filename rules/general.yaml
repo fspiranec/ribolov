@@ -1,0 +1,227 @@
+# Opća pravila sportskog i rekreacijskog ribolova na moru.
+# Podaci uneseni iz projektne specifikacije 2026-11-26. Članci označeni TODO
+# i stavke s needs_legal_check: true treba provjeriti s izvornim tekstom u NN.
+zadnja_provjera: 2026-11-26
+
+izvori:
+  pravilnik: &pravilnik
+    izvor: "Pravilnik o sportskom i rekreacijskom ribolovu na moru (NN 48/2026)"
+    url: "https://narodne-novine.nn.hr/"   # TODO: izravna poveznica na NN 48/2026
+    vrijedi_od: 2026-06-01
+    vrijedi_do: null
+  zakon: &zakon
+    izvor: "Zakon o morskom ribarstvu (NN 62/17, 14/19, 30/23, 14/24)"
+    url: "https://narodne-novine.nn.hr/"   # TODO: izravna poveznica
+    vrijedi_od: 2017-07-08                 # TODO: provjeriti datum stupanja na snagu
+    vrijedi_do: null
+
+dnevna_ogranicenja:
+  - key: ukupna_masa
+    <<: *zakon
+    clanak: "čl. 33"
+    tekst:
+      hr: "5 kg ulova po osobi dnevno + jedna riba koja prelazi tu masu."
+      en: "5 kg of catch per person per day + one fish exceeding that weight."
+  - key: skoljkasi_pusevi
+    <<: *pravilnik
+    clanak: "TODO"
+    tekst:
+      hr: "Školjkaši i puževi do 2 kg dnevno, dagnje do 5 kg."
+      en: "Bivalves and gastropods up to 2 kg per day, mussels up to 5 kg."
+  - key: hobotnica
+    <<: *pravilnik
+    clanak: "TODO"
+    tekst: { hr: "Hobotnica: najviše 2 komada dnevno.", en: "Octopus: max 2 per day." }
+  - key: kirnje
+    <<: *pravilnik
+    clanak: "TODO"
+    tekst:
+      hr: "Kirnje (Epinephelus spp., Polyprion americanus, Mycteroperca rubra): ukupno 1 komad dnevno."
+      en: "Groupers (Epinephelus spp., Polyprion americanus, Mycteroperca rubra): 1 in total per day."
+  - key: morski_crv
+    <<: *pravilnik
+    clanak: "TODO"
+    tekst: { hr: "Veliki morski crv: najviše 2 komada dnevno.", en: "Large sea worm: max 2 per day." }
+  - key: psi_raze
+    <<: *pravilnik
+    clanak: "TODO"
+    tekst: { hr: "Morski psi i raže: 0 komada.", en: "Sharks and rays: none." }
+
+# Strojno čitljivi dnevni limiti (isti propisi kao tekstovi iznad), koristi ih „Moj ulov”.
+dnevni_limit:
+  <<: *zakon
+  clanak: "čl. 33"
+  ukupno_kg: 5            # + jedna riba koja prelazi tu masu
+  komada:                  # ključ = key vrste iz data/species/species.yaml
+    hobotnica: 2
+    kirnje: 1
+
+bez_dozvole:
+  <<: *pravilnik
+  clanak: "TODO"
+  tekst:
+    hr: "Bez dozvole smiju samo djeca mlađa od 14 godina, i to jednim najlonom s udicom bez štapa (odmet)."
+    en: "Only children under 14 may fish without a licence, with one bottom handline."
+
+# Alati. posebna_dozvola: null = dovoljna osnovna dozvola.
+# nacini: u kojim se načinima ribolova alat koristi (obala | brod | podvodni).
+alati:
+  - id: odmet
+    naziv: { hr: "Najlon s udicom, bez štapa (odmet)", en: "Handline, no rod (odmet)" }
+    opis: { hr: "Najlon s olovom i udicom, bez štapa – baca se rukom ili spušta s broda ili obale.", en: "A line with a sinker and hook, no rod – thrown by hand or dropped from a boat or the shore." }
+    max: 2
+    posebna_dozvola: null
+    nacini: [obala, brod]
+    <<: *pravilnik
+    clanak: "TODO"
+  - id: kancenica
+    naziv: { hr: "Štap za pecanje (kančenica)", en: "Fishing rod (kančenica)" }
+    opis: { hr: "Obični ribički štap s najlonom, s rolom ili bez nje.", en: "An ordinary fishing rod with line, with or without a reel." }
+    max: 2
+    posebna_dozvola: null
+    nacini: [obala, brod]
+    <<: *pravilnik
+    clanak: "TODO"
+  - id: panula
+    naziv: { hr: "Vučenje mamca za brodom (panula)", en: "Trolling behind a boat (panula)" }
+    opis: { hr: "Najlon s mamcem ili varalicom koji se vuče za brodom u vožnji.", en: "A line with bait or a lure towed behind a moving boat." }
+    max: 2
+    posebna_dozvola: null
+    nacini: [obala, brod]
+    <<: *pravilnik
+    clanak: "TODO"
+  - id: povraz_glavonosci
+    naziv: { hr: "Varalica za lignje i hobotnice (povraz za glavonošce)", en: "Squid and octopus jig (povraz za glavonošce)" }
+    opis: { hr: "Najlon s posebnom varalicom za lignje, sipe ili hobotnice.", en: "A line with a special lure for squid, cuttlefish or octopus." }
+    detalj: { hr: "najviše 3 varalice po povrazu", en: "max 3 lures per line" }
+    max: 2
+    posebna_dozvola: null
+    nacini: [obala, brod]
+    <<: *pravilnik
+    clanak: "TODO"
+  - id: trapula
+    naziv: { hr: "Trapula", en: "Trapula" }
+    max: 2
+    posebna_dozvola: null
+    nacini: [obala, brod]
+    <<: *pravilnik
+    clanak: "TODO"
+  - id: rucno_sakupljanje
+    naziv: { hr: "Skupljanje rukom (školjke, puževi)", en: "Gathering by hand (shellfish, snails)" }
+    opis: { hr: "Skupljanje školjaka i puževa rukom, uz obalu ili ronjenjem na dah.", en: "Picking shellfish and sea snails by hand, at the shore or breath-hold diving." }
+    detalj: { hr: "bez ronilačkog aparata", en: "no breathing apparatus" }
+    max: null
+    posebna_dozvola: null
+    nacini: [obala, brod, podvodni]
+    <<: *pravilnik
+    clanak: "TODO"
+  - id: parangal
+    naziv: { hr: "Parangal – konop s mnogo udica (stajaći parangal)", en: "Longline – a line with many hooks (parangal)" }
+    opis: { hr: "Dugi konop s mnogo udica koji se ostavi u moru pa kasnije digne.", en: "A long line with many hooks left in the sea and lifted later." }
+    detalj: { hr: "ukupno do 100 udica", en: "up to 100 hooks in total" }
+    max: 100
+    posebna_dozvola: parangal
+    nacini: [obala, brod]
+    <<: *pravilnik
+    clanak: "TODO"
+  - id: vrse
+    naziv: { hr: "Vrše – zamke za ribu", en: "Fish traps (vrše)" }
+    opis: { hr: "Košare-zamke za ribu i rakove koje se spuštaju na dno.", en: "Basket traps for fish and crustaceans placed on the bottom." }
+    max: 3
+    posebna_dozvola: vrse
+    nacini: [obala, brod]
+    <<: *pravilnik
+    clanak: "TODO"
+  - id: ost
+    naziv: { hr: "Ribarsko koplje (ost)", en: "Fishing spear (ost)" }
+    opis: { hr: "Ručno koplje s više zubaca, najčešće s broda noću.", en: "A hand-held spear with several prongs, usually from a boat at night." }
+    max: 1
+    posebna_dozvola: osti
+    nacini: [obala, brod]
+    <<: *pravilnik
+    clanak: "TODO"
+  - id: rasvjeta
+    naziv: { hr: "Svjetlo za noćni ribolov (rasvjeta)", en: "Light for night fishing (rasvjeta)" }
+    opis: { hr: "Svjetlo kojim se riba ili lignja privlači noću – samo uz ost ili povraz za lignje.", en: "A light to attract fish or squid at night – only with a spear or squid jig." }
+    detalj: { hr: "LED/halogen do 30 W, žarna nit do 100 W, plinski feral do 400 cd", en: "LED/halogen up to 30 W, incandescent up to 100 W, gas lamp up to 400 cd" }
+    max: null
+    posebna_dozvola: rasvjeta
+    nacini: [obala, brod]
+    # Rasvjeta za glavonošce zabranjena je od 1. 3. do 30. 9.
+    zabrana_glavonosci: { od: "03-01", do: "09-30" }
+    <<: *pravilnik
+    clanak: "TODO"
+  - id: velika_riba
+    naziv: { hr: "Štapovi za veliku ribu – tuna, iglan", en: "Big-game rods – tuna, marlin" }
+    opis: { hr: "Jači štapovi i role za tunu, iglana i sličnu veliku ribu, s broda.", en: "Heavy rods and reels for tuna, marlin and other big fish, from a boat." }
+    detalj: { hr: "2 pribora, kružna udica", en: "2 sets, circle hook" }
+    max: 2
+    posebna_dozvola: velika_riba
+    samo_dozvola: sportska
+    nacini: [brod]
+    <<: *pravilnik
+    clanak: "TODO"
+  - id: podvodna_puska
+    naziv: { hr: "Podvodna puška", en: "Speargun" }
+    opis: { hr: "Lov ronjenjem na dah s puškom – samo uz sportsku dozvolu, danju.", en: "Breath-hold spearfishing – sport licence only, in daylight." }
+    detalj: { hr: "samo na dah", en: "breath-hold only" }
+    max: 1
+    posebna_dozvola: null
+    samo_dozvola: sportska
+    nacini: [podvodni]
+    <<: *pravilnik
+    clanak: "TODO"
+
+zabranjeno:
+  - <<: *pravilnik
+    clanak: "TODO"
+    tekst: { hr: "Rampinavanje.", en: "Rampinavanje (snagging with hooks)." }
+  - <<: *pravilnik
+    clanak: "TODO"
+    tekst: { hr: "Ost s motorom ili s plovila sa staklenim dnom.", en: "Spear fishing from a motorised or glass-bottomed boat." }
+  - <<: *pravilnik
+    clanak: "TODO"
+    tekst: { hr: "Tegljenje podvodnog ribolovca plovilom i podvodni skuter.", en: "Towing a spearfisher with a boat, and underwater scooters." }
+  - <<: *pravilnik
+    clanak: "TODO"
+    tekst: { hr: "Prodaja ulova iz rekreacijskog ribolova.", en: "Selling catch from recreational fishing." }
+
+podvodni:
+  <<: *pravilnik
+  clanak: "TODO"
+  tekst:
+    hr: "Podvodna puška: samo sportska dozvola, samo na dah, od izlaska do zalaska sunca, od 16 godina."
+    en: "Speargun: sport licence only, breath-hold only, sunrise to sunset, age 16+."
+  podsjetnik:
+    hr: "Samo na dah, od 16 godina, obvezna plutača ili ronilačka zastavica."
+    en: "Breath-hold only, age 16+, a buoy or diving flag is mandatory."
+
+oznacavanje:
+  <<: *pravilnik
+  clanak: "Prilog 3"
+  needs_legal_check: true
+  tekst:
+    hr: "24 vrste označavaju se odsijecanjem donjeg dijela repne peraje; glavonošci se zarezuju između očiju."
+    en: "24 species are marked by cutting off the lower part of the tail fin; cephalopods are notched between the eyes."
+  # TODO: puni popis od 24 vrste iz Priloga 3 NN 48/2026. Ovdje su samo vrste navedene u specifikaciji.
+  vrste_djelomicno: [zubatac, lubin, pic, šarag, fratar, kirnje, vrana, oslić, arbun, pagar, palamida, gof, škrpina, komarča, kovač, lampuga, zubatac krunaš]
+
+evidencija:
+  <<: *pravilnik
+  clanak: "TODO"
+  tekst:
+    hr: "Evidencija ulova u mRecFish u roku 24 sata od završetka ribolova."
+    en: "Report your catch in mRecFish within 24 hours of finishing fishing."
+  faze:
+    - od: 2026-08-15
+      tekst: { hr: "Lampuga: obvezno za sve dozvole.", en: "Dolphinfish: mandatory for all licences." }
+    - od: 2027-01-01
+      tekst:
+        hr: "Dozvole za 1, 3 i 7 dana te godišnje i 150-dnevne za punoljetne do 65 godina."
+        en: "1-, 3- and 7-day licences, and annual and 150-day licences for adults up to 65."
+    - od: 2030-01-01
+      tekst: { hr: "Svi ostali.", en: "Everyone else." }
+
+odricanje:
+  hr: "Informativni alat, nije službeno tumačenje propisa."
+  en: "Informational tool, not an official interpretation of the regulations."

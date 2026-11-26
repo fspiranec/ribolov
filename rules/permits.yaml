@@ -1,0 +1,46 @@
+# Kupnja dozvola za rekreacijski ribolov na moru.
+# Cijene preuzete sa službene web-trgovine Ministarstva 2026-11-26.
+zadnja_provjera: 2026-11-26
+izvor: "Ministarstvo poljoprivrede, šumarstva i ribarstva – web-trgovina dozvola"
+online_url: "https://ribarstvo.mps.hr/default.aspx?id=5010"
+info_url: "https://gov.hr/en/marine-recreational-and-sport-fisheries/1542"
+prodavaci_url: "https://ribarstvo.mps.hr/UserDocsImages/Tomo/Distributeri%20dozvola-POPIS%20UPDATE.xlsx"
+
+opis:
+  hr: "Dozvolu kupuješ online (stiže e-poštom kao PDF) ili kod ovlaštenih prodavača (turističke agencije). Mogu je kupiti i strani državljani."
+  en: "Buy the licence online (it arrives by email as a PDF) or from authorised sellers (travel agencies). Foreign visitors can buy it too."
+
+cijene:
+  - { trajanje: { hr: "1 dan", en: "1 day" }, cijena_eur: 10.00 }
+  - { trajanje: { hr: "3 dana", en: "3 days" }, cijena_eur: 25.00 }
+  - { trajanje: { hr: "7 dana", en: "7 days" }, cijena_eur: 45.00 }
+  - { trajanje: { hr: "150 dana – odrasli do 65 g.", en: "150 days – adults up to 65" }, cijena_eur: 99.54 }
+  - { trajanje: { hr: "150 dana – maloljetnici", en: "150 days – minors" }, cijena_eur: 13.27 }
+  - { trajanje: { hr: "150 dana – stariji od 65 g.", en: "150 days – over 65" }, cijena_eur: 13.27 }
+
+posebne:
+  napomena:
+    hr: "Posebne dozvole (parangal, vrše, ost, rasvjeta) mogu se kupiti samo uz godišnju dozvolu. Podvodna puška nije dopuštena s rekreacijskom dozvolom."
+    en: "Special permits (longline, traps, spear, lights) can only be bought with an annual licence. Spearguns are not allowed with a recreational licence."
+  cijene:
+    - { key: parangal, naziv: { hr: "Stajaći parangal", en: "Set longline" }, cijena_eur: 26.54 }
+    - { key: vrse, naziv: { hr: "Vrše", en: "Fish traps" }, cijena_eur: 26.54 }
+    - { key: osti, naziv: { hr: "Ost", en: "Spear (harpoon)" }, cijena_eur: 13.27 }
+    - { key: rasvjeta, naziv: { hr: "Rasvjeta", en: "Artificial lights" }, cijena_eur: 13.27 }
+
+sportska:
+  hr: "Sportsku dozvolu (potrebna za podvodni ribolov) izdaje Hrvatski savez za športski ribolov na moru uz člansku iskaznicu."
+  en: "The sport licence (required for spearfishing) is issued through the Croatian Sport Sea Fishing Federation with a membership card."
+  needs_legal_check: true
+
+djeca:
+  hr: "Djeca mlađa od 14 godina ne trebaju dozvolu ako love jednim najlonom s udicom, bez štapa."
+  en: "Children under 14 need no licence to fish with one handline."
+
+# Prijava ulova (mRecFish). Za korisnički račun upute su na stranici Uprave ribarstva.
+mrecfish:
+  info_url: "https://rekreacijski.ribarstvo.hr/content/Upute/UputeRecFish.pdf"
+  ios_url: "https://apps.apple.com/hr/app/mrecfish/id6708239506"
+  tekst:
+    hr: "Ulov se prijavljuje u službenoj aplikaciji mRecFish, najkasnije 24 sata nakon ribolova."
+    en: "Catches are reported in the official mRecFish app, within 24 hours after fishing."

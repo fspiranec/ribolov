@@ -1,0 +1,21 @@
+{
+  "_comment": "Ručne dopune/ispravci za names.json (Wikipedia). null = ukloni pogrešan naziv. Ako za jezik nema naziva, aplikacija prikazuje hrvatski naziv.",
+  "komarca": { "it": "Orata" },
+  "lubin": { "it": "Spigola" },
+  "zubatac": { "it": "Dentice" },
+  "sarag": { "it": "Sarago maggiore" },
+  "fratar": { "it": "Sarago fasciato" },
+  "arbun": { "it": "Pagello fragolino" },
+  "skrpina": { "de": "Großer Roter Drachenkopf", "it": "Scorfano rosso" },
+  "usata": { "it": "Occhiata" },
+  "skusa": { "it": "Sgombro" },
+  "lignja": { "it": "Calamaro" },
+  "hobotnica": { "it": "Polpo" },
+  "trlja": { "it": "Triglia di scoglio" },
+  "kantar": { "it": "Tanuta" },
+  "salpa": { "it": "Salpa" },
+  "cipal": { "it": "Cefalo labbrone" },
+  "palamida": { "it": "Palamita" },
+  "lampuga": { "it": "Lampuga" },
+  "gira": { "de": "Laxierfisch", "it": "Zerro" }
+}

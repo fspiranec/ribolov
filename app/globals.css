@@ -1,0 +1,120 @@
+@import "tailwindcss";
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+@theme {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --color-navy-950: #071a2e;
+  --color-navy-900: #0b2540;
+  --color-navy-800: #12365a;
+  --color-sea-600: #0e7490;
+  --color-sea-500: #0891b2;
+  --color-sea-100: #d9f2f7;
+  --color-sand-50: #faf7f1;
+  --color-sand-100: #f3ece0;
+  --color-go: #1f9d6b;
+  --color-warn: #e3a008;
+  --color-stop: #d64545;
+  --color-card: #ffffff;
+  --color-ink: #0b2540;
+  --color-page: #faf7f1;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--color-page);
+}
+
+/* horizontal scrollers without a visible scrollbar */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Dark mode: follows the device unless the user picked a theme (data-theme on <html>). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-card: #10263d;
+    --color-ink: #e8eef4;
+    --color-page: #071a2e;
+    --color-sand-50: #173351;
+    --color-sand-100: #1d3b5b;
+    --color-sea-100: #0f3e52;
+    --color-sea-600: #3cc4dd;
+    --color-slate-100: #1d3550;
+    --color-slate-200: #26425f;
+    --color-slate-300: #3a5675;
+    --color-slate-400: #7f93a8;
+    --color-slate-500: #9fb1c3;
+    --color-slate-600: #b8c7d6;
+    --color-emerald-50: #0f3a2c;
+    --color-rose-50: #3d1a1f;
+    --color-rose-700: #fda4af;
+    --color-amber-50: #3a2f10;
+    --color-amber-100: #4a3a12;
+    --color-amber-700: #fbbf24;
+    --color-amber-800: #fde68a;
+    --color-amber-900: #fde68a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-card: #10263d;
+  --color-ink: #e8eef4;
+  --color-page: #071a2e;
+  --color-sand-50: #173351;
+  --color-sand-100: #1d3b5b;
+  --color-sea-100: #0f3e52;
+  --color-sea-600: #3cc4dd;
+  --color-slate-100: #1d3550;
+  --color-slate-200: #26425f;
+  --color-slate-300: #3a5675;
+  --color-slate-400: #7f93a8;
+  --color-slate-500: #9fb1c3;
+  --color-slate-600: #b8c7d6;
+  --color-emerald-50: #0f3a2c;
+  --color-rose-50: #3d1a1f;
+  --color-rose-700: #fda4af;
+  --color-amber-50: #3a2f10;
+  --color-amber-100: #4a3a12;
+  --color-amber-700: #fbbf24;
+  --color-amber-800: #fde68a;
+  --color-amber-900: #fde68a;
+  color-scheme: dark;
+}
+
+/* theme toggle icon: show the moon in light mode, the sun in dark mode */
+.light-hide {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .light-hide {
+    display: block;
+  }
+  :root:not([data-theme="light"]) .dark-hide {
+    display: none;
+  }
+}
+:root[data-theme="dark"] .light-hide {
+  display: block;
+}
+:root[data-theme="dark"] .dark-hide {
+  display: none;
+}

@@ -1,0 +1,190 @@
+# Pravila po prostornim slojevima (tablica zones, polje rule_key).
+# razina: crveno | zuto | obavijest
+# sezona: (opcionalno) razdoblje MM-DD u kojem pravilo vrijedi
+# udaljenost_m: pravilo vrijedi i unutar te udaljenosti od objekta (uzgajališta)
+# blizina_m: unutar te udaljenosti od objekta (točka, ili izvan poligona) vrati blizina_razina,
+#   jer se točna granica ne zna (npr. OSM luka kao točka, poligon plaže je na kopnu)
+# dopusteni_alati: ako postoji, na području su dopušteni samo ti alati (id iz general.yaml)
+# kritican: ako sloj nije učitan, odgovor je žut (podaci nisu potpuni)
+zadnja_provjera: 2026-11-26
+
+izvori:
+  nn125: &nn125
+    izvor: "NN 125/2020"                     # TODO: puni naziv propisa
+    url: "https://narodne-novine.nn.hr/"     # TODO: izravna poveznica
+    clanak: "TODO"
+    vrijedi_od: 2020-11-01                   # TODO: provjeriti
+    vrijedi_do: null
+  zakon: &zakon
+    izvor: "Zakon o morskom ribarstvu (NN 62/17, 14/19, 30/23, 14/24)"
+    url: "https://narodne-novine.nn.hr/"
+    vrijedi_od: 2017-07-08
+    vrijedi_do: null
+  zastita: &zastita
+    izvor: "Zakon o zaštiti prirode; akt o proglašenju i pravilnik o unutarnjem redu zaštićenog područja"
+    url: "https://www.bioportal.hr/"
+    clanak: "TODO"
+    vrijedi_od: 2013-07-01                   # TODO
+    vrijedi_do: null
+
+podrucja:
+  - key: hr_more
+    layer: hr_more
+    priority: 0
+    razina: obavijest
+    <<: *zakon
+    clanak: "TODO"
+    needs_legal_check: true
+    razlog: { hr: "Ribolovno more Republike Hrvatske.", en: "Fishing sea of the Republic of Croatia." }
+    napomena: "Granica je za sada gruba i približna (placeholder). TODO: službena granica ribolovnog mora."
+
+  - key: ihtioloski_rezervat
+    layer: ihtioloski_rezervat
+    priority: 1
+    razina: crveno
+    <<: *nn125
+    razlog: { hr: "Posebni ihtiološki rezervat: sav ribolov je zabranjen.", en: "Special ichthyological reserve: all fishing is prohibited." }
+
+  - key: stroga_zastita
+    layer: stroga_zastita
+    priority: 2
+    razina: crveno
+    kritican: true
+    <<: *zastita
+    razlog: { hr: "Zona stroge zaštite zaštićenog područja: ribolov je zabranjen.", en: "Strict protection zone: fishing is prohibited." }
+
+  - key: luka
+    layer: luka
+    priority: 3
+    razina: crveno
+    kritican: true
+    needs_legal_check: true
+    blizina_m: 150
+    blizina_razina: zuto
+    <<: *zakon
+    clanak: "TODO"
+    razlog:
+      hr: "Luka ili lučica: ribolov zabranjen, osim u dijelovima koje dopusti lučka uprava."
+      en: "Port or marina: fishing is prohibited, except in parts allowed by the port authority."
+    razlog_blizina:
+      hr: "Vjerojatno si u luci ili lučici (granica luke nije poznata) – provjeri."
+      en: "You are probably inside a port or marina (its boundary is unknown) – check."
+
+  - key: plaza
+    layer: plaza
+    priority: 4
+    razina: crveno
+    kritican: true
+    needs_legal_check: true
+    sezona: { od: "05-01", do: "10-01" }
+    blizina_m: 100
+    blizina_razina: zuto
+    <<: *zakon
+    clanak: "TODO"
+    razlog: { hr: "Plaža ili kupalište: ribolov zabranjen od 1. 5. do 1. 10.", en: "Beach or bathing area: fishing is prohibited from 1 May to 1 October." }
+    razlog_blizina:
+      hr: "Blizu plaže (granica plaže nije poznata) – provjeri."
+      en: "Near a beach (its boundary is unknown) – check."
+
+  - key: uzgajaliste_riba
+    layer: uzgajaliste
+    priority: 5
+    razina: crveno
+    udaljenost_m: 300
+    <<: *zakon
+    clanak: "čl. 14"
+    razlog: { hr: "Unutar 300 m od uzgajališta ribe: ribolov je zabranjen.", en: "Within 300 m of a fish farm: fishing is prohibited." }
+
+  - key: uzgajaliste_skoljkasa
+    layer: uzgajaliste
+    priority: 5
+    razina: crveno
+    udaljenost_m: 50
+    <<: *zakon
+    clanak: "čl. 14"
+    razlog: { hr: "Unutar 50 m od uzgajališta školjkaša: ribolov je zabranjen.", en: "Within 50 m of a shellfish farm: fishing is prohibited." }
+
+  - key: nacionalni_park
+    layer: nacionalni_park
+    priority: 6
+    razina: zuto
+    kritican: true
+    <<: *zastita
+    razlog: { hr: "Nacionalni park: ribolov samo uz posebnu dozvolu javne ustanove.", en: "National park: fishing only with a special permit from the park authority." }
+
+  - key: posebni_rezervat_more
+    layer: posebni_rezervat_more
+    priority: 7
+    razina: zuto
+    kritican: true
+    <<: *zastita
+    razlog: { hr: "Posebni rezervat u moru: ribolov samo uz posebnu dozvolu.", en: "Special marine reserve: fishing only with a special permit." }
+
+  - key: park_prirode
+    layer: park_prirode
+    priority: 8
+    razina: zuto
+    kritican: true
+    <<: *zastita
+    razlog: { hr: "Park prirode: ribolov samo uz posebnu dozvolu.", en: "Nature park: fishing only with a special permit." }
+
+  - key: telascica_obalni_pojas
+    layer: telascica_obalni_pojas
+    priority: 8
+    razina: crveno
+    sezona: { od: "05-01", do: "10-01" }
+    <<: *nn125
+    razlog:
+      hr: "PP Telašćica, obalni pojas (ronilačka zona): ribolov zabranjen od 1. 5. do 1. 10."
+      en: "Telašćica Nature Park, coastal belt (diving zone): fishing prohibited from 1 May to 1 October."
+    napomena: "TODO: geometrija obalnog pojasa nije digitalizirana."
+
+  - key: posebno_staniste
+    layer: posebno_staniste
+    priority: 9
+    razina: zuto
+    <<: *nn125
+    needs_legal_check: true   # mapiranje "povrazi" na alate iz general.yaml
+    dopusteni_alati: [odmet, kancenica, povraz_glavonosci, parangal, vrse, ost]
+    razlog:
+      hr: "Posebno stanište: dopušteni su samo povrazi, stajaći parangal, vrše i ost."
+      en: "Special habitat: only handlines, set longlines, traps and spears are allowed."
+
+  - key: posebna_regulacija
+    layer: posebna_regulacija
+    priority: 10
+    razina: zuto
+    <<: *nn125
+    needs_legal_check: true
+    razlog:
+      hr: "Područje posebne regulacije: vrijedi poseban popis dopuštenih alata – provjeri propis."
+      en: "Specially regulated area: a separate list of allowed gear applies – check the regulation."
+    napomena: "TODO: popis dopuštenih alata po području (Velebitski kanal, Novigradsko i Karinsko more, Prokljansko jezero, Neretvanski kanal, ušće Raše)."
+
+  - key: posebna_regulacija_marina
+    layer: posebna_regulacija
+    priority: 10
+    razina: zuto
+    <<: *nn125
+    needs_legal_check: true
+    zabrana_rasvjete: true
+    razlog:
+      hr: "Marinski zaljev: ost samo bez svjetla; ostali alati – provjeri propis."
+      en: "Marina bay: spear only without lights; other gear – check the regulation."
+
+  - key: natura2000
+    layer: natura2000
+    priority: 11
+    razina: obavijest
+    <<: *zastita
+    razlog: { hr: "Područje ekološke mreže Natura 2000.", en: "Natura 2000 site." }
+
+  - key: ribolovna_zona
+    layer: ribolovna_zona
+    priority: 12
+    razina: obavijest
+    <<: *zakon
+    clanak: "TODO"
+    razlog:
+      hr: "Ribolovna zona i podzona (upiši je u evidenciju u mRecFish)."
+      en: "Fishing zone and sub-zone (enter it in your mRecFish report)."

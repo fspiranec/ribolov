@@ -1,0 +1,1268 @@
+{
+ "izvor": "https://ribarstvo.mps.hr/UserDocsImages/Tomo/Distributeri%20dozvola-POPIS%20UPDATE.xlsx",
+ "preuzeto": "2026-11-26",
+ "prodavaci": [
+  {
+   "naziv": "A TURIZAM ISTRA",
+   "adresa": "KANDLEROVA 24",
+   "grad": "PULA",
+   "telefon": [
+    "052212212",
+    "0989832733"
+   ],
+   "email": "vesna.misan@a-turizam.hr",
+   "lat": 44.8702281,
+   "lon": 13.8455311
+  },
+  {
+   "naziv": "ABYSS D.O.O.",
+   "adresa": "SV. VIDA 11",
+   "grad": "ROVINJ",
+   "telefon": [
+    "091 588 3470"
+   ],
+   "email": "info@abyss-fishing.com",
+   "lat": 45.08258,
+   "lon": 13.6343455
+  },
+  {
+   "naziv": "ACTIVA TRAVEL ISTRA",
+   "adresa": "SCALIEROVA 1",
+   "grad": "PULA",
+   "telefon": [
+    "052 215 497",
+    "098 224 620"
+   ],
+   "email": "info@activa-istra.com",
+   "lat": 44.8702281,
+   "lon": 13.8455311
+  },
+  {
+   "naziv": "ALBATOURS TURISTIČKA AGENCIJA",
+   "adresa": "PREMANTURSKA CESTA 14",
+   "grad": "PULA",
+   "telefon": [
+    "052382985",
+    "09806560175"
+   ],
+   "email": "info@albatours.hr",
+   "lat": 44.8702281,
+   "lon": 13.8455311
+  },
+  {
+   "naziv": "AMFORA OBRT ZA TUR. DJELATN.",
+   "adresa": "TRG LA MUSA B.B.",
+   "grad": "BALE (VALLE)",
+   "telefon": [
+    "052841773",
+    "098744535"
+   ],
+   "email": "amfora@globalnet.hr",
+   "lat": 45.041053,
+   "lon": 13.786641
+  },
+  {
+   "naziv": "ANA PANSION",
+   "adresa": "ARTATORE 75",
+   "grad": "ĆUNSKI-MALI LOŠINJ",
+   "telefon": [
+    "051232975",
+    "098227150"
+   ],
+   "email": "slavko@pansion-ana.com",
+   "lat": 44.5316056,
+   "lon": 14.4694111
+  },
+  {
+   "naziv": "ANNA TOURS D.O.O.",
+   "adresa": "PRIMORSKA CESTA BB",
+   "grad": "NJIVICE",
+   "telefon": [
+    "051846165",
+    "098226793"
+   ],
+   "email": "info@annatours.hr",
+   "lat": 45.1588133,
+   "lon": 14.5395314
+  },
+  {
+   "naziv": "ANNALINEA D.O.O.",
+   "adresa": "STARI GRAD 1",
+   "grad": "MOŠĆENIČKA DRAGA",
+   "telefon": [
+    "051 737 207",
+    "099 210 8841"
+   ],
+   "email": "annalinea@ri.t-com.hr",
+   "lat": 45.2388503,
+   "lon": 14.2530932
+  },
+  {
+   "naziv": "APNEA D.O.O.",
+   "adresa": "Dr. ANTE STARČEVIĆA 89",
+   "grad": "DUBROVNIK",
+   "telefon": [
+    "020 357 316",
+    "098 765 685"
+   ],
+   "email": "diving@apnea.hr",
+   "lat": 42.6491029,
+   "lon": 18.0939501
+  },
+  {
+   "naziv": "AQUAMARIS NAUTIKA",
+   "adresa": "RUDARSKA 7",
+   "grad": "LABIN",
+   "telefon": [
+    "0915807574"
+   ],
+   "email": "info@aquamaris.hr",
+   "lat": 45.0913954,
+   "lon": 14.1236014
+  },
+  {
+   "naziv": "ATLAS UMAG D.O.O.",
+   "adresa": "TRG SLOBODE 3",
+   "grad": "UMAG",
+   "telefon": [
+    "052 741 779",
+    "098 255 707"
+   ],
+   "email": "mladen.fabris@gmail.com",
+   "lat": 45.4323587,
+   "lon": 13.5224098
+  },
+  {
+   "naziv": "ATLAS VELA LUKA",
+   "adresa": "OBALA 3/21",
+   "grad": "VELA LUKA",
+   "telefon": [
+    "020 812078",
+    "0919403643"
+   ],
+   "email": "tur-agen-atlas@du.t-com.hr",
+   "lat": 42.9609767,
+   "lon": 16.7180177
+  },
+  {
+   "naziv": "AUREA INTERNATIONAL",
+   "adresa": "VRŠANSKA 26 L",
+   "grad": "KRK",
+   "telefon": [
+    "051221777",
+    "098 329 936"
+   ],
+   "email": "aurea@aurea-krk.hr",
+   "lat": 45.0901954,
+   "lon": 14.5496681
+  },
+  {
+   "naziv": "AUTOTRANS D.O.O.  (OPATIJA)",
+   "adresa": "VELOG JOŽE 1",
+   "grad": "OPATIJA",
+   "telefon": [
+    "051 271 553",
+    "091 309033"
+   ],
+   "email": "renata.kvenic@autotrans.hr",
+   "lat": 45.3384526,
+   "lon": 14.3089991
+  },
+  {
+   "naziv": "AUTOTRANS D.O.O.  (RIJEKA)",
+   "adresa": "RIVA 22",
+   "grad": "RIJEKA",
+   "telefon": [
+    "051 212224"
+   ],
+   "email": "arijana.tomac@autotrans.hr",
+   "lat": 45.3267976,
+   "lon": 14.442208
+  },
+  {
+   "naziv": "AUTOTRANS D.O.O. (KRK)",
+   "adresa": "PLAVNIČKA 3",
+   "grad": "KRK",
+   "telefon": [
+    "051 222-661"
+   ],
+   "email": "melita.samanic@autotrans.hr",
+   "lat": 45.0901954,
+   "lon": 14.5496681
+  },
+  {
+   "naziv": "AUTOTRANS D.O.O. (RAB)",
+   "adresa": "MALI PALIT BB",
+   "grad": "RAB",
+   "telefon": [
+    "051 774 929"
+   ],
+   "email": "rab@autotrans.hr",
+   "lat": 44.7562894,
+   "lon": 14.7607367
+  },
+  {
+   "naziv": "AZUR TURISTIČKA AGENCIJA",
+   "adresa": "JOSIPA PUPAČIĆA 1",
+   "grad": "KRK",
+   "telefon": [
+    "051 880 765",
+    "091 586 9248"
+   ],
+   "email": "info@azur-krk.com",
+   "lat": 45.0901954,
+   "lon": 14.5496681
+  },
+  {
+   "naziv": "BARAKUDA RIBARSKI SAN",
+   "adresa": "STROŽANAČKA 56",
+   "grad": "PODSTRANA",
+   "telefon": [
+    "021 362 328",
+    "098 990 5265"
+   ],
+   "email": "baracuda_split@yahoo.com",
+   "lat": 43.4903118,
+   "lon": 16.5615609
+  },
+  {
+   "naziv": "BARBARIGA NOVA D.O.O.",
+   "adresa": "UlICA MARANA 1/a",
+   "grad": "BARBARIGA",
+   "telefon": [
+    "052528113",
+    "098441636"
+   ],
+   "email": "barbariga@barbariga-nova.hr",
+   "lat": 44.9937183,
+   "lon": 13.7535009
+  },
+  {
+   "naziv": "BEMAX D.O.O.",
+   "adresa": "GIAN RINALDO CARLI 1",
+   "grad": "ROVINJ",
+   "telefon": [
+    "052840587",
+    "098 224568"
+   ],
+   "email": "bemax@pu.t-com.hr",
+   "lat": 45.08258,
+   "lon": 13.6343455
+  },
+  {
+   "naziv": "CELENT LENKO",
+   "adresa": "UGLJAN  31",
+   "grad": "UGLJAN",
+   "telefon": [
+    "0237887957",
+    "098 272216"
+   ],
+   "email": "muline-celent@hotmail.com",
+   "lat": 44.0840638,
+   "lon": 15.1586304
+  },
+  {
+   "naziv": "CESAR TRGOVAČKI OBRT",
+   "adresa": "GARIBALDI 4",
+   "grad": "MALI LOŠINJ",
+   "telefon": [
+    "051 234040",
+    "098 715843"
+   ],
+   "email": "cesar_malilosinj@yahoo.com",
+   "lat": 44.5316056,
+   "lon": 14.4694111
+  },
+  {
+   "naziv": "COMTOURS, PUTNIČKA AGENCIJA",
+   "adresa": "PEROJ 138",
+   "grad": "PEROJ",
+   "telefon": [
+    "0992407271"
+   ],
+   "email": "monicapuja@gmail.com",
+   "lat": 44.9523608,
+   "lon": 13.7981636
+  },
+  {
+   "naziv": "CRESANKA D.D.",
+   "adresa": "VAROZINA 25",
+   "grad": "CRES",
+   "telefon": [
+    "051571133",
+    "098 2327546"
+   ],
+   "email": "booking@tbcres.com",
+   "lat": 44.9603333,
+   "lon": 14.4078895
+  },
+  {
+   "naziv": "CRIKVENICA TOURIST",
+   "adresa": "TRG S. RADIĆA 1",
+   "grad": "CRIKVENICA",
+   "telefon": [
+    "051 241 516",
+    "091 591 5812"
+   ],
+   "email": "crikvenica-tourist@ri.t-com.hr",
+   "lat": 45.1737049,
+   "lon": 14.6927906
+  },
+  {
+   "naziv": "DI-NAUTIKA D.O.O.",
+   "adresa": "VINKOVAČKA 21",
+   "grad": "SPLIT",
+   "telefon": [
+    "021 543 735",
+    "098 537 412"
+   ],
+   "email": "info2@di-nautika.hr",
+   "lat": 43.5116383,
+   "lon": 16.4399659
+  },
+  {
+   "naziv": "DONADIĆ TURISTIČKA AGENCIJA",
+   "adresa": "ZRINSKO FRANKOPANSKA 8",
+   "grad": "PAG",
+   "telefon": [
+    "023 400 042",
+    "098 331 130"
+   ],
+   "email": "mediteran.pag@email.t-com.hr",
+   "lat": 44.4966129,
+   "lon": 14.9461853
+  },
+  {
+   "naziv": "EL-PI SHOP D.O.O.",
+   "adresa": "OŠTROBRADIĆI 18",
+   "grad": "MALINSKA",
+   "telefon": [
+    "051859770",
+    "098368 310"
+   ],
+   "email": "office@elpi-tours.com",
+   "lat": 45.12354,
+   "lon": 14.5262186
+  },
+  {
+   "naziv": "ENKO GLUMAC",
+   "adresa": "M. DRŽIĆA 3",
+   "grad": "UBLE, LASTOVO",
+   "telefon": [
+    "020 454 461",
+    "098 9222 576"
+   ],
+   "email": "eglumac01@gmail.com",
+   "lat": 42.7439343,
+   "lon": 16.825684
+  },
+  {
+   "naziv": "ESTEE D.O.O.",
+   "adresa": "KONJSKA 10",
+   "grad": "ŠILO",
+   "telefon": [
+    "051852241",
+    "098395751"
+   ],
+   "email": "estee@ri.t-com.hr; info@estee.hr",
+   "lat": 45.1459664,
+   "lon": 14.6629678
+  },
+  {
+   "naziv": "EUNICE",
+   "adresa": "BEGOVICA 19",
+   "grad": "PULA",
+   "telefon": [
+    "052 570 203",
+    "098 9934785"
+   ],
+   "email": "eunice-pula@email.t-com.hr",
+   "lat": 44.8702281,
+   "lon": 13.8455311
+  },
+  {
+   "naziv": "FISHING ADVENTURE",
+   "adresa": "ŠPIRA PUOVIĆA I/1D",
+   "grad": "KAŠTEL NOVI",
+   "telefon": [
+    "0923520478"
+   ],
+   "email": "info@fishingtripstrogir.com",
+   "lat": 43.5500451,
+   "lon": 16.3392616
+  },
+  {
+   "naziv": "HIMERA D.O.O.",
+   "adresa": "ZAGREBAČKA 3",
+   "grad": "UMAG",
+   "telefon": [
+    "052759735",
+    "098 422420"
+   ],
+   "email": "trevitours.travel@gmail.com",
+   "lat": 45.4323587,
+   "lon": 13.5224098
+  },
+  {
+   "naziv": "IVICA PANCIROV",
+   "adresa": "SPLITSKA 63",
+   "grad": "PRIMOŠTEN",
+   "telefon": [
+    "098647559"
+   ],
+   "email": "pancirov.ivica@gmail.com",
+   "lat": 43.5863257,
+   "lon": 15.922777
+  },
+  {
+   "naziv": "JADRANKA KAMPOVI D.O.O.",
+   "adresa": "DRAŽICA 1",
+   "grad": "MALI LOŠINJ",
+   "telefon": [
+    "051 661 124",
+    "098 865 788"
+   ],
+   "email": "info@camps-cres-losinj.com",
+   "lat": 44.5316056,
+   "lon": 14.4694111
+  },
+  {
+   "naziv": "Javna ustanova “Nacionalni park Mljet“",
+   "adresa": "PRISTANIŠTE 2",
+   "grad": "GOVEĐARI",
+   "telefon": [
+    "020/744 041",
+    "098/1949903"
+   ],
+   "email": "martina.srsen@np-mljet.hr; np-mljet@np-mljet.hr",
+   "lat": 42.7827355,
+   "lon": 17.3627088
+  },
+  {
+   "naziv": "Javna ustanova „Nacionalni park Brijuni''",
+   "adresa": "BRIONSKA 10",
+   "grad": "FAŽANA",
+   "telefon": [
+    "052 525 -883"
+   ],
+   "email": "izleti@np-brijuni.hr; brijuni@np-brijuni.hr",
+   "lat": 44.9273327,
+   "lon": 13.8050769
+  },
+  {
+   "naziv": "Javna ustanova „Nacionalni park Kornati''",
+   "adresa": "BUTINA 2",
+   "grad": "MURTER",
+   "telefon": [
+    "022 43 57 41"
+   ],
+   "email": "magdalena.burtina@np-kornati.hr; kornati@np-kornati.hr",
+   "lat": 43.799601,
+   "lon": 15.6085778
+  },
+  {
+   "naziv": "Javna ustanova „Park prirode Lastovsko otočje“",
+   "adresa": "TRG SVETOG PETRA 7",
+   "grad": "LASTOVO",
+   "telefon": [
+    "020/ 801 252"
+   ],
+   "email": "milica.krsmanovic@pp-lastovo.hr; info@pp-lastovo.hr",
+   "lat": 42.750601,
+   "lon": 16.8799043
+  },
+  {
+   "naziv": "Javna ustanova „Park prirode Telašćica“",
+   "adresa": "SALI X 1",
+   "grad": "SALI",
+   "telefon": [
+    "023/377-096"
+   ],
+   "email": "telascica@telascica.hr; telascica@zd.t-com.hr",
+   "lat": 43.9381952,
+   "lon": 15.1633855
+  },
+  {
+   "naziv": "JEDRILIČARSKI KLUB ZVIR",
+   "adresa": "PUT KRIŽA 2",
+   "grad": "HVAR",
+   "telefon": [
+    "021 741415",
+    "0989802181"
+   ],
+   "email": "jkzvir@gmail.com",
+   "lat": 43.1739411,
+   "lon": 16.5565161
+  },
+  {
+   "naziv": "JOŠKO RAĐA",
+   "adresa": "PUT OD LUKE 8B",
+   "grad": "KORČULA",
+   "telefon": [
+    "020 711540",
+    "091 794 6646"
+   ],
+   "email": "josko.radja@du.t-com.hr",
+   "lat": 42.9437813,
+   "lon": 16.9134763
+  },
+  {
+   "naziv": "KOMPETENCIJA D.O.O.",
+   "adresa": "KNEZA DOMAGOJA 3",
+   "grad": "RAB",
+   "telefon": [
+    "0989095864"
+   ],
+   "email": "marko.sandalic@kompetencija.com",
+   "lat": 44.7562894,
+   "lon": 14.7607367
+  },
+  {
+   "naziv": "LEVANT INFO SERVIS",
+   "adresa": "DOLAC 93 A",
+   "grad": "BETINA",
+   "telefon": [
+    "022 435 709",
+    "0989814356"
+   ],
+   "email": "info@levant.hr",
+   "lat": 43.822988,
+   "lon": 15.6045478
+  },
+  {
+   "naziv": "LIBARNA D.O.O.",
+   "adresa": "KOVAČEVIĆEVA 1",
+   "grad": "PULA",
+   "telefon": [
+    "052544900",
+    "0915330318"
+   ],
+   "email": "info@libarna.hr ; dalibor@libarna.hr",
+   "lat": 44.8702281,
+   "lon": 13.8455311
+  },
+  {
+   "naziv": "LIBERTAS D.O.O.",
+   "adresa": "RIVA 14",
+   "grad": "PULA",
+   "telefon": [
+    "052 211 631",
+    "099 273 9724"
+   ],
+   "email": "libertas.pula@gmail.com",
+   "lat": 44.8702281,
+   "lon": 13.8455311
+  },
+  {
+   "naziv": "LOŠINJSKA PLOVIDBA-TURIZAM D.O.O.",
+   "adresa": "PRIVLAKA 19",
+   "grad": "MALI LOŠINJ",
+   "telefon": [
+    "051 231 077",
+    "0992269644"
+   ],
+   "email": "info@losinia.hr",
+   "lat": 44.5316056,
+   "lon": 14.4694111
+  },
+  {
+   "naziv": "MAREA D.O.O.",
+   "adresa": "POLJANSKA CESTA 21",
+   "grad": "IČIĆI",
+   "telefon": [
+    "051 705 620",
+    "091 5628547"
+   ],
+   "email": "marea@marea.hr",
+   "lat": 45.3133035,
+   "lon": 14.2847559
+  },
+  {
+   "naziv": "MARETA TOURS D.O.O.",
+   "adresa": "SELO 129",
+   "grad": "PREMANTURA",
+   "telefon": [
+    "052 383 699",
+    "099 381 4992"
+   ],
+   "email": "info@mareta-tours.hr",
+   "lat": 44.8021166,
+   "lon": 13.9111814
+  },
+  {
+   "naziv": "MATRIX D.O.O.",
+   "adresa": "DINKA TRINAJSTIĆA 16",
+   "grad": "POREČ",
+   "telefon": [
+    "052 436 122",
+    "091 512 5670"
+   ],
+   "email": "matrix1@pu.t-com.hr",
+   "lat": 45.2271961,
+   "lon": 13.5957333
+  },
+  {
+   "naziv": "MATULJI TOURS D.O.O.",
+   "adresa": "TRG M. TITA 3",
+   "grad": "MATULJI",
+   "telefon": [
+    "051275055",
+    "091 892 5030"
+   ],
+   "email": "matulji-tours@ri.t-com.hr",
+   "lat": 45.3636807,
+   "lon": 14.3244359
+  },
+  {
+   "naziv": "MISTER FISH J.D.O.O.",
+   "adresa": "VRH KMANA 6",
+   "grad": "SPLIT",
+   "telefon": [
+    "021/362462",
+    "091/5665741"
+   ],
+   "email": "info@baracudabooking.com",
+   "lat": 43.5116383,
+   "lon": 16.4399659
+  },
+  {
+   "naziv": "MOJA KUĆICA D.O.O.",
+   "adresa": "BRAJDINE 95",
+   "grad": "MEDULIN",
+   "telefon": [
+    "052 576919",
+    "0917956926"
+   ],
+   "email": "info@karavela.com",
+   "lat": 44.821786,
+   "lon": 13.9367142
+  },
+  {
+   "naziv": "MOLNAR - GABOR D.O.O.",
+   "adresa": "BRZAC 97",
+   "grad": "MALINSKA",
+   "telefon": [
+    "051880186",
+    "091 2030855"
+   ],
+   "email": "endrea.molnar@ri.t-com.hr;   info@krktourist.com",
+   "lat": 45.12354,
+   "lon": 14.5262186
+  },
+  {
+   "naziv": "MONTRAKER D.O.O.",
+   "adresa": "OBALA M.TITA 1A",
+   "grad": "VRSAR",
+   "telefon": [
+    "052441052",
+    "091 4410526"
+   ],
+   "email": "vrsar@montraker.hr",
+   "lat": 45.1490782,
+   "lon": 13.6063472
+  },
+  {
+   "naziv": "NATALE D.O.O.",
+   "adresa": "CARDUCCIJEVA 4",
+   "grad": "ROVINJ",
+   "telefon": [
+    "052 813365",
+    "095 801 5579"
+   ],
+   "email": "nataleturist@optinet.hr",
+   "lat": 45.08258,
+   "lon": 13.6343455
+  },
+  {
+   "naziv": "OBRT CARMARINE",
+   "adresa": "43. ISTARSKE DIVIZIJE 87",
+   "grad": "MIHOTIĆI",
+   "telefon": [
+    "051 275745",
+    "0911224164"
+   ],
+   "email": "robert.sepinski@ri.t-com.hr",
+   "lat": 45.3587531,
+   "lon": 14.3073223
+  },
+  {
+   "naziv": "OLIVARI D.O.O.",
+   "adresa": "DUBAŠLJANSKA 111",
+   "grad": "MALINSKA",
+   "telefon": [
+    "051 859977",
+    "0911850008"
+   ],
+   "email": "apartments@volivari.com",
+   "lat": 45.12354,
+   "lon": 14.5262186
+  },
+  {
+   "naziv": "ORADA ŠRK",
+   "adresa": "TRNJANSKA 21",
+   "grad": "ZAGREB",
+   "telefon": [
+    "01 6606207",
+    "098 740 094"
+   ],
+   "email": "info@srkoradazagreb.hr",
+   "lat": 45.8130967,
+   "lon": 15.9772795
+  },
+  {
+   "naziv": "ORION D.O.O.",
+   "adresa": "MALA VALA 38",
+   "grad": "VALBANDON",
+   "telefon": [
+    "052 394 120",
+    "098 940 3563"
+   ],
+   "email": "orion.fazana@pu.t-com.hr",
+   "lat": 44.9142399,
+   "lon": 13.8193819
+  },
+  {
+   "naziv": "PALASTURA D.O.O.",
+   "adresa": "HRVATSKE MORNARICE 1D",
+   "grad": "SPLIT",
+   "telefon": [
+    "021 375 175",
+    "0915672938"
+   ],
+   "email": "split@pangea-ribolov.hr",
+   "lat": 43.5116383,
+   "lon": 16.4399659
+  },
+  {
+   "naziv": "PANGEA RIBOLOV D.O.O.",
+   "adresa": "OBALA HRV. MORNARICE 14A",
+   "grad": "ŠIBENIK",
+   "telefon": [
+    "022244823",
+    "0981658455"
+   ],
+   "email": "info@pangea-ribolov.hr",
+   "lat": 43.7340647,
+   "lon": 15.8944767
+  },
+  {
+   "naziv": "PANGEA RIBOLOV D.O.O.",
+   "adresa": "ULICA HRVATSKIH ŽRTAVA 98",
+   "grad": "SEGET DONJI",
+   "telefon": [
+    "0997724141",
+    "0981658455"
+   ],
+   "email": "seget@pangea-ribolov.hr",
+   "lat": 43.5179953,
+   "lon": 16.2272015
+  },
+  {
+   "naziv": "PIKO D.O.O.",
+   "adresa": "VERGAL 11",
+   "grad": "NOVIGRAD",
+   "telefon": [
+    "052757070",
+    "098 22 4494"
+   ],
+   "email": "piko007@gmail.com",
+   "lat": 45.3159178,
+   "lon": 13.5630277
+  },
+  {
+   "naziv": "PLAVO MORE D.O.O.",
+   "adresa": "TRGOVAČKA 3A",
+   "grad": "UMAG",
+   "telefon": [
+    "052 743990",
+    "098 218048"
+   ],
+   "email": "plavo.more@pu.t-com.hr",
+   "lat": 45.4323587,
+   "lon": 13.5224098
+  },
+  {
+   "naziv": "PSRD LIGNJA GRADAC",
+   "adresa": "STJEPANA RADIĆA 3",
+   "grad": "GRADAC",
+   "telefon": [
+    "0915859443",
+    "098 243 665"
+   ],
+   "email": "psrd.lignja@gmail.com",
+   "lat": 43.1064526,
+   "lon": 17.3416928
+  },
+  {
+   "naziv": "PŠU BANJ",
+   "adresa": "OBALA KRALJA ZVONIMIRA 16",
+   "grad": "TROGIR",
+   "telefon": [
+    "021 885 182",
+    "091 5621329"
+   ],
+   "email": "info@psubanjciovo.hr",
+   "lat": 43.5164142,
+   "lon": 16.2497163
+  },
+  {
+   "naziv": "RV NAUTICA, OBRT ZA TRGOVINU",
+   "adresa": "GARIBALDI 14a",
+   "grad": "ROVINJ",
+   "telefon": [
+    "0992392646"
+   ],
+   "email": "rvnauticarovinj@gmail.com",
+   "lat": 45.08258,
+   "lon": 13.6343455
+  },
+  {
+   "naziv": "SARAČEVIĆ D.O.O.",
+   "adresa": "BRAČKA 26",
+   "grad": "POREČ",
+   "telefon": [
+    "052 535 144",
+    "0917664471"
+   ],
+   "email": "dzemal.saracevic@pu.t-com.hr",
+   "lat": 45.2271961,
+   "lon": 13.5957333
+  },
+  {
+   "naziv": "SENKIĆ D.O.O.",
+   "adresa": "KLANČIĆ 2",
+   "grad": "PUNAT",
+   "telefon": [
+    "051855180",
+    "09853820374"
+   ],
+   "email": "ksenkic@email.t-com.hr",
+   "lat": 45.0195884,
+   "lon": 14.631247
+  },
+  {
+   "naziv": "SIRENE D.O.O.",
+   "adresa": "ULICA BELVEDER 9",
+   "grad": "SAVUDRIJA",
+   "telefon": [
+    "052759541",
+    "0919704630"
+   ],
+   "email": "info@sirene.hr",
+   "lat": 45.5007791,
+   "lon": 13.5044472
+  },
+  {
+   "naziv": "SOL DEUS D.O.O.",
+   "adresa": "SELO 132 b",
+   "grad": "PREMANTURA",
+   "telefon": [
+    "052 575 319",
+    "091 630 1010"
+   ],
+   "email": "info@soldeus.hr",
+   "lat": 44.8021166,
+   "lon": 13.9111814
+  },
+  {
+   "naziv": "SOS POMORAC",
+   "adresa": "EDE STARCA 13",
+   "grad": "RIJEKA",
+   "telefon": [
+    "051 518 118",
+    "091 411 4881"
+   ],
+   "email": "sospomorac@gmail.com",
+   "lat": 45.3267976,
+   "lon": 14.442208
+  },
+  {
+   "naziv": "SRU TRAPULA",
+   "adresa": "BORISA KRNČEVIĆA 47",
+   "grad": "VIR",
+   "telefon": [
+    "098 605 198",
+    "099 4163581"
+   ],
+   "email": "trapula.vir@gmail.com",
+   "lat": 44.3044574,
+   "lon": 15.0674899
+  },
+  {
+   "naziv": "STEFANI TRADE D.O.O.",
+   "adresa": "ŽUPNI TRG 3",
+   "grad": "FAŽANA",
+   "telefon": [
+    "052521910",
+    "0989938663"
+   ],
+   "email": "stefani@pu.t-com.hr",
+   "lat": 44.9273327,
+   "lon": 13.8050769
+  },
+  {
+   "naziv": "SUB - KLUB PODVODNIH  AKTIVNOSTI",
+   "adresa": "RUĐERA BOŠKOVIĆA  19",
+   "grad": "SPLIT",
+   "telefon": [
+    "021 459545",
+    "091 313 2121"
+   ],
+   "email": "kpasub@gmail.com",
+   "lat": 43.5116383,
+   "lon": 16.4399659
+  },
+  {
+   "naziv": "SUNNY WAY D.O.O.",
+   "adresa": "ALDO NEGRI 1",
+   "grad": "POREČ",
+   "telefon": [
+    "052 452 021",
+    "098 334 390"
+   ],
+   "email": "sunnyway@pu.t-com.hr",
+   "lat": 45.2271961,
+   "lon": 13.5957333
+  },
+  {
+   "naziv": "Š.D. LIGNJA  PRIMOŠTEN",
+   "adresa": "NOVA RIVA B.B.",
+   "grad": "PRIMOŠTEN",
+   "telefon": [
+    "022 643525",
+    "098 647559"
+   ],
+   "email": "s.d.lignja@gmail.com",
+   "lat": 43.5863257,
+   "lon": 15.922777
+  },
+  {
+   "naziv": "Š.R.K. MALI PORAT",
+   "adresa": "BLATA 59",
+   "grad": "VODICE",
+   "telefon": [
+    "022 441 165",
+    "098 266440"
+   ],
+   "email": "bilan.agencija@email.t-com.hr",
+   "lat": 43.7588065,
+   "lon": 15.7769182
+  },
+  {
+   "naziv": "ŠRD ŠKARPINA",
+   "adresa": "DOLAC BB",
+   "grad": "NEREZINE",
+   "telefon": [
+    "051 237 038",
+    "0915412765"
+   ],
+   "email": "marina.nerezine@ri.t-com.hr",
+   "lat": 44.658877,
+   "lon": 14.3967237
+  },
+  {
+   "naziv": "ŠRD BOŽAVA",
+   "adresa": "BOŽAVA bb",
+   "grad": "BOŽAVA",
+   "telefon": [
+    "023377638",
+    "0912536507"
+   ],
+   "email": "noebrkic@yahoo.com",
+   "lat": 44.1405227,
+   "lon": 14.904966
+  },
+  {
+   "naziv": "ŠRD GLAVOČ",
+   "adresa": "KRAJ bb",
+   "grad": "TRSTENIK",
+   "telefon": [
+    "020 748 110",
+    "091 568 1360"
+   ],
+   "email": "branko20245@outlook.com; branko dzajic@du.ht.hr",
+   "lat": 45.8969426,
+   "lon": 15.7544855
+  },
+  {
+   "naziv": "ŠRD PUNTA RATA",
+   "adresa": "OBALA SV.IVANA B.B.",
+   "grad": "JEZERA",
+   "telefon": [
+    "022 439 394",
+    "091 796 6107"
+   ],
+   "email": "ervina.tomin@si.t-com.hr",
+   "lat": 43.7858544,
+   "lon": 15.6418305
+  },
+  {
+   "naziv": "ŠRD UMAG",
+   "adresa": "POZIOI 9",
+   "grad": "UMAG",
+   "telefon": [
+    "052 722 113",
+    "091 4077635"
+   ],
+   "email": "srd.umag@gmail.com",
+   "lat": 45.4323587,
+   "lon": 13.5224098
+  },
+  {
+   "naziv": "TANGER D.O.O., LUNA ROSSA, AGENCIJA",
+   "adresa": "MUNIDA 4A",
+   "grad": "MEDULIN",
+   "telefon": [
+    "052577483",
+    "091 404 2003"
+   ],
+   "email": "lrossa@lrossa.com; info@lrossa.com",
+   "lat": 44.821786,
+   "lon": 13.9367142
+  },
+  {
+   "naziv": "TRAPULA",
+   "adresa": "POLJIČKA CESTA 60",
+   "grad": "MARINA",
+   "telefon": [
+    "091 592 1939"
+   ],
+   "email": "trapula@vip.hr",
+   "lat": 43.5138546,
+   "lon": 16.1088335
+  },
+  {
+   "naziv": "TRAPULA DŠRR",
+   "adresa": "BABONIĆEVA 40",
+   "grad": "ZAGREB",
+   "telefon": [
+    "01 4635703",
+    "091 4400012"
+   ],
+   "email": "alan.kolakovic@yahoo.com",
+   "lat": 45.8130967,
+   "lon": 15.9772795
+  },
+  {
+   "naziv": "UDICA D.O.O.",
+   "adresa": "OBALA KNEZA BRANIMIRA 14",
+   "grad": "ZADAR",
+   "telefon": [
+    "023/305-398",
+    "099/332-8122"
+   ],
+   "email": "udica@sonik.hr",
+   "lat": 44.1168594,
+   "lon": 15.2353257
+  },
+  {
+   "naziv": "UDICA D.O.O.",
+   "adresa": "PALIT 232",
+   "grad": "RAB",
+   "telefon": [
+    "051 724328",
+    "098 443232"
+   ],
+   "email": "udica@inet.hr",
+   "lat": 44.7562894,
+   "lon": 14.7607367
+  },
+  {
+   "naziv": "ULIKA",
+   "adresa": "VINEŽ, VINEŽ 411",
+   "grad": "LABIN",
+   "telefon": [
+    "052 851 100",
+    "0917881677"
+   ],
+   "email": "biserka.sanpjero@gmail.com",
+   "lat": 45.0913954,
+   "lon": 14.1236014
+  },
+  {
+   "naziv": "UNIVERSUM D.O.O.",
+   "adresa": "PODRAVSKA 9",
+   "grad": "NOVIGRAD",
+   "telefon": [
+    "052726761",
+    "0992149025"
+   ],
+   "email": "info@universumcroatia.hr",
+   "lat": 45.3159178,
+   "lon": 13.5630277
+  },
+  {
+   "naziv": "UPRAVA RIBARSTVA  PJ. DUBROVNIK",
+   "adresa": "VUKOVARSKA 2",
+   "grad": "DUBROVNIK",
+   "telefon": [
+    "020 332 393"
+   ],
+   "email": null,
+   "lat": 42.6491029,
+   "lon": 18.0939501
+  },
+  {
+   "naziv": "UPRAVA RIBARSTVA  PJ. RIJEKA",
+   "adresa": "FRANA KURELCA 8",
+   "grad": "RIJEKA",
+   "telefon": [
+    "051 214 877"
+   ],
+   "email": null,
+   "lat": 45.3267976,
+   "lon": 14.442208
+  },
+  {
+   "naziv": "UPRAVA RIBARSTVA  PJ. SENJ",
+   "adresa": "OBALA DR. FRANJE TUĐMANA 6",
+   "grad": "SENJ",
+   "telefon": [
+    "053 882 697"
+   ],
+   "email": null,
+   "lat": 45.3503765,
+   "lon": 13.9098445
+  },
+  {
+   "naziv": "UPRAVA RIBARSTVA  PJ. SPLIT",
+   "adresa": "TRG HRVATSKE BRATSKE ZAJEDNICE 8",
+   "grad": "SPLIT",
+   "telefon": [
+    "021 444 060"
+   ],
+   "email": null,
+   "lat": 43.5116383,
+   "lon": 16.4399659
+  },
+  {
+   "naziv": "UPRAVA RIBARSTVA  PJ. ŠIBENIK",
+   "adresa": "VELIMIRA ŠKORPIKA 13 B",
+   "grad": "ŠIBENIK",
+   "telefon": [
+    "022 213 715"
+   ],
+   "email": null,
+   "lat": 43.7340647,
+   "lon": 15.8944767
+  },
+  {
+   "naziv": "UPRAVA RIBARSTVA  PJ. ZADAR",
+   "adresa": "IVANA MAŽURANIĆA 30",
+   "grad": "ZADAR",
+   "telefon": [
+    "023 309 822"
+   ],
+   "email": null,
+   "lat": 44.1168594,
+   "lon": 15.2353257
+  },
+  {
+   "naziv": "UPRAVA RIBARSTVA  PJ.PULA",
+   "adresa": "SV. TEODORA 4",
+   "grad": "PULA",
+   "telefon": [
+    "052 222 490"
+   ],
+   "email": null,
+   "lat": 44.8702281,
+   "lon": 13.8455311
+  },
+  {
+   "naziv": "UPRAVA RIBARSTVA-MIN. POLJOPRIVREDE",
+   "adresa": "ALEXANDERA VON HUMBOLDTA 4b",
+   "grad": "ZAGREB",
+   "telefon": [
+    "01 6443188",
+    "01 6443185"
+   ],
+   "email": "rmc@mps.hr",
+   "lat": 45.8130967,
+   "lon": 15.9772795
+  },
+  {
+   "naziv": "UVALA POLJANA D.O.O.",
+   "adresa": "RUJNICA 9 A",
+   "grad": "MALI LOŠINJ",
+   "telefon": [
+    "051 231 726",
+    "098 992 7309"
+   ],
+   "email": "info@poljana.hr",
+   "lat": 44.5316056,
+   "lon": 14.4694111
+  },
+  {
+   "naziv": "VAL-DIV D.O.O.",
+   "adresa": "STANCIJA VAKANELA 4",
+   "grad": "VRSAR",
+   "telefon": [
+    "052-445-313",
+    "098-255-973"
+   ],
+   "email": "val-div@pu.t-com.hr",
+   "lat": 45.1490782,
+   "lon": 13.6063472
+  },
+  {
+   "naziv": "VELIČKI JULIO",
+   "adresa": "KOPERNIKOVA 1",
+   "grad": "ZAGREB",
+   "telefon": [
+    "01 6692120",
+    "098360809"
+   ],
+   "email": "juliovelicki@post.t-com.hr",
+   "lat": 45.8130967,
+   "lon": 15.9772795
+  },
+  {
+   "naziv": "V-MARINE TRGOVINA I SERVIS BR. OPREME",
+   "adresa": "OTOČKA CESTA 24",
+   "grad": "KALI",
+   "telefon": [
+    "023 282456",
+    "098 413 574"
+   ],
+   "email": "vidovmarine@gmail.com",
+   "lat": 44.0635711,
+   "lon": 15.2063737
+  },
+  {
+   "naziv": "VUJANIĆ MIHAJLO",
+   "adresa": "KRALJA D. ZVONIMIRA 12",
+   "grad": "ZADAR",
+   "telefon": [
+    "023 213 251",
+    "095 9037559"
+   ],
+   "email": "mvvez@yahoo.it",
+   "lat": 44.1168594,
+   "lon": 15.2353257
+  },
+  {
+   "naziv": "ZAJEDNICA UDRUGA ŠP. RIB. INVALIDA",
+   "adresa": "FABKOVIĆEVA 1/II",
+   "grad": "ZAGREB",
+   "telefon": [
+    "01 2861 905",
+    "091 525 9076"
+   ],
+   "email": "zusrivdr.rh@gmail.com",
+   "lat": 45.8130967,
+   "lon": 15.9772795
+  },
+  {
+   "naziv": "ŽUTI OCTOPUS D.O.O.",
+   "adresa": "VODNJANSKA CESTA 28",
+   "grad": "PULA",
+   "telefon": [
+    "052 502 644",
+    "098 495 644"
+   ],
+   "email": "zuti.octopus@pu.t-com.hr",
+   "lat": 44.8702281,
+   "lon": 13.8455311
+  }
+ ]
+}

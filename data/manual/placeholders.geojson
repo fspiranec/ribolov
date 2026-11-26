@@ -1,0 +1,1172 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "hr_more",
+    "priority": 0,
+    "rule_key": "hr_more",
+    "name": "Ribolovno more RH (približno)",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       13.48,
+       45.7
+      ],
+      [
+       15.2,
+       45.45
+      ],
+      [
+       16.2,
+       44.2
+      ],
+      [
+       17.4,
+       43.3
+      ],
+      [
+       18.6,
+       42.55
+      ],
+      [
+       18.55,
+       42.38
+      ],
+      [
+       17.5,
+       41.9
+      ],
+      [
+       16,
+       42.2
+      ],
+      [
+       15.2,
+       42.7
+      ],
+      [
+       14,
+       43.5
+      ],
+      [
+       13.2,
+       44.3
+      ],
+      [
+       12.9,
+       45.1
+      ],
+      [
+       13.2,
+       45.6
+      ],
+      [
+       13.48,
+       45.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "ihtioloski_rezervat",
+    "priority": 1,
+    "rule_key": "ihtioloski_rezervat",
+    "name": "Uvala Šćuza (Medulinski zaljev)",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       13.929,
+       44.799
+      ],
+      [
+       13.941,
+       44.799
+      ],
+      [
+       13.941,
+       44.811
+      ],
+      [
+       13.929,
+       44.811
+      ],
+      [
+       13.929,
+       44.799
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "nacionalni_park",
+    "priority": 6,
+    "rule_key": "nacionalni_park",
+    "name": "NP Brijuni",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       13.7,
+       44.88
+      ],
+      [
+       13.8,
+       44.88
+      ],
+      [
+       13.8,
+       44.95
+      ],
+      [
+       13.7,
+       44.95
+      ],
+      [
+       13.7,
+       44.88
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "nacionalni_park",
+    "priority": 6,
+    "rule_key": "nacionalni_park",
+    "name": "NP Kornati",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       15.15,
+       43.7
+      ],
+      [
+       15.45,
+       43.7
+      ],
+      [
+       15.45,
+       43.9
+      ],
+      [
+       15.15,
+       43.9
+      ],
+      [
+       15.15,
+       43.7
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "nacionalni_park",
+    "priority": 6,
+    "rule_key": "nacionalni_park",
+    "name": "NP Mljet",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       17.3,
+       42.73
+      ],
+      [
+       17.42,
+       42.73
+      ],
+      [
+       17.42,
+       42.8
+      ],
+      [
+       17.3,
+       42.8
+      ],
+      [
+       17.3,
+       42.73
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebni_rezervat_more",
+    "priority": 7,
+    "rule_key": "posebni_rezervat_more",
+    "name": "Limski zaljev",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       13.62,
+       45.125
+      ],
+      [
+       13.76,
+       45.125
+      ],
+      [
+       13.76,
+       45.14
+      ],
+      [
+       13.62,
+       45.14
+      ],
+      [
+       13.62,
+       45.125
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebni_rezervat_more",
+    "priority": 7,
+    "rule_key": "posebni_rezervat_more",
+    "name": "Malostonski zaljev",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       17.5,
+       42.78
+      ],
+      [
+       17.72,
+       42.78
+      ],
+      [
+       17.72,
+       42.9
+      ],
+      [
+       17.5,
+       42.9
+      ],
+      [
+       17.5,
+       42.78
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebni_rezervat_more",
+    "priority": 7,
+    "rule_key": "posebni_rezervat_more",
+    "name": "Malo more",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       17.6,
+       42.86
+      ],
+      [
+       17.66,
+       42.86
+      ],
+      [
+       17.66,
+       42.89
+      ],
+      [
+       17.6,
+       42.89
+      ],
+      [
+       17.6,
+       42.86
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "park_prirode",
+    "priority": 8,
+    "rule_key": "park_prirode",
+    "name": "PP Telašćica",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       15.12,
+       43.85
+      ],
+      [
+       15.25,
+       43.85
+      ],
+      [
+       15.25,
+       43.93
+      ],
+      [
+       15.12,
+       43.93
+      ],
+      [
+       15.12,
+       43.85
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "park_prirode",
+    "priority": 8,
+    "rule_key": "park_prirode",
+    "name": "PP Lastovsko otočje",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       16.7,
+       42.68
+      ],
+      [
+       17.05,
+       42.68
+      ],
+      [
+       17.05,
+       42.82
+      ],
+      [
+       16.7,
+       42.82
+      ],
+      [
+       16.7,
+       42.68
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebno_staniste",
+    "priority": 9,
+    "rule_key": "posebno_staniste",
+    "name": "Ušće Dragonje",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       13.607000000000001,
+       45.467
+      ],
+      [
+       13.623,
+       45.467
+      ],
+      [
+       13.623,
+       45.483000000000004
+      ],
+      [
+       13.607000000000001,
+       45.483000000000004
+      ],
+      [
+       13.607000000000001,
+       45.467
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebno_staniste",
+    "priority": 9,
+    "rule_key": "posebno_staniste",
+    "name": "Ušće Mirne",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       13.592,
+       45.312
+      ],
+      [
+       13.607999999999999,
+       45.312
+      ],
+      [
+       13.607999999999999,
+       45.328
+      ],
+      [
+       13.592,
+       45.328
+      ],
+      [
+       13.592,
+       45.312
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebno_staniste",
+    "priority": 9,
+    "rule_key": "posebno_staniste",
+    "name": "Ušće Zrmanje",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       15.572000000000001,
+       44.192
+      ],
+      [
+       15.588,
+       44.192
+      ],
+      [
+       15.588,
+       44.208000000000006
+      ],
+      [
+       15.572000000000001,
+       44.208000000000006
+      ],
+      [
+       15.572000000000001,
+       44.192
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebno_staniste",
+    "priority": 9,
+    "rule_key": "posebno_staniste",
+    "name": "Ušće Guduće",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       15.922,
+       43.821999999999996
+      ],
+      [
+       15.937999999999999,
+       43.821999999999996
+      ],
+      [
+       15.937999999999999,
+       43.838
+      ],
+      [
+       15.922,
+       43.838
+      ],
+      [
+       15.922,
+       43.821999999999996
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebno_staniste",
+    "priority": 9,
+    "rule_key": "posebno_staniste",
+    "name": "Ušće Jadra",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       16.472,
+       43.526999999999994
+      ],
+      [
+       16.488,
+       43.526999999999994
+      ],
+      [
+       16.488,
+       43.543
+      ],
+      [
+       16.472,
+       43.543
+      ],
+      [
+       16.472,
+       43.526999999999994
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebno_staniste",
+    "priority": 9,
+    "rule_key": "posebno_staniste",
+    "name": "Ušće Žrnovnice",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       16.547,
+       43.501999999999995
+      ],
+      [
+       16.563,
+       43.501999999999995
+      ],
+      [
+       16.563,
+       43.518
+      ],
+      [
+       16.547,
+       43.518
+      ],
+      [
+       16.547,
+       43.501999999999995
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebno_staniste",
+    "priority": 9,
+    "rule_key": "posebno_staniste",
+    "name": "Ušće Cetine",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       16.682000000000002,
+       43.431999999999995
+      ],
+      [
+       16.698,
+       43.431999999999995
+      ],
+      [
+       16.698,
+       43.448
+      ],
+      [
+       16.682000000000002,
+       43.448
+      ],
+      [
+       16.682000000000002,
+       43.431999999999995
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebno_staniste",
+    "priority": 9,
+    "rule_key": "posebno_staniste",
+    "name": "Ušće Neretve",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       17.442,
+       43.012
+      ],
+      [
+       17.458,
+       43.012
+      ],
+      [
+       17.458,
+       43.028000000000006
+      ],
+      [
+       17.442,
+       43.028000000000006
+      ],
+      [
+       17.442,
+       43.012
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebno_staniste",
+    "priority": 9,
+    "rule_key": "posebno_staniste",
+    "name": "Pantan",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       16.267,
+       43.507
+      ],
+      [
+       16.282999999999998,
+       43.507
+      ],
+      [
+       16.282999999999998,
+       43.523
+      ],
+      [
+       16.267,
+       43.523
+      ],
+      [
+       16.267,
+       43.507
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebno_staniste",
+    "priority": 9,
+    "rule_key": "posebno_staniste",
+    "name": "Uvala Klimno",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       14.612,
+       45.141999999999996
+      ],
+      [
+       14.627999999999998,
+       45.141999999999996
+      ],
+      [
+       14.627999999999998,
+       45.158
+      ],
+      [
+       14.612,
+       45.158
+      ],
+      [
+       14.612,
+       45.141999999999996
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebno_staniste",
+    "priority": 9,
+    "rule_key": "posebno_staniste",
+    "name": "Pirovački zaljev",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       15.662,
+       43.812
+      ],
+      [
+       15.677999999999999,
+       43.812
+      ],
+      [
+       15.677999999999999,
+       43.828
+      ],
+      [
+       15.662,
+       43.828
+      ],
+      [
+       15.662,
+       43.812
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebno_staniste",
+    "priority": 9,
+    "rule_key": "posebno_staniste",
+    "name": "Morinje i Jadrtovac",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       15.947000000000001,
+       43.662
+      ],
+      [
+       15.963,
+       43.662
+      ],
+      [
+       15.963,
+       43.678000000000004
+      ],
+      [
+       15.947000000000001,
+       43.678000000000004
+      ],
+      [
+       15.947000000000001,
+       43.662
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebno_staniste",
+    "priority": 9,
+    "rule_key": "posebno_staniste",
+    "name": "Rijeka dubrovačka",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       18.102,
+       42.662
+      ],
+      [
+       18.118,
+       42.662
+      ],
+      [
+       18.118,
+       42.678000000000004
+      ],
+      [
+       18.102,
+       42.678000000000004
+      ],
+      [
+       18.102,
+       42.662
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebna_regulacija",
+    "priority": 10,
+    "rule_key": "posebna_regulacija",
+    "name": "Velebitski kanal",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       14.8,
+       44.4
+      ],
+      [
+       15.3,
+       44.4
+      ],
+      [
+       15.3,
+       45
+      ],
+      [
+       14.8,
+       45
+      ],
+      [
+       14.8,
+       44.4
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebna_regulacija",
+    "priority": 10,
+    "rule_key": "posebna_regulacija",
+    "name": "Novigradsko i Karinsko more",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       15.45,
+       44.15
+      ],
+      [
+       15.65,
+       44.15
+      ],
+      [
+       15.65,
+       44.22
+      ],
+      [
+       15.45,
+       44.22
+      ],
+      [
+       15.45,
+       44.15
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebna_regulacija",
+    "priority": 10,
+    "rule_key": "posebna_regulacija",
+    "name": "Prokljansko jezero",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       15.84,
+       43.79
+      ],
+      [
+       15.92,
+       43.79
+      ],
+      [
+       15.92,
+       43.84
+      ],
+      [
+       15.84,
+       43.84
+      ],
+      [
+       15.84,
+       43.79
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebna_regulacija",
+    "priority": 10,
+    "rule_key": "posebna_regulacija_marina",
+    "name": "Marinski zaljev",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       16.08,
+       43.5
+      ],
+      [
+       16.13,
+       43.5
+      ],
+      [
+       16.13,
+       43.53
+      ],
+      [
+       16.08,
+       43.53
+      ],
+      [
+       16.08,
+       43.5
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebna_regulacija",
+    "priority": 10,
+    "rule_key": "posebna_regulacija",
+    "name": "Neretvanski kanal",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       17.1,
+       42.95
+      ],
+      [
+       17.45,
+       42.95
+      ],
+      [
+       17.45,
+       43.1
+      ],
+      [
+       17.1,
+       43.1
+      ],
+      [
+       17.1,
+       42.95
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "posebna_regulacija",
+    "priority": 10,
+    "rule_key": "posebna_regulacija",
+    "name": "Ušće Raše",
+    "source": "placeholder (make_placeholders.ts)",
+    "placeholder": true,
+    "todo": "Digitalizirati stvarnu geometriju iz propisa/službenih karata."
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       14.03,
+       45
+      ],
+      [
+       14.08,
+       45
+      ],
+      [
+       14.08,
+       45.07
+      ],
+      [
+       14.03,
+       45.07
+      ],
+      [
+       14.03,
+       45
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

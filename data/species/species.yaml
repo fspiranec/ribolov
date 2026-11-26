@@ -1,0 +1,455 @@
+# Vodič kroz vrste: praktični savjeti (udice, mamci, tehnika, sezona).
+# Ovo NISU pravila: to su okvirni savjeti za početnike i turiste.
+# Minimalne veličine i lovostaji čitaju se iz /rules (min_sizes.yaml, closed_seasons.yaml).
+# Slike i opisi dolaze s Wikipedije (npm run import:species -> data/species/wiki.json).
+# lokalni_nazivi: okvirno, needs_check – nadopuniti po regijama (Istra, Kvarner, Dalmacija).
+# Veličine udica su po europskoj numeraciji: veći broj = manja udica; 1/0, 2/0 ... su veće od 1.
+napomena:
+  hr: "Okvirni savjeti, ne pravila. Veličina udice ovisi o veličini ribe i mamca."
+  en: "General tips, not rules. Hook size depends on the size of the fish and the bait."
+
+vrste:
+  - key: komarca
+    naziv: { hr: "Komarča (orada)", en: "Gilthead seabream" }
+    latinski: "Sparus aurata"
+    lokalni_nazivi: ["orada", "lovrata (Dalmacija)", "podlanica (Istra, Kvarner)"]
+    wiki: { hr: "Komarča", en: "Gilthead seabream" }
+    min_kljuc: "komarča"
+    udica: "4 – 1 (jaka, kratkog vrata)"
+    mjeseci: [9, 10, 11]
+    doba: [zora, sumrak]
+    prepoznavanje:
+      hr: "Srebrnasto tijelo, zlatna (orada!) poprečna traka između očiju i tamna mrlja na početku škržnog poklopca."
+      en: "Silvery body, a golden band between the eyes and a dark spot at the start of the gill cover."
+    mamci:
+      hr: "dagnja, kozica, morski crv, mala obalna rakovica"
+      en: "mussel, shrimp, sea worm, small shore crab"
+    tehnika:
+      hr: "Dubinski ribolov s obale (štap s olovom na dnu) ili najlonom bez štapa s broda. Orada oprezno uzima mamac – pričekaj da povuče."
+      en: "Bottom fishing from the shore (rod with a sinker on the bottom) or a handline from a boat. Seabream bites cautiously – wait for a firm pull."
+    kada:
+      hr: "Najbolje u jesen (rujan–studeni), rano ujutro i predvečer."
+      en: "Best in autumn (September–November), early morning and evening."
+    gdje:
+      hr: "Pjeskovito-kamenito dno, 2–15 m, uvale i ulazi u luke (pazi na zabrane u lukama i 50 m od uzgajališta školjkaša)."
+      en: "Sandy-rocky bottom, 2–15 m, bays and harbour entrances (mind the bans in ports and within 50 m of shellfish farms)."
+
+  - key: lubin
+    naziv: { hr: "Lubin (brancin)", en: "European seabass" }
+    latinski: "Dicentrarchus labrax"
+    lokalni_nazivi: ["brancin"]
+    wiki: { hr: "Lubin", en: "European seabass" }
+    min_kljuc: "lubin"
+    udica: "2 – 2/0"
+    mjeseci: [10, 11, 12, 1, 2]
+    doba: [sumrak, noc]
+    prepoznavanje:
+      hr: "Izduženo srebrno tijelo, dvije leđne peraje, tamna mrlja na rubu škržnog poklopca; velika usta."
+      en: "Long silvery body, two dorsal fins, dark spot on the edge of the gill cover; big mouth."
+    mamci:
+      hr: "živa sitna riba, kozica, morski crv; umjetne varalice (vobler, gumena varalica)"
+      en: "small live fish, shrimp, sea worm; lures (wobbler, soft plastic)"
+    tehnika:
+      hr: "Spinning s obale ili plovak. Voli valovito, mutnije more."
+      en: "Spinning from the shore or float fishing. Likes rough, slightly murky water."
+    kada:
+      hr: "Jesen i zima, u sumrak i noću, nakon juga."
+      en: "Autumn and winter, at dusk and at night, after a southerly (jugo) wind."
+    gdje:
+      hr: "Uz stijene na udaru valova, ušća rijeka i kanale (provjeri posebna staništa na ušćima)."
+      en: "Rocks hit by waves, river mouths and channels (check special-habitat rules at river mouths)."
+
+  - key: zubatac
+    naziv: { hr: "Zubatac", en: "Common dentex" }
+    latinski: "Dentex dentex"
+    lokalni_nazivi: ["dental (Istra)"]
+    wiki: { hr: "Zubatac", en: "Common dentex" }
+    min_kljuc: "zubatac"
+    udica: "2/0 – 5/0"
+    mjeseci: [4, 5, 9, 10]
+    doba: [zora, dan]
+    prepoznavanje:
+      hr: "Visoko tijelo ružičasto-sivih tonova s plavim točkicama, snažni očnjaci sprijeda."
+      en: "Deep pinkish-grey body with small blue spots, strong canine teeth at the front."
+    mamci:
+      hr: "živa lignja, živa riba (gira, ušata), komad lignje"
+      en: "live squid, live fish (picarel, saddled bream), squid strip"
+    tehnika:
+      hr: "Panula sa živim mamcem iz broda koji polako plovi, uz rub kamenitog dna."
+      en: "Slow trolling with live bait from a boat along the edge of a rocky bottom."
+    kada:
+      hr: "Proljeće i jesen, rano jutro."
+      en: "Spring and autumn, early morning."
+    gdje:
+      hr: "Kamenito dno i pošte na 15–50 m, rtovi i plićine na otvorenom."
+      en: "Rocky bottoms and reefs at 15–50 m, headlands and offshore shoals."
+
+  - key: sarag
+    naziv: { hr: "Šarag", en: "White seabream" }
+    latinski: "Diplodus sargus"
+    wiki: { hr: "Šarag", en: "White seabream" }
+    min_kljuc: "šarag"
+    udica: "8 – 4"
+    mjeseci: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    doba: [zora, sumrak]
+    prepoznavanje:
+      hr: "Srebrn s 8–9 tankih tamnih okomitih pruga i crnom mrljom na korijenu repa."
+      en: "Silvery with 8–9 thin dark vertical bars and a black spot at the base of the tail."
+    mamci:
+      hr: "kozica, morski crv, dagnja, komadić srdele"
+      en: "shrimp, sea worm, mussel, piece of sardine"
+    tehnika:
+      hr: "Plovak ili lagani dubinski s obale; dobro radi primamljivanje (pastura)."
+      en: "Float or light bottom rig from the shore; groundbait (pastura) works well."
+    kada:
+      hr: "Cijele godine, najbolje kad je more malo nemirno; zora i sumrak."
+      en: "All year, best when the sea is slightly rough; dawn and dusk."
+    gdje:
+      hr: "Kamenita obala, lukobrani, 1–10 m."
+      en: "Rocky shores, breakwaters, 1–10 m."
+
+  - key: fratar
+    naziv: { hr: "Fratar", en: "Common two-banded seabream" }
+    latinski: "Diplodus vulgaris"
+    wiki: { hr: "Fratar", en: "Common two-banded seabream" }
+    min_kljuc: "fratar"
+    udica: "10 – 6"
+    mjeseci: [4, 5, 6, 7, 8, 9, 10]
+    doba: [dan]
+    prepoznavanje:
+      hr: "Dvije široke crne pruge: jedna iza glave, druga na korijenu repa."
+      en: "Two broad black bands: one behind the head, one at the base of the tail."
+    mamci:
+      hr: "morski crv, kozica, komadić dagnje"
+      en: "sea worm, shrimp, piece of mussel"
+    tehnika:
+      hr: "Lagani plovak ili najlon bez štapa s obale, sitna udica."
+      en: "Light float or handline from the shore, small hook."
+    kada:
+      hr: "Proljeće do jesen, danju."
+      en: "Spring to autumn, daytime."
+    gdje:
+      hr: "Kamenito dno i posidonija, plitko."
+      en: "Rocky bottoms and seagrass, shallow water."
+
+  - key: arbun
+    naziv: { hr: "Arbun", en: "Common pandora" }
+    latinski: "Pagellus erythrinus"
+    wiki: { hr: "Arbun", en: "Common pandora" }
+    min_kljuc: "arbun"
+    udica: "8 – 4"
+    mjeseci: [4, 5, 6, 7, 8]
+    doba: [dan]
+    prepoznavanje:
+      hr: "Ružičastocrven, s plavim točkicama po leđima, crvenkasta peraja."
+      en: "Pinkish-red with small blue dots on the back."
+    mamci:
+      hr: "komadić lignje, srdela, morski crv"
+      en: "squid strip, sardine, sea worm"
+    tehnika:
+      hr: "Najlon bez štapa ili štap s broda, 2–3 udice iznad olova (kolotur)."
+      en: "Handline or rod from a boat, 2–3 hooks above the sinker (paternoster)."
+    kada:
+      hr: "Proljeće i ljeto, danju."
+      en: "Spring and summer, daytime."
+    gdje:
+      hr: "Pjeskovito-muljevito dno uz kamenje, 20–80 m."
+      en: "Sandy-muddy bottom near rocks, 20–80 m."
+
+  - key: skrpina
+    naziv: { hr: "Škrpina", en: "Red scorpionfish" }
+    latinski: "Scorpaena scrofa"
+    lokalni_nazivi: ["škarpina"]
+    wiki: { hr: "Škrpina", en: "Red scorpionfish" }
+    min_kljuc: "škrpina"
+    udica: "2 – 1/0"
+    mjeseci: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    doba: [noc]
+    prepoznavanje:
+      hr: "Crvena, glava puna izraslina i bodlji, velika usta. Bodlje su otrovne!"
+      en: "Red, head covered in flaps and spines, big mouth. The spines are venomous!"
+    mamci:
+      hr: "komad ribe, srdela, lignja"
+      en: "fish chunk, sardine, squid"
+    tehnika:
+      hr: "Najlon bez štapa s broda, na kamenito dno. Oprez: bodlje su otrovne – koristi krpu ili kliješta."
+      en: "Handline from a boat on a rocky bottom. Careful: the spines are venomous – use a cloth or pliers."
+    kada:
+      hr: "Cijele godine, posebno noću."
+      en: "All year, especially at night."
+    gdje:
+      hr: "Kamenito dno i pošte, 10–100 m."
+      en: "Rocky bottoms and reefs, 10–100 m."
+
+  - key: usata
+    naziv: { hr: "Ušata", en: "Saddled seabream" }
+    latinski: "Oblada melanura"
+    lokalni_nazivi: ["crnorep"]
+    wiki: { hr: "Ušata", en: "Saddled seabream" }
+    min_kljuc: null
+    udica: "12 – 8"
+    mjeseci: [6, 7, 8, 9]
+    doba: [sumrak]
+    prepoznavanje:
+      hr: "Sivosrebrna, velike oči i crna mrlja s bijelim rubom ispred repa."
+      en: "Grey-silver, big eyes and a black spot edged in white before the tail."
+    mamci:
+      hr: "kruh, kozica, morski crv; primamljivanje kruhom i srdelom"
+      en: "bread, shrimp, sea worm; groundbait with bread and sardine"
+    tehnika:
+      hr: "Lagani plovak u površinskom sloju – idealno za početnike i djecu."
+      en: "Light float near the surface – ideal for beginners and kids."
+    kada:
+      hr: "Ljeto, predvečer."
+      en: "Summer, evening."
+    gdje:
+      hr: "Kamenita obala i rive (izvan luka)."
+      en: "Rocky shores and quays (outside ports)."
+
+  - key: skusa
+    naziv: { hr: "Skuša", en: "Atlantic mackerel" }
+    latinski: "Scomber scombrus"
+    wiki: { hr: "Skuša", en: "Atlantic mackerel" }
+    min_kljuc: "skuša"
+    udica: "10 – 6"
+    mjeseci: [8, 9, 10, 11]
+    doba: [zora, dan]
+    prepoznavanje:
+      hr: "Zelenoplava leđa s valovitim crnim prugama, srebrn trbuh, mali repni zubići."
+      en: "Green-blue back with wavy black stripes, silver belly, small finlets before the tail."
+    mamci:
+      hr: "kolona s perjem ili šljokicama (sabiki), komadić srdele"
+      en: "feather or flasher rig (sabiki), piece of sardine"
+    tehnika:
+      hr: "Kolona s broda ili s obale, trzaj gore-dolje kroz stupac vode."
+      en: "Sabiki rig from a boat or the shore, jig up and down through the water column."
+    kada:
+      hr: "Kasno ljeto i jesen, kad jata dođu bliže obali."
+      en: "Late summer and autumn, when schools come close to shore."
+    gdje:
+      hr: "Otvorene uvale i rtovi, srednja dubina."
+      en: "Open bays and headlands, mid-water."
+
+  - key: lignja
+    naziv: { hr: "Lignja", en: "European squid" }
+    latinski: "Loligo vulgaris"
+    wiki: { hr: "Lignja", en: "European squid" }
+    min_kljuc: null
+    udica: "povraz za glavonošce – lignjarica/peškafondo (do 3 varalice)"
+    mjeseci: [11, 12, 1, 2]
+    doba: [sumrak, noc]
+    prepoznavanje:
+      hr: "Izduženo tijelo, peraje u obliku romba na kraju plašta, 10 krakova (2 duža)."
+      en: "Long body, diamond-shaped fins at the end of the mantle, 10 arms (2 longer)."
+    mamci:
+      hr: "umjetna varalica za lignje (totanara, kozica-varalica)"
+      en: "squid jig (egi / shrimp lure)"
+    tehnika:
+      hr: "Polagano povlačenje varalice s broda ili rive u sumrak i noću. Rasvjeta za glavonošce zabranjena je od 1. 3. do 30. 9."
+      en: "Slow retrieve of the jig from a boat or quay at dusk and night. Lights for cephalopods are banned 1 March – 30 September."
+    kada:
+      hr: "Kasna jesen i zima (studeni–veljača), noću."
+      en: "Late autumn and winter (November–February), at night."
+    gdje:
+      hr: "Uvale s posidonijom, 5–30 m."
+      en: "Bays with seagrass, 5–30 m."
+
+  - key: hobotnica
+    naziv: { hr: "Hobotnica", en: "Common octopus" }
+    latinski: "Octopus vulgaris"
+    lokalni_nazivi: ["polip (Dalmacija, Istra)"]
+    wiki: { hr: "Hobotnica", en: "Common octopus" }
+    min_kljuc: "hobotnica"
+    udica: "povraz za glavonošce s varalicom za hobotnice"
+    mjeseci: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    doba: [dan]
+    prepoznavanje:
+      hr: "8 krakova s dva reda pipaka, okrugla glava; mijenja boju."
+      en: "8 arms with two rows of suckers, round head; changes colour."
+    mamci:
+      hr: "varalica za hobotnicu, rak ili komad ribe vezan na varalicu"
+      en: "octopus lure, crab or fish chunk tied to the lure"
+    tehnika:
+      hr: "Vuci varalicu polako po dnu s broda. Najmanje 1 kg, najviše 2 komada dnevno."
+      en: "Drag the lure slowly along the bottom from a boat. Minimum 1 kg, max 2 per day."
+    kada:
+      hr: "Cijele godine, danju."
+      en: "All year, daytime."
+    gdje:
+      hr: "Kamenito dno s rupama, 2–30 m."
+      en: "Rocky bottoms with holes, 2–30 m."
+
+  - key: trlja
+    naziv: { hr: "Trlja kamenjarka", en: "Striped red mullet" }
+    latinski: "Mullus surmuletus"
+    lokalni_nazivi: ["barbun"]
+    wiki: { hr: "Trlja kamenjarka", en: "Striped red mullet" }
+    min_kljuc: "trlje"
+    udica: "12 – 8"
+    mjeseci: [6, 7, 8, 9, 10]
+    doba: [dan]
+    prepoznavanje:
+      hr: "Crvenkasta s žutim uzdužnim prugama i dva brka na bradi."
+      en: "Reddish with yellow lengthwise stripes and two barbels on the chin."
+    mamci:
+      hr: "morski crv, kozica"
+      en: "sea worm, shrimp"
+    tehnika:
+      hr: "Lagani dubinski ribolov, mamac na samom dnu."
+      en: "Light bottom fishing, bait right on the bottom."
+    kada:
+      hr: "Ljeto i jesen, danju."
+      en: "Summer and autumn, daytime."
+    gdje:
+      hr: "Pjeskovito dno uz kamenje, 3–30 m."
+      en: "Sandy bottom near rocks, 3–30 m."
+
+  - key: kantar
+    naziv: { hr: "Kantar", en: "Black seabream" }
+    latinski: "Spondyliosoma cantharus"
+    lokalni_nazivi: []
+    wiki: { hr: "Kantar", en: "Black seabream" }
+    min_kljuc: "kantar"
+    udica: "8 – 4"
+    mjeseci: [4, 5, 6, 7, 8]
+    doba: [dan]
+    prepoznavanje:
+      hr: "Visoko sivkasto tijelo s tankim tamnim uzdužnim linijama, malena usta."
+      en: "Deep greyish body with thin dark lengthwise lines, small mouth."
+    mamci:
+      hr: "morski crv, kozica, komadić lignje"
+      en: "sea worm, shrimp, squid strip"
+    tehnika:
+      hr: "Plovak ili lagani dubinski s obale ili broda."
+      en: "Float or light bottom rig from the shore or a boat."
+    kada:
+      hr: "Proljeće i ljeto, danju."
+      en: "Spring and summer, daytime."
+    gdje:
+      hr: "Kamenito dno i posidonija, 5–30 m."
+      en: "Rocky bottoms and seagrass, 5–30 m."
+
+  - key: salpa
+    naziv: { hr: "Salpa", en: "Salema" }
+    latinski: "Sarpa salpa"
+    lokalni_nazivi: []
+    wiki: { hr: "Salpa", en: "Salema porgy" }
+    min_kljuc: null
+    udica: "10 – 6"
+    mjeseci: [6, 7, 8, 9, 10]
+    doba: [dan]
+    prepoznavanje:
+      hr: "Srebrna s 10–11 zlatnožutih uzdužnih pruga, plivaju u jatima uz obalu."
+      en: "Silver with 10–11 golden lengthwise stripes, swims in schools along the shore."
+    mamci:
+      hr: "zelena alga, kruh (biljojed)"
+      en: "green algae, bread (herbivore)"
+    tehnika:
+      hr: "Plovak uz kamenje obraslo algama; primamljivanje kruhom."
+      en: "Float near algae-covered rocks; groundbait with bread."
+    kada:
+      hr: "Ljeto i jesen, danju."
+      en: "Summer and autumn, daytime."
+    gdje:
+      hr: "Plitka kamenita obala, 1–10 m."
+      en: "Shallow rocky shores, 1–10 m."
+
+  - key: cipal
+    naziv: { hr: "Cipal", en: "Mullet" }
+    latinski: "Chelon labrosus"
+    lokalni_nazivi: []
+    wiki: { hr: "Cipli", en: "Thicklip grey mullet" }
+    min_kljuc: null
+    udica: "10 – 6"
+    mjeseci: [5, 6, 7, 8, 9]
+    doba: [dan, sumrak]
+    prepoznavanje:
+      hr: "Sivosrebrn, široka plosnata glava, debela gornja usna, dvije leđne peraje."
+      en: "Grey-silver, broad flat head, thick upper lip, two dorsal fins."
+    mamci:
+      hr: "kruh, tijesto od kruha i sira, morski crv"
+      en: "bread, bread-and-cheese paste, sea worm"
+    tehnika:
+      hr: "Lagani plovak, primamljivanje kruhom. Oprezna riba – tanka struna."
+      en: "Light float, bread groundbait. Wary fish – use a thin line."
+    kada:
+      hr: "Cijele godine, najviše ljeti."
+      en: "All year, mostly in summer."
+    gdje:
+      hr: "Rive, ušća i plitke uvale (izvan luka)."
+      en: "Quays, river mouths and shallow bays (outside ports)."
+
+  - key: palamida
+    naziv: { hr: "Palamida", en: "Atlantic bonito" }
+    latinski: "Sarda sarda"
+    lokalni_nazivi: []
+    wiki: { hr: "Palamida", en: "Atlantic bonito" }
+    min_kljuc: "palamida"
+    udica: "1/0 – 3/0"
+    mjeseci: [8, 9, 10, 11]
+    doba: [zora]
+    prepoznavanje:
+      hr: "Plavkasta leđa s kosim tamnim prugama, srebrn trbuh, oblik malene tune."
+      en: "Bluish back with slanting dark stripes, silver belly, shaped like a small tuna."
+    mamci:
+      hr: "umjetna varalica (žlica, perje), živa srdela"
+      en: "lure (spoon, feather), live sardine"
+    tehnika:
+      hr: "Panula s broda brzinom 4–6 čvorova ili spinning kad jato lovi na površini."
+      en: "Trolling from a boat at 4–6 knots, or spinning when a school feeds at the surface."
+    kada:
+      hr: "Kasno ljeto i jesen."
+      en: "Late summer and autumn."
+    gdje:
+      hr: "Otvoreno more, kanali između otoka."
+      en: "Open sea, channels between islands."
+
+  - key: lampuga
+    naziv: { hr: "Lampuga", en: "Dolphinfish (mahi-mahi)" }
+    latinski: "Coryphaena hippurus"
+    lokalni_nazivi: []
+    wiki: { hr: "Lampuga", en: "Mahi-mahi" }
+    min_kljuc: "lampuga"
+    udica: "1/0 – 3/0"
+    mjeseci: [8, 9, 10, 11]
+    doba: [dan]
+    prepoznavanje:
+      hr: "Zlatno-zelena s plavim točkama, duga leđna peraja; mužjaci imaju visoko čelo."
+      en: "Golden-green with blue spots, long dorsal fin; males have a steep forehead."
+    mamci:
+      hr: "umjetna varalica, živa ili mrtva srdela"
+      en: "lure, live or dead sardine"
+    tehnika:
+      hr: "Panula s broda, često ispod plutajućih predmeta. Ulov se obavezno prijavljuje u mRecFish."
+      en: "Trolling from a boat, often under floating objects. Catch must be reported in mRecFish."
+    kada:
+      hr: "Od 15. kolovoza (prije toga lovostaj) do kasne jeseni."
+      en: "From 15 August (closed season before that) to late autumn."
+    gdje:
+      hr: "Otvoreno more."
+      en: "Open sea."
+
+  - key: gira
+    naziv: { hr: "Gira oblica", en: "Picarel" }
+    latinski: "Spicara smaris"
+    lokalni_nazivi: []
+    wiki: { hr: "Gira oblica", en: "Picarel" }
+    min_kljuc: null
+    udica: "14 – 10"
+    mjeseci: [11, 12, 1, 2, 3]
+    doba: [dan]
+    prepoznavanje:
+      hr: "Malena (do 20 cm), izdužena, s tamnom mrljom na boku."
+      en: "Small (up to 20 cm), slender, with a dark spot on the side."
+    mamci:
+      hr: "komadić kozice ili crva, kolona sa sitnim udicama"
+      en: "bits of shrimp or worm, small-hook sabiki rig"
+    tehnika:
+      hr: "Kolona ili lagani najlon bez štapa s broda; dobra i kao živi mamac za zubaca."
+      en: "Sabiki or light handline from a boat; also good live bait for dentex."
+    kada:
+      hr: "Cijele godine, najviše zimi."
+      en: "All year, mostly in winter."
+    gdje:
+      hr: "Iznad posidonije i pjeskovitog dna, 10–50 m."
+      en: "Over seagrass and sandy bottoms, 10–50 m."

@@ -1,0 +1,34 @@
+# Lovostaji. Razdoblja su MM-DD, uključivo; od > do znači raspon preko nove godine.
+zadnja_provjera: 2026-11-26
+izvor_default: &izvor
+  izvor: "Pravilnik o zaštiti riba i drugih morskih organizama (pročišćeni tekst NN 64/23, 134/24); Pravilnik o sportskom i rekreacijskom ribolovu na moru (NN 48/2026)"
+  url: "https://narodne-novine.nn.hr/"   # TODO: izravne poveznice
+  clanak: "TODO"
+  vrijedi_od: 2026-06-01
+  vrijedi_do: null
+  needs_legal_check: true   # članci još nisu povezani
+
+lovostaji:
+  - { <<: *izvor, key: kavala, vrsta: { hr: "kavala", en: "brown meagre" }, razdoblja: [{ od: "05-15", do: "07-15" }] }
+  - { <<: *izvor, key: kirnje, vrsta: { hr: "kirnje (sve tri vrste)", en: "groupers (all three species)" }, razdoblja: [{ od: "07-01", do: "08-31" }] }
+  - <<: *izvor
+    key: lampuga
+    vrsta: { hr: "lampuga", en: "dolphinfish" }
+    razdoblja: [{ od: "01-01", do: "08-14" }]
+    napomena: { hr: "Samo za sportski i rekreacijski ribolov.", en: "Sport and recreational fishing only." }
+  - { <<: *izvor, key: rakovica, vrsta: { hr: "rakovica", en: "spiny spider crab" }, razdoblja: [{ od: "06-01", do: "11-30" }] }
+  - { <<: *izvor, key: kuka, vrsta: { hr: "kuka", en: "Noah's ark shell" }, razdoblja: [{ od: "09-01", do: "07-15" }] }
+  - { <<: *izvor, key: jastog, vrsta: { hr: "jastog", en: "spiny lobster" }, razdoblja: [{ od: "09-01", do: "05-05" }] }
+  - { <<: *izvor, key: hlap, vrsta: { hr: "hlap", en: "European lobster" }, razdoblja: [{ od: "09-01", do: "05-05" }] }
+  - { <<: *izvor, key: jegulja, vrsta: { hr: "jegulja", en: "eel" }, razdoblja: [{ od: "03-01", do: "10-31" }] }
+  - { <<: *izvor, key: iglun, vrsta: { hr: "iglun", en: "swordfish" }, razdoblja: [{ od: "01-01", do: "03-31" }] }
+  - { <<: *izvor, key: dugokrila_tuna, vrsta: { hr: "dugokrila tuna", en: "albacore" }, razdoblja: [{ od: "03-01", do: "03-31" }, { od: "10-01", do: "11-30" }] }
+  - { <<: *izvor, key: spuzve, vrsta: { hr: "spužve", en: "sponges" }, razdoblja: [{ od: "11-01", do: "05-31" }] }
+  - { <<: *izvor, key: trpovi, vrsta: { hr: "trpovi", en: "sea cucumbers" }, razdoblja: [{ od: "01-01", do: "12-31" }] }
+  - { <<: *izvor, key: crveni_koralj, vrsta: { hr: "crveni koralj", en: "red coral" }, razdoblja: [{ od: "01-01", do: "12-31" }] }
+
+uvijek:
+  - <<: *izvor
+    tekst:
+      hr: "Ženke rakova s vanjskim jajima uvijek se vraćaju u more."
+      en: "Female crustaceans carrying external eggs must always be returned to the sea."

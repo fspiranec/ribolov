@@ -1,0 +1,53 @@
+# Minimalne lovne veličine.
+zadnja_provjera: 2026-11-26
+izvor_default: &izvor
+  izvor: "Pravilnik o zaštiti riba i drugih morskih organizama (pročišćeni tekst NN 64/23, 134/24)"
+  url: "https://narodne-novine.nn.hr/"   # TODO: izravna poveznica
+  clanak: "TODO"
+  vrijedi_od: 2023-06-01                 # TODO: provjeriti
+  vrijedi_do: null
+
+velicine:
+  - { <<: *izvor, vrsta: { hr: "kirnje, kirnja glavulja", en: "groupers, wreckfish" }, min: "45 cm" }
+  - { <<: *izvor, vrsta: { hr: "palamida", en: "Atlantic bonito" }, min: "40 cm" }
+  - { <<: *izvor, vrsta: { hr: "gof", en: "greater amberjack" }, min: "35 cm" }
+  - { <<: *izvor, vrsta: { hr: "lampuga", en: "dolphinfish" }, min: "35 cm" }
+  - { <<: *izvor, vrsta: { hr: "jegulja", en: "eel" }, min: "35 cm" }
+  - { <<: *izvor, vrsta: { hr: "okan", en: "okan" }, min: "33 cm" }
+  - { <<: *izvor, vrsta: { hr: "zubatac", en: "common dentex" }, min: "30 cm" }
+  - { <<: *izvor, vrsta: { hr: "kavala", en: "brown meagre" }, min: "30 cm" }
+  - { <<: *izvor, vrsta: { hr: "lubin", en: "European seabass" }, min: "25 cm" }
+  - { <<: *izvor, vrsta: { hr: "škrpina", en: "red scorpionfish" }, min: "25 cm" }
+  - { <<: *izvor, vrsta: { hr: "šarag", en: "white seabream" }, min: "23 cm" }
+  - { <<: *izvor, vrsta: { hr: "komarča", en: "gilthead seabream" }, min: "20 cm" }
+  - { <<: *izvor, vrsta: { hr: "ovčica", en: "sand steenbras" }, min: "20 cm" }
+  - { <<: *izvor, vrsta: { hr: "oslić", en: "European hake" }, min: "20 cm" }
+  - { <<: *izvor, vrsta: { hr: "list", en: "common sole" }, min: "20 cm" }
+  - { <<: *izvor, vrsta: { hr: "pic, fratar, pagar, kantar, skuša, plavica", en: "sharpsnout seabream, two-banded seabream, red porgy, black seabream, mackerel, chub mackerel" }, min: "18 cm" }
+  - { <<: *izvor, vrsta: { hr: "batoglavac", en: "batoglavac" }, min: "17 cm" }
+  - { <<: *izvor, vrsta: { hr: "arbun", en: "common pandora" }, min: "15 cm" }
+  - { <<: *izvor, vrsta: { hr: "šaruni", en: "horse mackerels" }, min: "15 cm" }
+  - { <<: *izvor, vrsta: { hr: "špar", en: "annular seabream" }, min: "12 cm" }
+  - { <<: *izvor, vrsta: { hr: "rakovica", en: "spiny spider crab" }, min: "12 cm" }
+  - { <<: *izvor, vrsta: { hr: "trlje", en: "red mullets" }, min: "11 cm" }
+  - { <<: *izvor, vrsta: { hr: "srdela", en: "sardine" }, min: "11 cm" }
+  - { <<: *izvor, vrsta: { hr: "inćun", en: "anchovy" }, min: "9 cm" }
+  - { <<: *izvor, vrsta: { hr: "hobotnica", en: "octopus" }, min: "1 kg" }
+  - { <<: *izvor, vrsta: { hr: "ježinci", en: "sea urchins" }, min: "promjer čahure 50 mm / test diameter 50 mm" }
+  - { <<: *izvor, vrsta: { hr: "kamenica", en: "flat oyster" }, min: "7 cm" }
+  - { <<: *izvor, vrsta: { hr: "jakovljeva kapica", en: "great scallop" }, min: "10 cm" }
+  - { <<: *izvor, vrsta: { hr: "kućica, prnjavice, kokoš", en: "carpet shell, warty venus, smooth clam" }, min: "25 mm" }
+  - <<: *izvor
+    vrsta: { hr: "plavoperajna tuna", en: "bluefin tuna" }
+    min: "30 kg ili 115 cm / 30 kg or 115 cm"
+    napomena: { hr: "Samo trofejni ribolov, prijava u mTunaRek.", en: "Trophy fishing only, report in mTunaRek." }
+
+# Tolerancija se NE primjenjuje u aplikaciji dok se pravno ne provjeri.
+tolerancija:
+  <<: *izvor
+  needs_legal_check: true
+  primjenjuje_se: false
+  vrste: [zubatac, škrpina, gof, kantar, hobotnica]
+  tekst:
+    hr: "Tolerancija od 20 % mase ispod minimuma za zubatca, škrpinu, gofa, kantara i hobotnicu (nije primijenjeno u aplikaciji)."
+    en: "20% weight tolerance below minimum for dentex, scorpionfish, amberjack, black seabream and octopus (not applied in the app)."
