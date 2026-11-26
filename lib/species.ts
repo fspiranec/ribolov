@@ -3,6 +3,7 @@ import path from "node:path";
 import yaml from "js-yaml";
 import { inAnyPeriod, validOn } from "./rules/dates";
 import type { RuleSet, Text } from "./rules/types";
+import { specialSpecies } from "./special";
 
 export interface SpeciesTip {
   key: string;
@@ -109,5 +110,5 @@ export function speciesGuide(rules: RuleSet, isoDate: string, hour: number | nul
       lovostaj_danas: lovostaj,
     };
   });
-  return { napomena: s.napomena, izvor_slika: s.izvor, vrste };
+  return { napomena: s.napomena, izvor_slika: s.izvor, vrste, posebne: specialSpecies(dir) };
 }

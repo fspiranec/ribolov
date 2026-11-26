@@ -20,9 +20,10 @@ import {
   Waves,
   Wind,
 } from "lucide-react";
-import type { Notice, PinResult, SourceRef } from "@/lib/pin";
+import type { Notice, PinResult, Reach, SourceRef } from "@/lib/pin";
 import type { SpeciesTip } from "@/lib/species";
 import { c, COMPASS, LOCALE_TAG, t, type Lang } from "@/lib/i18n";
+import { bestWindow, visibleClosedSeasons, type View } from "@/lib/view";
 
 // ---------------------------------------------------------------- shared bits
 
@@ -150,7 +151,8 @@ function Tile({ icon, label, value, sub }: { icon: React.ReactNode; label: strin
   );
 }
 
-export function Forecast({ r, lang }: { r: PinResult; lang: Lang }) {
+export function Forecast({ r, lang, view, onDetailed }: { r: PinResult; lang: Lang; view: View; onDetailed?: () => void }) {
+  const full = view === "detaljno";
   const w = r.vrijeme;
   const sm = r.sunce_mjesec;
   const n = (x: number | null | undefined, d = 0) => (x == null ? "–" : x.toFixed(d));
@@ -173,7 +175,7 @@ export function Forecast({ r, lang }: { r: PinResult; lang: Lang }) {
               {n(w?.vjetar.brzina_kmh)} <span className="text-sm font-bold text-slate-500">km/h</span>
             </span>
           }
-          sub={w ? `${dirName(w.vjetar.smjer_deg, lang)} · ${t("gusts", lang)} ${n(w.vjetar.udari_kmh)}` : t("noWeather", lang)}
+          sub={w ? (full ? `${dirName(w.vjetar.smjer_deg, lang)} · ${t("gusts", lang)} ${n(w.vjetar.udari_kmh)}` : dirName(w.vjetar.smjer_deg, lang)) : t("noWeather", lang)}
         />
         <Tile
           icon={<Waves className="h-3.5 w-3.5" />}
@@ -183,7 +185,7 @@ export function Forecast({ r, lang }: { r: PinResult; lang: Lang }) {
               {n(w?.valovi.visina_m, 1)} <span className="text-sm font-bold text-slate-500">m</span>
             </>
           }
-          sub={w?.valovi.period_s ? `${dirName(w.valovi.smjer_deg, lang)} · ${n(w.valovi.period_s)} s` : undefined}
+          sub={full && w?.valovi.period_s ? `${dirName(w.valovi.smjer_deg, lang)} · ${n(w.valovi.period_s)} s` : undefined}
         />
         <Tile
           icon={<Thermometer className="h-3.5 w-3.5" />}
@@ -216,9 +218,19 @@ export function Forecast({ r, lang }: { r: PinResult; lang: Lang }) {
             </span>
           }
         />
-        <Tile icon={<Moon className="h-3.5 w-3.5" />} label={t("moon", lang)} value={`${sm.mjesec.osvijetljenost} %`} sub={c(sm.mjesec.faza, lang)} />
+        {full && <Tile icon={<Moon className="h-3.5 w-3.5" />} label={t("moon", lang)} value={`${sm.mjesec.osvijetljenost} %`} sub={c(sm.mjesec.faza, lang)} />}
       </div>
-      {w && <p className="mt-2 text-[11px] text-slate-400">{w.izvor}</p>}
+      {/* depth explained for shore fishing: it is the depth at the chosen point */}
+      <p className="mt-2 flex gap-1.5 text-xs text-slate-500">
+        <Anchor className="mt-0.5 h-3 w-3 shrink-0" />
+        {r.dubina?.dubina_m != null ? t("depthHere", lang) : r.na_kopnu ? t("depthOnLand", lang) : null}
+      </p>
+      {!full && onDetailed && (
+        <button onClick={onDetailed} className="mt-2 text-sm font-semibold text-sea-600">
+          {t("showDetailed", lang)} →
+        </button>
+      )}
+      {full && w && <p className="mt-2 text-[11px] text-slate-400">{w.izvor}</p>}
     </Card>
   );
 }
@@ -227,7 +239,7 @@ function ScoreRing({ value }: { value: number }) {
   const r = 30;
   const len = 2 * Math.PI * r;
   return (
-    <svg viewBox="0 0 76 76" className="h-20 w-20 shrink-0 -rotate-90">
+    <svg viewBox="0 0 76 76" className="h-20 w-20 shrink-0 -rotate-90" role="img" aria-label={`${value} / 100`}>
       <circle cx="38" cy="38" r={r} fill="none" className="stroke-slate-200" strokeWidth="8" />
       <circle cx="38" cy="38" r={r} fill="none" stroke="#0891b2" strokeWidth="8" strokeLinecap="round" strokeDasharray={`${(value / 100) * len} ${len}`} />
       <text x="38" y="38" textAnchor="middle" dominantBaseline="central" className="rotate-90 fill-ink text-[22px] font-extrabold" style={{ transformOrigin: "38px 38px" }}>
@@ -237,9 +249,25 @@ function ScoreRing({ value }: { value: number }) {
   );
 }
 
-export function ActivityCard({ r, lang, nowHour }: { r: PinResult; lang: Lang; nowHour: number | null }) {
+export function ActivityCard({ r, lang, nowHour, view, isToday }: { r: PinResult; lang: Lang; nowHour: number | null; view: View; isToday: boolean }) {
   const a = r.aktivnost;
   if (!a) return null;
+  const best = bestWindow(a.najbolje);
+  const sentence = best ? t(isToday ? "bestToday" : "bestOnDay", lang).replace("{t}", best) : null;
+  if (view === "osnovno")
+    return (
+      <Card className="flex items-center gap-3">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sea-100 text-sea-600">
+          <Fish className="h-5 w-5" />
+        </span>
+        <div className="min-w-0">
+          <div className="text-xs font-semibold text-slate-500">
+            {t("activity", lang)}: <span className="capitalize">{c(a.oznaka, lang)}</span>
+          </div>
+          {sentence && <div className="font-extrabold">{sentence}</div>}
+        </div>
+      </Card>
+    );
   return (
     <Card>
       <H2 icon={<Fish className="h-4 w-4 text-sea-600" />}>{t("activity", lang)}</H2>
@@ -247,6 +275,7 @@ export function ActivityCard({ r, lang, nowHour }: { r: PinResult; lang: Lang; n
         <ScoreRing value={a.dnevna_ocjena} />
         <div>
           <div className="text-xl font-extrabold capitalize">{c(a.oznaka, lang)}</div>
+          {sentence && <div className="text-sm font-bold">{sentence}</div>}
           <div className="text-sm text-slate-600">{t("bestTimes", lang)}:</div>
           <div className="mt-0.5 flex flex-wrap gap-1.5">
             {a.najbolje.map((w) => (
@@ -412,8 +441,89 @@ export function FirstTimeCard({ lang }: { lang: Lang }) {
             </li>
           ))}
         </ol>
+        <p className="mt-3 text-xs text-slate-500">{t("tipsDisclaimer", lang)}</p>
       </details>
     </Card>
+  );
+}
+
+/** Fishing with children and good conduct, plus the fish album (a small collecting game). */
+export function KidsCard({ lang, albumCount, albumTotal, onAlbum }: { lang: Lang; albumCount: number; albumTotal: number; onAlbum: () => void }) {
+  const tips = ["kid1", "kid2", "kid3", "kid4", "kid5", "kid6"] as const;
+  return (
+    <Card>
+      <details>
+        <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
+          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sand-100 text-xl" aria-hidden>
+            👨‍👧
+          </span>
+          <span className="flex-1">
+            <span className="block font-extrabold">{t("kidsTitle", lang)}</span>
+            <span className="block text-sm text-slate-500">{t("kidsSub", lang)}</span>
+          </span>
+          <ChevronDown className="h-4 w-4 text-slate-400" />
+        </summary>
+        <ul className="mt-4 space-y-3">
+          {tips.map((k) => (
+            <li key={k} className="flex gap-3 text-[15px]">
+              <CircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-go" />
+              <span>{t(k, lang)}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-3 text-xs text-slate-500">{t("tipsDisclaimer", lang)}</p>
+      </details>
+      <button onClick={onAlbum} className="mt-3 flex w-full items-center gap-3 rounded-2xl bg-sea-100 p-3 text-left">
+        <span className="text-2xl" aria-hidden>
+          📒
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-extrabold text-sea-600">{t("album", lang)}</span>
+          <span className="block text-xs text-slate-600">
+            {t("albumSub", lang).replace("{n}", String(albumCount)).replace("{m}", String(albumTotal))}
+          </span>
+        </span>
+      </button>
+    </Card>
+  );
+}
+
+/** Album sheet: caught species in colour with the first date, the rest greyed out. */
+export function AlbumSheet({ species, album, lang }: { species: SpeciesTip[]; album: Record<string, string>; lang: Lang }) {
+  const sorted = [...species].sort((a, b) => Number(!album[a.key]) - Number(!album[b.key]) || c(a.naziv, lang).localeCompare(c(b.naziv, lang)));
+  const n = species.filter((s) => album[s.key]).length;
+  return (
+    <div>
+      <h3 className="text-2xl font-extrabold tracking-tight">📒 {t("album", lang)}</h3>
+      <p className="text-sm text-slate-500">{t("albumSub", lang).replace("{n}", String(n)).replace("{m}", String(species.length))}</p>
+      <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+        {sorted.map((s) => {
+          const got = album[s.key];
+          return (
+            <div key={s.key} className={`overflow-hidden rounded-2xl bg-sand-50 ${got ? "" : "opacity-50"}`}>
+              <div className="h-20 bg-sea-100">
+                {s.slika && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={s.slika} alt={c(s.naziv, lang)} loading="lazy" className={`h-full w-full object-cover ${got ? "" : "grayscale"}`} />
+                )}
+              </div>
+              <div className="p-2">
+                <div className="truncate text-sm font-bold">
+                  {got ? "⭐ " : ""}
+                  {c(s.naziv, lang)}
+                </div>
+                {got && (
+                  <div className="text-[11px] text-slate-500">
+                    {t("firstCaught", lang)} {fmtDate(got, lang)}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <p className="mt-4 text-[11px] text-slate-400">{t("catchPrivacy", lang)}</p>
+    </div>
   );
 }
 
@@ -430,6 +540,16 @@ export function Skeleton() {
           </div>
         </div>
       ))}
+    </div>
+  );
+}
+
+/** "On Cres – ferry or boat needed" for a shop or seller across the sea. */
+function AcrossSea({ s, lang, className }: { s: Reach; lang: Lang; className: string }) {
+  if (s.isto_kopno) return null;
+  return (
+    <div className={`text-xs font-semibold ${className}`}>
+      ⛴ {s.otok ? t("acrossSeaIsland", lang).replace("{x}", s.otok) : t("acrossSeaMainland", lang)}
     </div>
   );
 }
@@ -481,7 +601,8 @@ export function LicenceCard({ r, lang }: { r: PinResult; lang: Lang }) {
               <ul className="space-y-1.5">
                 {d.najblizi_prodavaci.map((s) => (
                   <li key={s.naziv + s.adresa}>
-                    <b>{s.naziv}</b> · {s.adresa}, {s.grad} <span className="text-white/60">(~{s.udaljenost_km} km)</span>
+                    <b>{s.naziv}</b> · {[s.adresa, s.grad].filter(Boolean).join(", ")} <span className="text-white/60">(~{s.udaljenost_km} km)</span>
+                    <AcrossSea s={s} lang={lang} className="text-amber-200" />
                     <div className="text-xs">
                       {s.telefon.map((tel) => (
                         <a key={tel} href={`tel:${tel.replace(/\s/g, "")}`} className="mr-2 underline">
@@ -554,8 +675,9 @@ function GearList({ r, lang }: { r: PinResult; lang: Lang }) {
 
 // ---------------------------------------------------------------- rules
 
-export function RulesCard({ r, lang }: { r: PinResult; lang: Lang }) {
+export function RulesCard({ r, lang, view }: { r: PinResult; lang: Lang; view: View }) {
   const d = r.danas!;
+  const closed = visibleClosedSeasons(d.lovostaj, view);
   const g = r.gdje;
   const km = (m: number | null) => (m == null ? t("unknown", lang) : m < 1000 ? `${m} m` : `${(m / 1000).toFixed(1)} km`);
   return (
@@ -565,9 +687,9 @@ export function RulesCard({ r, lang }: { r: PinResult; lang: Lang }) {
       </Accordion>
       <Accordion title={t("limitsAndSizes", lang)} icon={<Ruler className="h-4 w-4" />}>
         <div className="font-semibold">{t("closed", lang)}</div>
-        {d.lovostaj.length ? (
+        {closed.length ? (
           <div className="flex flex-wrap gap-1.5">
-            {d.lovostaj.map((l, i) => (
+            {closed.map((l, i) => (
               <span key={i} className="rounded-full bg-rose-50 px-2.5 py-0.5 text-xs font-semibold text-rose-700">
                 {c(l.vrsta, lang)}
               </span>
@@ -584,7 +706,8 @@ export function RulesCard({ r, lang }: { r: PinResult; lang: Lang }) {
           {d.min_velicine.map((m, i) => (
             <div key={i} className="flex justify-between gap-2 border-b border-slate-100 py-1 text-xs">
               <span>{c(m.vrsta, lang)}</span>
-              <b className="whitespace-nowrap">{m.min}</b>
+              {/* some values are "hr / en" (e.g. sea urchins); show one language and let long values wrap */}
+              <b className="min-w-0 text-right [overflow-wrap:anywhere]">{m.min.includes(" / ") ? m.min.split(" / ")[lang === "hr" ? 0 : 1] : m.min}</b>
             </div>
           ))}
         </div>
@@ -626,6 +749,8 @@ export function RulesCard({ r, lang }: { r: PinResult; lang: Lang }) {
                 <b>{s.naziv}</b>
                 {s.partner && <span className="ml-1 rounded bg-sea-100 px-1 text-xs text-sea-600">{t("partner", lang)}</span>}{" "}
                 <span className="text-slate-500">(~{s.udaljenost_km} km)</span>
+                {s.vrsta === "sport" && <div className="text-xs text-slate-500">{t("sportShop", lang)}</div>}
+                <AcrossSea s={s} lang={lang} className="text-amber-700" />
                 <div className="text-xs text-slate-600">
                   {[s.adresa, s.grad].filter(Boolean).join(", ")}
                   {s.telefon.map((tel) => (

@@ -161,6 +161,7 @@ vrste:
     latinski: "Scorpaena scrofa"
     lokalni_nazivi: ["škarpina"]
     wiki: { hr: "Škrpina", en: "Red scorpionfish" }
+    slika: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Red_Scorpionfish_%28cropped%29.jpg/330px-Red_Scorpionfish_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"   # en. Wikipedia „Red scorpionfish” nema sličicu; ista slika kao u special_wiki.json (Scorpaena scrofa)
     min_kljuc: "škrpina"
     udica: "2 – 1/0"
     mjeseci: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]

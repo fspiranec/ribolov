@@ -57,6 +57,19 @@ U podacima su takve stavke označene s `TODO` ili `needs_legal_check: true`; `gr
 ### Prijevodi (obavezno prije objave za turiste)
 - [ ] Prevesti tekstove pravila (`rules/*.yaml`) i savjete iz vodiča (`data/species/species.yaml`) na DE, IT, PL, CS i SL. Sučelje je već prevedeno, a sadržaj se na tim jezicima zasad prikazuje na engleskom.
 
+### Zaštićene, invazivne i opasne vrste (`data/species/special.yaml`, plan dorade korak 4)
+- [ ] Provjeriti popis i poruke prema službenim izvorima (Pravilnik o strogo zaštićenim vrstama, Pravilnik o sportskom i rekreacijskom ribolovu, IZOR, IRB). Sve stavke imaju `needs_check: true` osim škrpine.
+- [x] Provjera 26. 11. 2026. (NN 48/2026, HAOP, IZOR, DAN/MedlinePlus): uklonjeno „ne vraćaj u more” za invazivne vrste (nije službeno; sad „fotografiraj i prijavi”), plavi rak se smije zadržati, uklonjeno „kažnjava se” (periska) i „zabranjeno jelo u restoranu” (prstac), prva pomoć dopunjena (najviše 45 °C, oprez kod djece, duboku bodlju ne vaditi, tetanus).
+- [ ] Hrvatski naziv za *Fistularia commersonii* nije potvrđen – zasad se prikazuje latinski naziv. „Riba lav” (*Pterois miles*) se koristi u medijima, službeni naziv nije potvrđen.
+- [ ] Prijava nalaza invazivnih vrsta: IZOR Split (laboratorij za ihtiologiju) traži prijave; kontakti iz novinskih članaka (dulcic@izor.hr, 021/408 013) nisu potvrđeni na izor.hr. Kad se potvrdi, gumb „Prijavi nalaz” preusmjeriti na IZOR.
+- [ ] Minimalna veličina škrpine (25 cm) – provjeriti u Pravilniku o zaštiti riba i drugih morskih organizama.
+- [ ] Vrste iz Tablice 1 NN 48/2026 (plavi rak, napuhača, riba lav…) imaju obvezu dnevne evidencije ulova – razmotriti napomenu u „Moj ulov”.
+- [x] Kornjača na udici: tekst usklađen sa shemom prve pomoći HAOP-a (zovi 112, ne vadi udicu, prereži najlon blizu usta, drži je u hladu do veterinara). 112 je službeni kanal i za kornjače i za morske sisavce (HAOP protokol).
+- [ ] Shema HAOP-a navodi i ovlaštene veterinare po područjima (Pula, Rijeka, Lošinj, Zadar…), ali je iz ~2018.; ako se žele prikazati brojevi, provjeriti jesu li aktualni.
+- [ ] Gumb „Prijavi nalaz” vodi na IRB-ovu stranicu projekta ALIENA; službeni kanal za prijavu nalaza nije pronađen. Dogovoriti s IRB-om (korak 7).
+- [ ] Prvu pomoć kod uboda neka pregleda liječnik. U sučelju uz nju stoji ograda da nije liječnički savjet.
+- [ ] Nazivi vrsta na DE/IT/PL/CS/SL upisani su ručno u `special.yaml`; provjeriti.
+
 ### Tehnički
 - [ ] Format odgovora EMODnet REST `depth_sample` je pretpostavljen (`avg`/`mean`); radi u testu.
 - [ ] Coverage ID za EMODnet WCS (`emodnet__mean`) nije potvrđen.

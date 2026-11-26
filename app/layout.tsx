@@ -4,7 +4,13 @@ import "./globals.css";
 
 const manrope = Manrope({ subsets: ["latin", "latin-ext"], variable: "--font-manrope", display: "swap" });
 
+/** Absolute base for link previews: NEXT_PUBLIC_SITE_URL, else the Vercel URL, else localhost. */
+const site =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : `http://localhost:${process.env.PORT ?? 3000}`);
+
 export const metadata: Metadata = {
+  metadataBase: new URL(site),
   title: "Ribolov · Pomoćnik za ribolov na moru",
   description: "Smiješ li loviti tu, koja riba je aktivna, vrijeme i more – za tvoju lokaciju na Jadranu.",
   manifest: "/manifest.webmanifest",

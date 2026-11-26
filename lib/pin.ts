@@ -102,7 +102,7 @@ export interface PinResult {
   /** Where to buy a licence: online shop, prices, nearest authorised sellers. */
   dozvola: PermitInfo;
   /** Nearest fishing-tackle shops (partners first). */
-  trgovine: (Shop & { udaljenost_km: number })[];
+  trgovine: (Shop & Reach)[];
   vrijeme: Weather | null;
   sunce_mjesec: SunMoon;
   /** Heuristic fish-activity forecast (solunar + weather). Not a rule. */
@@ -124,6 +124,8 @@ export interface PinDeps {
   getWeather?: (lat: number, lon: number, date: string, hour: number) => Promise<Weather | null>;
   getDaySeries?: (lat: number, lon: number, date: string) => Promise<DaySeries | null>;
   sellers?: PermitSeller[];
+  /** Island the point is on (null = mainland). Without it, nearest places are by straight-line distance only. */
+  getIsland?: (lat: number, lon: number) => string | null;
   shops?: Shop[];
   getPlace?: (lat: number, lon: number) => Promise<Place | null>;
   dataSources?: { izvor: string; datum: string }[];
@@ -223,8 +225,8 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
     dubina: null,
     na_kopnu: false,
     mjesto: null,
-    dozvola: permitInfo(rules, p, deps.sellers ?? []),
-    trgovine: nearestShops(p, deps.shops ?? []),
+    dozvola: permitInfo(rules, p, deps.sellers ?? [], deps.getIsland),
+    trgovine: nearestShops(p, deps.shops ?? [], deps.getIsland),
     vrijeme: null,
     sunce_mjesec: sm,
     aktivnost: null,
@@ -290,6 +292,7 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
   const Cap = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
   for (const cs of rules.closedSeasons.lovostaji) {
     if (cs.trajno_zabranjeno) continue; // banned anyway – a reminder would mislead
+    if (p.mode === "obala" && cs.s_obale === false) continue; // e.g. dolphinfish: not caught from the shore
     const today = inAnyPeriod(p.date, cs.razdoblja);
     for (let k = 1; k <= 7; k++) {
       const d = addDays(p.date, k);
@@ -620,7 +623,7 @@ export interface PermitInfo {
   sportska: Text;
   djeca: Text;
   mrecfish: { info_url: string; ios_url: string; tekst: Text };
-  najblizi_prodavaci: (PermitSeller & { udaljenost_km: number })[];
+  najblizi_prodavaci: (PermitSeller & Reach)[];
   izvor: SourceRef;
 }
 
@@ -632,7 +635,7 @@ function km(lat1: number, lon1: number, lat2: number, lon2: number): number {
   return 6371 * 2 * Math.asin(Math.sqrt(a));
 }
 
-function permitInfo(rules: RuleSet, p: PinParams, sellers: PermitSeller[]): PermitInfo {
+function permitInfo(rules: RuleSet, p: PinParams, sellers: PermitSeller[], getIsland?: PinDeps["getIsland"]): PermitInfo {
   const pr = rules.permits;
   return {
     online_url: pr.online_url,
@@ -643,17 +646,15 @@ function permitInfo(rules: RuleSet, p: PinParams, sellers: PermitSeller[]): Perm
     sportska: pr.sportska,
     djeca: pr.djeca,
     mrecfish: pr.mrecfish,
-    najblizi_prodavaci: sellers
-      .filter((s) => s.lat != null && s.lon != null)
-      .map((s) => ({ ...s, udaljenost_km: Math.round(km(p.lat, p.lon, s.lat!, s.lon!) * 10) / 10 }))
-      .sort((a, b) => a.udaljenost_km - b.udaljenost_km)
-      .slice(0, 3),
+    najblizi_prodavaci: nearestReachable(p, sellers, getIsland).slice(0, 3),
     izvor: ref({ izvor: pr.izvor, url: pr.online_url, clanak: "–" }, pr.zadnja_provjera),
   };
 }
 
 export interface Shop {
   naziv: string;
+  /** ribolov = tackle shop; sport = sports shop with a fishing section (e.g. Decathlon). */
+  vrsta?: "ribolov" | "sport";
   adresa: string;
   grad: string;
   telefon: string[];
@@ -664,14 +665,57 @@ export interface Shop {
   partner: boolean;
 }
 
-/** Partner shops within 50 km first, then the nearest others; 3 in total. */
-function nearestShops(p: PinParams, shops: Shop[]) {
-  const withDist = shops
+/** Distance and whether the place is on the same island / mainland as the spot. */
+export interface Reach {
+  udaljenost_km: number;
+  /** Island name if the place is on an island (bridged islands count as mainland). */
+  otok: string | null;
+  /** False = across the sea (ferry or boat needed). */
+  isto_kopno: boolean;
+}
+
+/** Islands joined to the mainland by a bridge count as mainland; bridged island pairs are one landmass. */
+const LANDMASS: Record<string, string | null> = {
+  Krk: null,
+  Pag: null,
+  Čiovo: null,
+  Murter: null,
+  Vir: null,
+  Lošinj: "Cres",
+  Pašman: "Ugljan",
+};
+const landmass = (island: string | null) => (island && island in LANDMASS ? LANDMASS[island] : island);
+
+/** Extra "distance" for a place across the sea: a ferry is slower than a drive. */
+const ACROSS_SEA_KM = 30;
+const MAX_KM = 80;
+
+/**
+ * Nearest places the angler can actually reach: same island or mainland first, then
+ * places across the sea (shown with the island name). Straight-line distance otherwise.
+ */
+export function nearestReachable<T extends { lat: number | null; lon: number | null }>(p: PinParams, items: T[], getIsland?: PinDeps["getIsland"]): (T & Reach)[] {
+  const here = getIsland ? landmass(getIsland(p.lat, p.lon)) : null;
+  return items
     .filter((s) => s.lat != null && s.lon != null)
-    .map((s) => ({ ...s, udaljenost_km: Math.round(km(p.lat, p.lon, s.lat!, s.lon!) * 10) / 10 }))
-    .sort((a, b) => a.udaljenost_km - b.udaljenost_km);
-  const partners = withDist.filter((s) => s.partner && s.udaljenost_km <= 50);
-  return [...partners, ...withDist.filter((s) => !partners.includes(s))].slice(0, 3);
+    .map((s) => ({ s, d: km(p.lat, p.lon, s.lat!, s.lon!) }))
+    .filter((x) => x.d <= MAX_KM)
+    .sort((a, b) => a.d - b.d)
+    .slice(0, 20)
+    .map(({ s, d }) => {
+      const otok = getIsland ? getIsland(s.lat!, s.lon!) : null;
+      const isto = !getIsland || landmass(otok) === here;
+      return { ...s, udaljenost_km: Math.round(d * 10) / 10, otok, isto_kopno: isto, score: d + (isto ? 0 : ACROSS_SEA_KM) };
+    })
+    .sort((a, b) => a.score - b.score)
+    .map(({ score: _score, ...rest }) => rest as T & Reach);
+}
+
+/** Partner shops within 50 km on the same landmass first, then the nearest reachable others; 3 in total. */
+function nearestShops(p: PinParams, shops: Shop[], getIsland?: PinDeps["getIsland"]) {
+  const ranked = nearestReachable(p, shops, getIsland);
+  const partners = ranked.filter((s) => s.partner && s.isto_kopno && s.udaljenost_km <= 50);
+  return [...partners, ...ranked.filter((s) => !partners.includes(s))].slice(0, 3);
 }
 
 /** "YYYY-MM-DD" + k days. */

@@ -4,6 +4,7 @@
  * Output: data/species/wiki.json  (text CC BY-SA; images from Wikimedia Commons)
  *
  *   npm run import:species
+ *   npm run import:special   (data/species/special.yaml -> special_wiki.json)
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -33,12 +34,19 @@ async function fetchSummary(lang: string, title: string) {
   });
 }
 
+// "special": protected / invasive / dangerous species (special.yaml).
+const SPECIAL = process.argv[2] === "special";
+const IN = SPECIAL ? "special.yaml" : "species.yaml";
+const OUT = SPECIAL ? "special_wiki.json" : "wiki.json";
+
 async function main() {
-  const doc = yaml.load(fs.readFileSync(path.join(DIR, "species.yaml"), "utf8")) as {
-    vrste: { key: string; latinski: string; wiki: { hr: string; en: string } }[];
+  const doc = yaml.load(fs.readFileSync(path.join(DIR, IN), "utf8")) as {
+    // wiki: { hr, en } in species.yaml, [hr, en] in special.yaml
+    vrste: { key: string; latinski: string; wiki: { hr: string; en: string } | [string, string] }[];
   };
   const out: Record<string, unknown> = {};
-  for (const v of doc.vrste) {
+  for (const raw of doc.vrste) {
+    const v = { ...raw, wiki: Array.isArray(raw.wiki) ? { hr: raw.wiki[0], en: raw.wiki[1] } : raw.wiki };
     const hr = await summary("hr", v.wiki.hr);
     const en = (await summary("en", v.wiki.en)) ?? (await summary("en", v.latinski));
     // English Wikipedia usually has a photo of the live fish; Croatian often shows a catch.
@@ -50,8 +58,8 @@ async function main() {
     };
     console.log(`${v.key.padEnd(10)} hr:${hr ? "ok" : "--"} en:${en ? "ok" : "--"} slika:${img ? "ok" : "--"}`);
   }
-  fs.writeFileSync(path.join(DIR, "wiki.json"), JSON.stringify({ izvor: "Wikipedia (CC BY-SA), slike: Wikimedia Commons", vrste: out }, null, 1));
-  console.log(`  -> data/species/wiki.json`);
+  fs.writeFileSync(path.join(DIR, OUT), JSON.stringify({ izvor: "Wikipedia (CC BY-SA), slike: Wikimedia Commons", vrste: out }, null, 1));
+  console.log(`  -> data/species/${OUT}`);
 }
 
 main().catch((e) => {

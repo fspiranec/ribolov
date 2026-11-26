@@ -18,5 +18,10 @@
   "izvor": "Bioportal (MINGOR / ZZOP)",
   "datum": "2026-11-26",
   "broj": 45
+ },
+ "osm_otoci.geojson": {
+  "izvor": "OpenStreetMap",
+  "datum": "2026-11-26",
+  "broj": 81
  }
 }

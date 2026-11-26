@@ -1,0 +1,219 @@
+# Zaštićene, invazivne i opasne vrste: slika, jedna rečenica i „što učiniti”.
+# Ovo je edukacija, ne pravni tekst. needs_check: true = treba provjeriti prema službenim izvorima
+# (Pravilnik o strogo zaštićenim vrstama, Pravilnik o sportskom i rekreacijskom ribolovu, IZOR, IRB).
+# Slike: npm run import:special -> data/species/special_wiki.json (Wikipedia / Wikimedia Commons).
+#
+# kategorija: zasticena | invazivna | opasna
+# Provjereno 26. 11. 2026. prema NN 48/2026 (Pravilnik o sportskom i rekreacijskom ribolovu), HAOP, IZOR i medicinskim izvorima;
+# što nije potvrđeno, ostaje needs_check. „Ne vraćaj u more” za invazivne vrste NIJE službeno – ne pisati.
+# ulov: pusti      – vrati u more (Moj ulov: crveno „vrati u more”)
+#       prijavi    – strana vrsta: fotografiraj i prijavi nalaz (Moj ulov: crveno/žuto upozorenje)
+#       pravila    – vrijede obična pravila (veličina, lovostaj), uz upozorenje
+# razina: crveno | zuto (boja kartice i upozorenja)
+# prva_pomoc: true – prikaži prvu pomoć kod uboda
+# prijava: true – gumb „Prijavi nalaz”
+# razlog_ulov: (neobavezno) vlastita poruka u „Moj ulov” umjesto opće
+zadnja_provjera: 2026-11-26
+prijava_url: "https://www.irb.hr/Zavodi/Centar-za-istrazivanje-mora/Laboratorij-za-evolucijsku-ekologiju/Projekti/ALIENA-ALIgning-Efforts-to-control-Non-indigenous-species-in-the-Adriatic-sea"
+prva_pomoc:
+  hr: "Ubodeno mjesto drži 30–90 minuta u vrućoj vodi koju još podnosiš – toplina razgrađuje otrov. Najviše 45 °C: provjeri termometrom ili zdravom rukom da se ne opečeš; posebno pazi kod djece. Izvadi samo plitke komadiće bodlje, duboku bodlju ne vadi. Očisti ranu i provjeri cijepljenje protiv tetanusa. Kod rane na prsima ili trbuhu, jakog krvarenja, otoka koji se širi, mučnine ili teškog disanja odmah zovi 112."
+  en: "Keep the stung area in water as hot as you can bear for 30–90 minutes – heat breaks down the venom. No hotter than 45 °C: check with a thermometer or your other hand so you don't get burned; take extra care with children. Remove only shallow spine fragments, never a deeply embedded spine. Clean the wound and check your tetanus vaccination. For a wound to the chest or belly, heavy bleeding, spreading swelling, nausea or difficulty breathing, call 112 at once."
+
+vrste:
+  # ---------------------------------------------------------------- zaštićene
+  - key: periska
+    kategorija: zasticena
+    ulov: pusti
+    razina: crveno
+    needs_check: true
+    naziv: { hr: "Periska", en: "Noble pen shell", de: "Edle Steckmuschel", it: "Nacchera", pl: "Szynkownica szlachetna", cs: "Kyjovka ušlechtilá", sl: "Leščur" }
+    latinski: "Pinna nobilis"
+    wiki: ["Plemenita periska", "Pinna nobilis"]   # [hr, en] naslov na Wikipediji
+    recenica:
+      hr: "Velika školjka zabodena u pijesak, gotovo izumrla u Jadranu."
+      en: "A large shell stuck upright in the sand, almost extinct in the Adriatic."
+    sto_uciniti:
+      hr: "Ne diraj je i ne vadi – strogo je zaštićena i ne smije se uzimati iz mora. Nije suvenir."
+      en: "Do not touch or remove it – it is strictly protected and must not be taken from the sea. It is not a souvenir."
+
+  - key: prstac
+    kategorija: zasticena
+    ulov: pusti
+    razina: crveno
+    needs_check: true
+    naziv: { hr: "Prstac (morski datulj)", en: "Date mussel", de: "Steindattel", it: "Dattero di mare", pl: "Daktyl morski", cs: "Datlovka kamenná", sl: "Prstac (morski datelj)" }
+    latinski: "Lithophaga lithophaga"
+    wiki: ["Prstac", "Lithophaga lithophaga"]   # [hr, en] naslov na Wikipediji
+    recenica:
+      hr: "Školjka koja živi u kamenu; vadi se samo razbijanjem stijene, što uništava obalu."
+      en: "A shellfish living inside rock; it can only be taken by breaking the rock, which destroys the coast."
+    sto_uciniti:
+      hr: "Ne vadi ga – strogo je zaštićen, a vađenje razbija stijenu i uništava obalu. Ne naručuj ga u restoranu."
+      en: "Do not collect it – it is strictly protected, and collecting it breaks the rock and destroys the coast. Do not order it in restaurants."
+
+  - key: kornjace
+    kategorija: zasticena
+    ulov: pusti
+    razina: crveno
+    needs_check: true
+    naziv: { hr: "Morske kornjače", en: "Sea turtles", de: "Meeresschildkröten", it: "Tartarughe marine", pl: "Żółwie morskie", cs: "Mořské želvy", sl: "Morske želve" }
+    latinski: "Caretta caretta"
+    wiki: ["Glavata želva", "Loggerhead sea turtle"]   # [hr, en] naslov na Wikipediji
+    recenica:
+      hr: "Najčešća je glavata želva; ponekad se uhvati na udicu ili zaplete u najlon."
+      en: "The loggerhead is the most common; it sometimes takes a hook or gets tangled in line."
+    # Prema shemi prve pomoći za morske kornjače (HAOP / MINGOR):
+    # https://www.haop.hr/sites/default/files/uploads/dokumenti/03_prirodne/Schema_prvapomoc_kornjace.pdf
+    sto_uciniti:
+      hr: "Odmah zovi 112 – ne puštaj je sam. Ne vadi udicu i ne vuci najlon; na brod je podigni mrežom i drži samo za oklop. Prereži najlon što bliže ustima. Drži je u hladu, oklop pokrij mokrim ručnikom i čekaj veterinara."
+      en: "Call 112 at once – do not just let it go. Do not remove the hook or pull the line; lift it aboard with a net and hold it only by the shell. Cut the line as close to the mouth as possible. Keep it in the shade, cover the shell with a wet towel and wait for the vet."
+    razlog_ulov:
+      hr: "Zaštićena vrsta – ne smiješ je zadržati. Zovi 112 i čekaj upute."
+      en: "Protected species – you may not keep it. Call 112 and wait for instructions."
+
+  - key: dupini
+    kategorija: zasticena
+    ulov: pusti
+    razina: crveno
+    needs_check: true
+    naziv: { hr: "Dupini", en: "Dolphins", de: "Delfine", it: "Delfini", pl: "Delfiny", cs: "Delfíni", sl: "Delfini" }
+    latinski: "Tursiops truncatus"
+    wiki: ["Dobri dupin", "Common bottlenose dolphin"]   # [hr, en] naslov na Wikipediji
+    recenica:
+      hr: "Dobri dupin živi u cijelom Jadranu i strogo je zaštićen."
+      en: "The bottlenose dolphin lives all along the Adriatic and is strictly protected."
+    sto_uciniti:
+      hr: "Ne prilazi, ne hrani ih i ne plivaj prema njima. Nasukanog ili ozlijeđenog dupina prijavi na 112."
+      en: "Do not approach, feed or swim towards them. Report a stranded or injured dolphin to 112."
+
+  - key: morski_psi_raze
+    kategorija: zasticena
+    ulov: pusti
+    razina: crveno
+    needs_check: true
+    naziv: { hr: "Morski psi i raže", en: "Sharks and rays", de: "Haie und Rochen", it: "Squali e razze", pl: "Rekiny i płaszczki", cs: "Žraloci a rejnoci", sl: "Morski psi in skati" }
+    latinski: "Elasmobranchii"
+    wiki: ["Hrskavičnjače", "Elasmobranchii"]   # [hr, en] naslov na Wikipediji
+    recenica:
+      hr: "Rekreativcima je zabranjeno zadržati sve morske pse, raže i druge hrskavične ribe."
+      en: "Recreational anglers may not keep any sharks, rays or other cartilaginous fish."
+    sto_uciniti:
+      hr: "Vrati ih u more što prije, po mogućnosti bez vađenja iz vode. Prereži najlon ako ne možeš sigurno izvaditi udicu."
+      en: "Release them as soon as possible, ideally without taking them out of the water. Cut the line if you cannot remove the hook safely."
+
+  # ---------------------------------------------------------------- invazivne
+  - key: plavi_rak
+    kategorija: invazivna
+    ulov: pravila
+    razina: zuto
+    prijava: true
+    needs_check: true
+    naziv: { hr: "Plavi rak", en: "Atlantic blue crab", de: "Blaukrabbe", it: "Granchio blu", pl: "Krab błękitny", cs: "Krab modrý", sl: "Modra rakovica" }
+    latinski: "Callinectes sapidus"
+    wiki: ["Plavi rak", "Callinectes sapidus"]   # [hr, en] naslov na Wikipediji
+    recenica:
+      hr: "Strani rak s plavim kliještima koji se širi uz ušća rijeka i potiskuje domaće vrste."
+      en: "A non-native crab with blue claws that is spreading near river mouths and pushing out native species."
+    sto_uciniti:
+      hr: "Smiješ ga zadržati – jestiv je. Pazi na snažna kliješta. Fotografiraj ga i prijavi nalaz."
+      en: "You may keep it – it is edible. Mind the strong claws. Take a photo and report it."
+
+  - key: napuhaca
+    kategorija: invazivna
+    ulov: prijavi
+    razina: crveno
+    prijava: true
+    needs_check: true
+    naziv: { hr: "Srebrnopruga napuhača", en: "Silver-cheeked toadfish", de: "Silberstreifen-Kugelfisch", it: "Pesce palla maculato", pl: "Rozdymka srebrnopręga", cs: "Čtverzubec stříbropruhý", sl: "Srebrnoproga napihovalka" }
+    latinski: "Lagocephalus sceleratus"
+    wiki: ["Srebrnopruga napuhača", "Lagocephalus sceleratus"]   # [hr, en] naslov na Wikipediji
+    recenica:
+      hr: "Napuše se kad je izvadiš; meso i organi sadrže jak otrov koji se kuhanjem ne razgrađuje."
+      en: "It puffs up when taken out; its flesh and organs contain a strong poison that cooking does not destroy."
+    sto_uciniti:
+      hr: "Nikako je ne jedi! Ima oštre zube – ne stavljaj prste blizu usta. Fotografiraj je i prijavi nalaz."
+      en: "Never eat it! It has sharp teeth – keep your fingers away from its mouth. Take a photo and report it."
+    razlog_ulov:
+      hr: "Otrovna strana vrsta – nikako je ne jedi. Fotografiraj je i prijavi nalaz."
+      en: "Poisonous non-native species – never eat it. Take a photo and report it."
+
+  - key: riba_lav
+    kategorija: invazivna
+    ulov: prijavi
+    razina: crveno
+    prijava: true
+    prva_pomoc: true
+    needs_check: true
+    naziv: { hr: "Riba lav", en: "Lionfish", de: "Rotfeuerfisch", it: "Pesce scorpione (pesce leone)", pl: "Skrzydlica", cs: "Perutýn", sl: "Plamenka (riba lev)" }
+    latinski: "Pterois miles"
+    wiki: ["Pterois miles", "Pterois miles"]   # [hr, en] naslov na Wikipediji
+    recenica:
+      hr: "Prugasta riba s dugim otrovnim bodljama; ubod je bolan."
+      en: "A striped fish with long venomous spines; its sting is painful."
+    sto_uciniti:
+      hr: "Ne diraj je golim rukama. Fotografiraj je i prijavi nalaz."
+      en: "Do not touch it with bare hands. Take a photo and report it."
+
+  - key: strijelka
+    kategorija: invazivna
+    ulov: prijavi
+    razina: zuto
+    prijava: true
+    needs_check: true
+    naziv: { hr: "Fistularia commersonii", en: "Bluespotted cornetfish", de: "Blaupunkt-Flötenfisch", it: "Pesce flauto", pl: "Fistularia commersonii", cs: "Fistularia commersonii", sl: "Fistularia commersonii" }   # hrvatski naziv nije potvrđen
+    latinski: "Fistularia commersonii"
+    wiki: ["Fistularia commersonii", "Fistularia commersonii"]   # [hr, en] naslov na Wikipediji
+    recenica:
+      hr: "Vrlo duga i tanka riba s cjevastom njuškom, stigla iz Crvenog mora."
+      en: "A very long, thin fish with a tube-like snout that came from the Red Sea."
+    sto_uciniti:
+      hr: "Fotografiraj je i prijavi nalaz."
+      en: "Take a photo and report it."
+
+  # ---------------------------------------------------------------- opasne domaće
+  - key: pauk
+    kategorija: opasna
+    ulov: pravila
+    razina: zuto
+    prva_pomoc: true
+    needs_check: true
+    naziv: { hr: "Pauk", en: "Weever", de: "Petermännchen", it: "Tracina", pl: "Ostrosz", cs: "Ostnatec", sl: "Morski pajek" }
+    latinski: "Trachinus draco"
+    wiki: ["Pauk bijelac", "Greater weever"]   # [hr, en] naslov na Wikipediji
+    recenica:
+      hr: "Ukopa se u pijesak; otrovne bodlje su na leđnoj peraji i škržnom poklopcu."
+      en: "It buries itself in sand; venomous spines are on the dorsal fin and gill cover."
+    sto_uciniti:
+      hr: "Ne hvataj ga rukom. Drži ga krpom ili kliještima i skini udicu pažljivo. Na pijesku nosi obuću."
+      en: "Do not grab it by hand. Hold it with a cloth or pliers and unhook it carefully. Wear shoes on sandy beaches."
+
+  - key: skrpina
+    kategorija: opasna
+    ulov: pravila
+    razina: zuto
+    prva_pomoc: true
+    naziv: { hr: "Škrpina", en: "Scorpionfish", de: "Drachenkopf", it: "Scorfano", pl: "Skorpena", cs: "Ropušnice", sl: "Bodeči škarpoč" }
+    latinski: "Scorpaena scrofa"
+    wiki: ["Škrpina", "Scorpaena scrofa"]   # [hr, en] naslov na Wikipediji
+    recenica:
+      hr: "Ukusna riba, ali bodlje na leđima i škrgama su otrovne."
+      en: "A tasty fish, but the spines on its back and gills are venomous."
+    sto_uciniti:
+      hr: "Skidaj je s udice kliještima ili krpom. Smiješ je zadržati ako je dovoljno velika."
+      en: "Unhook it with pliers or a cloth. You may keep it if it is big enough."
+
+  - key: raza_zutulja
+    kategorija: opasna
+    ulov: pusti
+    razina: zuto
+    prva_pomoc: true
+    needs_check: true
+    naziv: { hr: "Raža žutulja", en: "Common stingray", de: "Gewöhnlicher Stechrochen", it: "Pastinaca", pl: "Ogończa pospolita", cs: "Trnucha obecná", sl: "Morski bič" }
+    latinski: "Dasyatis pastinaca"
+    wiki: ["Žutulja", "Common stingray"]   # [hr, en] naslov na Wikipediji
+    recenica:
+      hr: "Na repu ima otrovnu bodlju; skriva se na pjeskovitom dnu."
+      en: "It has a venomous spine on its tail and hides on sandy bottoms."
+    sto_uciniti:
+      hr: "Ne smiješ je zadržati. Ne diraj rep – prereži najlon i pusti je u vodi."
+      en: "You may not keep it. Keep away from the tail – cut the line and let it go in the water."

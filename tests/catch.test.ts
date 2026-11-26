@@ -54,3 +54,33 @@ describe("moj ulov", () => {
     expect(r.preostalo_kg).toBe(0);
   });
 });
+
+describe("zaštićene, invazivne i opasne vrste u ulovu", () => {
+  it("protected species must be released, with what to do", () => {
+    const r = checkCatch(rules, "2026-07-01", [{ key: "periska" }, { key: "kornjace" }]);
+    expect(r.stavke.map((s) => s.status)).toEqual(["pusti", "pusti"]);
+    expect(r.stavke[0].posebno?.kategorija).toBe("zasticena");
+    expect(r.stavke[0].posebno?.sto_uciniti.hr).toContain("Ne diraj");
+    // turtle: official HAOP advice – call 112, do not just release it
+    expect(r.stavke[1].razlog.hr).toContain("112");
+    expect(r.stavke[1].posebno?.sto_uciniti.hr).toContain("Ne vadi udicu");
+  });
+
+  it("invasive species: report it (no official 'do not release'); pufferfish never eaten; blue crab may be kept", () => {
+    const r = checkCatch(rules, "2026-07-01", [{ key: "napuhaca", masa_kg: 2 }, { key: "plavi_rak" }]);
+    expect(r.stavke.map((s) => s.status)).toEqual(["prijavi", "zadrzi"]);
+    expect(r.stavke[0].posebno?.razina).toBe("crveno");
+    expect(r.stavke[0].razlog.hr).toContain("ne jedi");
+    expect(JSON.stringify(r.stavke)).not.toContain("ne vraćaj");
+    expect(r.stavke[1].posebno?.prijava_url).toMatch(/^https:\/\//);
+    expect(r.stavke[0].posebno?.prijava_url).toMatch(/^https:\/\//);
+    expect(r.zadrzano_kg).toBe(0);
+  });
+
+  it("dangerous species keep normal rules plus first aid", () => {
+    const r = checkCatch(rules, "2026-07-01", [{ key: "skrpina", duljina_cm: 20 }, { key: "pauk" }, { key: "raza_zutulja" }]);
+    expect(r.stavke.map((s) => s.status)).toEqual(["pusti", "zadrzi", "pusti"]);
+    expect(r.stavke[0].posebno?.prva_pomoc?.hr).toContain("45 °C");
+    expect(r.stavke[1].posebno?.kategorija).toBe("opasna");
+  });
+});

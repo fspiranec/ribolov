@@ -16,6 +16,7 @@
     "import:db": "tsx scripts/import/load_db.ts",
     "import:sellers": "tsx scripts/import/permit_sellers.ts",
     "import:species": "tsx scripts/import/species.ts",
+    "import:special": "tsx scripts/import/species.ts special",
     "import:shops": "tsx scripts/import/shops.ts",
     "import:places": "tsx scripts/import/places.ts",
     "import:species-names": "tsx scripts/import/species_names.ts"
@@ -29,6 +30,7 @@
     "next": "^15.5.29",
     "pg": "^8.16.3",
     "proj4": "^2.19.10",
+    "qrcode": "^1.5.4",
     "react": "^19.1.10",
     "react-dom": "^19.1.10",
     "suncalc": "^1.9.0"
@@ -40,6 +42,7 @@
     "@types/node": "^22.20.7",
     "@types/pg": "^8.23.1",
     "@types/proj4": "^2.5.6",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^19.3.3",
     "@types/react-dom": "^19.3.0",
     "@types/shapefile": "^0.6.4",

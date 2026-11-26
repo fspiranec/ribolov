@@ -19,32 +19,35 @@ Redoslijed iz [docs/PLAN_DORADE.md](docs/PLAN_DORADE.md):
    - faze mjeseca na HR: „skoro pun mjesec, opada”;
    - podsjetnici se ne prikazuju za vrste koje su rekreativcima trajno zabranjene (`trajno_zabranjeno` u `closed_seasons.yaml`).
    - **Nije napravljeno:** dubina s objašnjenjem za lov s obale (točka 6 u planu). Lovostaj u API-ju ima polja `trajno_zabranjeno` i `s_obale`, ali ih sučelje još ne koristi.
-3. **Osnovno / Detaljno i novi redoslijed** – ⏳ nije počelo
-   - izbor u postavkama (sheet „settings” u `app/page.tsx`), spremanje u localStorage, zadano „Osnovno”;
-   - redoslijed: status, dozvola, moj ulov, ribe danas, vrste, aktivnost, prognoza, idući dani, karta;
-   - Osnovno: aktivnost samo kao rečenica („Najbolje vrijeme danas: 13–15 h”), osnovna prognoza, a lovostaji samo za `s_obale && !trajno_zabranjeno`;
+3. **Osnovno / Detaljno i novi redoslijed** – ✅ gotovo
+   - izbor „Prikaz” u postavkama, sprema se u localStorage (`ribolov:prikaz`), zadano „Osnovno”; logika u `lib/view.ts` (test `tests/view.test.ts`);
+   - redoslijed: status, podsjetnici, dozvola, moj ulov, ribe danas, zaštićene/invazivne/opasne vrste, aktivnost, prognoza, idući dani; sa strane (na mobitelu ispod) karta, „Prvi put…”, „Ribolov s djecom”, pravila;
+   - Osnovno: aktivnost je jedna rečenica („Najbolje vrijeme danas: 13–15 h”), prognoza bez udara, perioda valova i mjeseca (gumb „Prikaži detaljno”), lovostaji samo `s_obale && !trajno_zabranjeno`. Detaljno: puni graf + ista rečenica;
+   - dubina ima objašnjenje (točka, ne obala; na kopnu: odaberi more);
+   - podsjetnici o lovostaju za vrste koje se ne love s obale (`s_obale: false`, npr. lampuga) ne prikazuju se kod načina „S obale” (`lib/pin.ts`);
    - upozorenja i zabrane se nikad ne skrivaju.
-4. **Vrste: zaštićene, invazivne, opasne** – ⏳ nije počelo
-   - 10–15 vrsta s fotografijom, jednom rečenicom i porukom „što učiniti”:
-     - **zaštićene:** periska, prstac (morski datulj), kornjače, dupini, zaštićeni morski psi i raže;
-     - **invazivne:** plavi rak, napuhače (*Lagocephalus*, otrovne), riba lav ili vatrenjača, strijelka (*Fistularia commersonii*);
-     - **opasne:** pauk, škrpina, raža žutulja.
-   - Popis treba provjeriti prema službenim izvorima.
-   - U „Moj ulov” za takvu vrstu prikazati veliko crveno upozorenje (`lib/catch.ts` + `app/ui/MyCatch.tsx`).
-   - Dodati prvu pomoć kod uboda: vruća voda (podnošljivo vruća, oko 45 °C) 30–90 min, izvaditi bodlje, liječnik kod jače reakcije. Gumb „Prijavi nalaz” (IRB, projekt ALIENA) za sada vodi na vanjsku poveznicu.
-   - Za svaki novi tekst dodati prijevod u `locales/*.json`; inače test pada.
-5. **Linkovi s lokacijom na serveru (SSR), Open Graph pregled, QR kodovi** – ⏳ nije počelo
-   - `app/page.tsx` je sada potpuno klijentska komponenta. Treba serverska stranica koja za `?lat&lon` pozove `evaluatePin` i preda rezultat klijentu, te `generateMetadata` za OG, npr. „Koromačno: nema poznatih zabrana”.
-   - QR: stranica ili gumb „QR za moj apartman” (paket `qrcode`).
-6. **Ribolov s djecom i pravila ponašanja** – ⏳ nije počelo
-   - kartica slična „Prvi put loviš u Hrvatskoj?” (`FirstTimeCard`): djeca, sigurnost, kruh i udica, nježno puštanje ribe, ne ostavljati najlon, ne loviti među kupačima; „album” ulovljenih vrsta.
+4. **Vrste: zaštićene, invazivne, opasne** – ✅ gotovo (sadržaj čeka provjeru, vidi TODO.md)
+   - 12 vrsta u `data/species/special.yaml` (kategorija, `ulov: pusti | ne_vracaj | pravila`, razina, rečenica, „što učiniti”, prva pomoć, prijava); slike `npm run import:special` → `special_wiki.json`; učitava `lib/special.ts`, `/api/species` vraća `posebne`;
+   - kartica i detalj u `app/ui/Special.tsx`; u „Moj ulov” vrste se biraju u posebnoj skupini, a `checkCatch` vraća `posebno` i status `ne_vracaj` (veliko crveno/žuto upozorenje, prva pomoć, „Prijavi nalaz”);
+   - **ograde (vlasnikov zahtjev):** uz svaku prvu pomoć „opća informacija, ne liječnički savjet…”, uz sve savjete o vrstama „informativno, neslužbeno…”, uz kartice savjeta „okvirni savjeti, nisu službeni”. Tako raditi i za svaki novi savjet;
+   - „Prijavi nalaz” vodi na IRB-ovu stranicu projekta ALIENA (službeni kanal za prijave nije pronađen).
+   - **Provjera prema izvorima (26. 11.):** kornjača prema shemi prve pomoći HAOP-a (zovi 112, ne vadi udicu, prereži najlon blizu usta, drži je u hladu do veterinara); za invazivne vrste NEMA službenog „ne vraćaj u more” – status u ulovu je `prijavi` („fotografiraj i prijavi”), plavi rak se smije zadržati; prva pomoć: najviše 45 °C, oprez kod djece, duboku bodlju ne vaditi, tetanus. Otvoreno u TODO.md.
+   - Prikaz: kartice Zaštićene / Invazivne / Opasne s mrežom vrsta (bez vodoravnog listanja).
+5. **SSR, Open Graph, QR** – ✅ gotovo
+   - `app/page.tsx` je serverska stranica: za `?lat&lon` zove `runPin` (`lib/pinServer.ts`, dijeli ga s `/api/pin`) i predaje rezultat klijentu (`app/Home.tsx`), koji tada preskače prvi isti upit;
+   - `generateMetadata` daje naslov/OG „Koromačno: nema poznatih zabrana” (`lib/preview.ts`), slika pregleda `/og?lat&lon` (`app/og/route.tsx`, 1200×630);
+   - `metadataBase`: `NEXT_PUBLIC_SITE_URL`, inače Vercel produkcijski URL, inače localhost – **na Vercelu postaviti `NEXT_PUBLIC_SITE_URL` kad bude domena**;
+   - `/qr?lat&lon&naziv` – kartica za iznajmljivače s QR kodom (paket `qrcode`), poruka na HR/EN/DE/IT, gumb za ispis; poveznica u postavkama.
+6. **Ribolov s djecom i pravila ponašanja** – ✅ gotovo
+   - `KidsCard` u `app/ui/Dashboard.tsx` (6 savjeta) i „Moj album riba”: svaka vrsta upisana u „Moj ulov” sprema se s datumom (`ribolov:album`, samo na uređaju), album prikazuje ulovljene vrste u boji.
 7. **Kontakt s IRB-om i turističkom zajednicom** – posao za vlasnika, ne za kod.
-8. **Offline i pristupačnost** – ⏳ nije počelo
-   - sada se samo zadnji odgovor sprema u localStorage. Treba service worker koji čuva stranicu i `/api/species`, a po želji i lokalni izračun iz `/api/rules`;
-   - alt tekstovi na logu i slikama;
-   - godina uz datum (djelomično gotovo: izvori je imaju).
+**Trgovine i prodavači dozvola (26. 11., vlasnikov zahtjev):** `npm run import:shops` sad uvozi ribolovne trgovine, Decathlon (`vrsta: sport`), „lov i ribolov” i trgovine s „ribolov/ribički” u nazivu; mjesto se dopunjava iz GeoNames; uvozi i obrise otoka ≥ 1 km² (`data/imported/osm_otoci.geojson`). `nearestReachable` u `lib/pin.ts`: trgovina/prodavač preko mora dobiva +30 km i oznaku „na otoku X – treba trajekt ili brod”; Krk, Pag, Čiovo, Murter i Vir su kopno, Cres+Lošinj i Ugljan+Pašman jedna cjelina (`lib/islands.ts`, test `tests/shops.test.ts`).
 
-Koraci 1–2 su u commitu „Plan dorade: zone, izvori, brzi popravci” na GitHubu (`main`).
+8. **Offline i pristupačnost** – ✅ gotovo (osnovno)
+   - `public/sw.js` (v2, samo produkcija): stranice, `/api/species` i `/api/pin` network-first s rezervom iz cachea (zaglavlje `X-Ribolov-Offline` → traka „Bez interneta”), slike riba cache-first. „Moj ulov” (POST) offline ne radi; lokalni izračun iz `/api/rules` nije napravljen;
+   - alt na logu, `role="dialog"` na sheetovima, prevedeni natpisi gumba zatvori/obriši, `lang` na `<html>` prati odabrani jezik, oznaka uz krug aktivnosti; datum u zaglavlju i podnožju uvijek s godinom.
+
+Koraci 1–2 su u commitu „Plan dorade: zone, izvori, brzi popravci” na GitHubu (`main`). Koraci 3–8, provjera savjeta o vrstama i popravak preporuka trgovina su u commitu „Plan dorade: koraci 3–8, vrste, SSR i QR, trgovine” (`main`).
 
 ## 1. Što je aplikacija
 
@@ -63,7 +66,7 @@ Cilj vlasnika je **educirati turiste**. Moguće je kasnije predstavljanje Minist
 | Područje | Stanje |
 |---|---|
 | Web aplikacija (Next.js) | radi lokalno, nije objavljena |
-| Testovi | 42 od 42 prolazi (`npm test`) |
+| Testovi | 53 od 53 prolazi (`npm test`) |
 | Jezici | HR, EN, DE, IT, PL, CS, SL; sve prevedeno, izvorni govornik nije pregledao |
 | Tamni način | da (prati uređaj, gumb ☀️/🌙) |
 | Pravna točnost pravila | **nije provjerena**; članci su `TODO` (vidi §8) |
@@ -150,9 +153,10 @@ TODO.md               svi otvoreni zadaci
 | `npm run import:osm` | OSM Overpass (luke, plaže). Javni overpass-api.de odbija skripte → `OVERPASS_URL=https://overpass.kumi.systems/api/interpreter` | `data/imported/osm_*.geojson` |
 | `npm run import:bioportal` | Bioportal WFS (`dzzpnpis:zasticeno_podrucje_poligoni`, `dzzpnpis:upravljacke_zonacije_poligoni`); spor, nekoliko minuta | `data/imported/bioportal.geojson` |
 | `npm run import:sellers` | službeni popis prodavača dozvola (xlsx Ministarstva) + Nominatim | `data/permit_sellers.json` |
-| `npm run import:shops` | OSM `shop=fishing` | `data/shops.json` |
+| `npm run import:shops` | OSM: ribolovne trgovine, Decathlon, „lov i ribolov”; obrisi otoka | `data/shops.json`, `data/imported/osm_otoci.geojson` |
 | `npm run import:places` | GeoNames HR (CC BY 4.0) | `data/places.json` |
 | `npm run import:species` | Wikipedia (slike, opisi); poštuje ograničenje broja upita | `data/species/wiki.json` |
+| `npm run import:special` | Wikipedia (slike zaštićenih, invazivnih i opasnih vrsta) | `data/species/special_wiki.json` |
 | `npm run import:species-names` | Wikipedia jezične poveznice | `data/species/names.json` (ručne ispravke u `names_manual.json`) |
 | `npm run import:emodnet` | EMODnet GeoTIFF dubina (opcionalno, ~50–100 MB) | `data/bathymetry/` |
 | `npm run import:zones` | SHP ribolovnih zona (još ga nemamo) | `data/imported/ribolovne_zone.geojson` |

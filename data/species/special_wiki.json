@@ -1,0 +1,137 @@
+{
+ "izvor": "Wikipedia (CC BY-SA), slike: Wikimedia Commons",
+ "vrste": {
+  "periska": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Pinnidae_-_Pinna_nobilis.jpg/330px-Pinnidae_-_Pinna_nobilis.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Plemenita periska, poznata i kao lostura ili loščura, školjkaš je iz porodice lepezastih školjki.",
+    "en": "Pinna nobilis, known by the common names noble pen shell and fan mussel, is a large species of Mediterranean clam, a marine bivalve mollusc in the family Pinnidae, the pen shells."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Plemenita_periska",
+    "en": "https://en.wikipedia.org/wiki/Pinna_nobilis"
+   }
+  },
+  "prstac": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Lithophaga.JPG/330px-Lithophaga.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Prstac je školjkaš iz porodice dagnji. U Hrvatskoj je poznat i pod nazivima datala, datul, datula, datulj, kamotočac, morska datula i prstić.",
+    "en": "Lithophaga lithophaga, also known as date shell or date mussel, is a species of Bivalvia belonging to the family Mytilidae."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Prstac",
+    "en": "https://en.wikipedia.org/wiki/Lithophaga_lithophaga"
+   }
+  },
+  "kornjace": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Loggerhead_sea_turtle.jpg/330px-Loggerhead_sea_turtle.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Glavata želva je vrsta morske kornjače, koja kao i kopnene kornjače spada u drevni red Chelonia. Morske su kornjače jedini gmazovi koji naseljavaju Sredozemno i Jadransko more.",
+    "en": "The loggerhead sea turtle, loggerhead turtle or loggerhead, is a species of sea turtle distributed throughout the world. It is a marine reptile, belonging to the family Cheloniidae. The average loggerhead measures around 90 cm (35 in) in carapace length when fully grown. The adult loggerhead sea turtle weighs approximately 135 kg (298 lb), with the largest specimens weighing about 200 kg (440 lb). The skin ranges from yellow to brown in color, and the shell is typically reddish brown. No external differences in sex are seen until the turtle becomes an adult, the most obvious difference being that the adult males have thicker tails and shorter plastrons than the females."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Glavata_%C5%BEelva",
+    "en": "https://en.wikipedia.org/wiki/Loggerhead_sea_turtle"
+   }
+  },
+  "dupini": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Tursiops_truncatus_01-cropped.jpg/330px-Tursiops_truncatus_01-cropped.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Dobri dupin vrsta je dupina koja živi i u Jadranu. Dupini se ubrajaju u najpoznatije i najomiljenije morske sisavce, a dobri dupin je vjerojatno najbolje poznata i jedna od najrasprostranjenijih vrsta u skupini dupina.",
+    "en": "The common bottlenose dolphin or Atlantic bottlenose dolphin is one of three species of bottlenose dolphin in the genus Tursiops. While formerly known simply as the bottlenose dolphin, this term is now applied to the genus Tursiops as a whole. As considerable genetic variation has been described within this species, even between neighboring populations, many experts think additional species may be recognized and split out."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Dobri_dupin",
+    "en": "https://en.wikipedia.org/wiki/Common_bottlenose_dolphin"
+   }
+  },
+  "morski_psi_raze": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Reticulated_Whiptail_Ray_and_Zebra_Shark_2.jpg/330px-Reticulated_Whiptail_Ray_and_Zebra_Shark_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Hrskavičnjače nekada su smatrane razredom riba u skupini čeljustoustih (Gnathostomata), danas se vode kao pakoljeno (parvphylum). Njihovi predstavnici su morski psi (Selachii) i raže (Batoidea).",
+    "en": "Elasmobranchii is a subclass of Chondrichthyes or cartilaginous fish, including modern sharks, and batomorphs. Members of this subclass are characterised by having five to seven pairs of gill slits opening individually to the exterior, rigid dorsal fins and small placoid scales on the skin. The teeth are in several series; the upper jaw is not fused to the cranium, and the lower jaw is articulated with the upper. The details of this jaw anatomy vary between species, and help distinguish the different elasmobranch clades. The pelvic fins in males are modified to create claspers for the transfer of sperm. There is no swim bladder; instead, these fish maintain buoyancy with large livers rich in oil."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Hrskavi%C4%8Dnja%C4%8De",
+    "en": "https://en.wikipedia.org/wiki/Elasmobranchii"
+   }
+  },
+  "plavi_rak": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/The_Childrens_Museum_of_Indianapolis_-_Atlantic_blue_crab.jpg/330px-The_Childrens_Museum_of_Indianapolis_-_Atlantic_blue_crab.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": null,
+    "en": "Callinectes sapidus, commonly known as the blue crab, Atlantic blue crab, or, regionally, the Maryland blue crab, is a species of crab native to the waters of the western Atlantic Ocean and the Gulf of Mexico, and introduced internationally."
+   },
+   "url": {
+    "hr": null,
+    "en": "https://en.wikipedia.org/wiki/Callinectes_sapidus"
+   }
+  },
+  "napuhaca": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Lagocephalus_sceleratus.jpg/330px-Lagocephalus_sceleratus.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": null,
+    "en": "Lagocephalus sceleratus - gotronus, commonly known as the silver-cheeked toadfish, or Sennin-fugu, or Gotronu, is an extremely poisonous marine bony fish in the family Tetraodontidae."
+   },
+   "url": {
+    "hr": null,
+    "en": "https://en.wikipedia.org/wiki/Lagocephalus_sceleratus"
+   }
+  },
+  "riba_lav": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Going_away_%2851510843964%29.jpg/330px-Going_away_%2851510843964%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": null,
+    "en": "Pterois miles, the devil firefish or common lionfish, is a species of ray-finned fish native to the western Indo-Pacific region. It is frequently confused with its close relative, the red lionfish. The scientific name is from Greek pteron, meaning \"wing\", and Latin miles, meaning \"soldier\"."
+   },
+   "url": {
+    "hr": null,
+    "en": "https://en.wikipedia.org/wiki/Pterois_miles"
+   }
+  },
+  "strijelka": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Pez_corneta_pintada_%28Fistularia_commersonii%29%2C_Anilao%2C_Filipinas%2C_2023-08-23%2C_DD_177.jpg/330px-Pez_corneta_pintada_%28Fistularia_commersonii%29%2C_Anilao%2C_Filipinas%2C_2023-08-23%2C_DD_177.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Plavotočkasta trumpetača, riba porodice Fistulariidae koja živi uz grebene u Indijskom oceanu i Pacifiku, u Crvenom moru i uz istočnu obalu Afrike pa sve do Uskrsnog otoka i otoka Rapa, južno do Australije i Novog Zelanda, i od Meksika do Paname. Kroz Sueski kanal migrirala je u Sredozemno more i ušla u jadran, gdje je opažena uz obale Italije i obalu Crne Gore kao i uz Francusku.",
+    "en": "The bluespotted cornetfish, also known as smooth cornetfish or smooth flutemouth, is a marine fish which belongs to the family Fistulariidae. This very long and slender reef-dweller belongs to the same order as the pipefishes and seahorses, called Syngnathiformes."
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Plavoto%C4%8Dkasta_trumpeta%C4%8Da",
+    "en": "https://en.wikipedia.org/wiki/Bluespotted_cornetfish"
+   }
+  },
+  "pauk": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Trachinus_draco_2.jpeg/330px-Trachinus_draco_2.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": "Pauk bijelac, pripada obitelji paukovki (Trachinidae). Najčešći je pauk u Jadranu. Pored pauka bijelca u Jadranu žive još tri vrste iz obitelji paukovki, to su pauk žutac, mrkulj i crnac. Bijelac naraste u dužinu do 40 cm i dosegne težinu do 1,5 kg. Tijelo mu je izduženo u boku stisnuto. Bijelac je ružičastosive boje, koso izbrazdan crnim, modrikastim, te niže i žutim šarama. Kao i kod ostalih vrsta pauka oči su mu izbočene i smještene visoko na glavi. Donja čeljust mu je duža od gornje. Na škržnom poklopcu ima dugu bodlju okrenutu prema natrag. Ljuske na tijelu su koso nanizane. Otrov je smješten u bodlji škržnog poklopca i na bodljama prve leđne peraje. Kao i kod ostalih vrsta paukova i njegov otrov djeluje na živčani i krvožilni sustav čovjeka. Nakon uboda najprije se javi jaka bol koja može trajati dosta dugo, čak i dvanaest sati. Nakon čega može uslijediti nesvjestica, povraćanje, lupanje srca i visoka temperatura, kao i drugi simptomi poremećaja u organizmu. Intenzitet tegoba će ovisiti o organizmu ubodene osobe i o veličini samog pauka. Nakon uboda pauka najbolje je brzo potražiti liječničku pomoć, no daleko od bilo kakve pomoći dovoljno je uroniti mjesto uboda u tekućinu temperature veće od 40 C° jer je otrov termolabilan. Smrtni slučajevi su rijetki, ali su se događali.",
+    "en": "The greater weever is a species of marine ray-finned fish in the family Trachinidae. It is a benthic fish widely distributed along the eastern Atlantic coastline, extending to the Mediterranean, Aegean and Black Seas. The greater weever is mostly and notoriously known for its venomous spines, which can inflict serious injuries on humans through accidental stinging. Because of this, the greater weever is classified as one of the most venomous fishes in the Mediterranean.⁠"
+   },
+   "url": {
+    "hr": "https://hr.wikipedia.org/wiki/Pauk_bijelac",
+    "en": "https://en.wikipedia.org/wiki/Greater_weever"
+   }
+  },
+  "skrpina": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Red_Scorpionfish_%28cropped%29.jpg/330px-Red_Scorpionfish_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": null,
+    "en": "Scorpaena scrofa, the red scorpionfish, bigscale scorpionfish, large-scaled scorpion fish, or rascasse is a venomous marine species of ray-finned fish in the family Scorpaenidae, the scorpionfishes. It is found in the Mediterranean Sea, in the eastern Atlantic Ocean and the western Indian Ocean."
+   },
+   "url": {
+    "hr": null,
+    "en": "https://en.wikipedia.org/wiki/Scorpaena_scrofa"
+   }
+  },
+  "raza_zutulja": {
+   "slika": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Black_sea_fauna_stingray_01.jpg/330px-Black_sea_fauna_stingray_01.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "opis": {
+    "hr": null,
+    "en": "The common stingray is a species of stingray in the family Dasyatidae, found in the northeastern Atlantic Ocean and the Mediterranean and Black Seas. It typically inhabits sandy or muddy habitats in coastal waters shallower than 60 m (200 ft), often burying itself in sediment. Usually measuring 45 cm (18 in) across, the common stingray has a diamond-shaped pectoral fin disc slightly wider than long, and a whip-like tail with upper and lower fin folds. It can be identified by its plain coloration and mostly smooth skin, except for a row of tubercles along the midline of the back in the largest individuals.."
+   },
+   "url": {
+    "hr": null,
+    "en": "https://en.wikipedia.org/wiki/Common_stingray"
+   }
+  }
+ }
+}

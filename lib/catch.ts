@@ -1,6 +1,7 @@
 import type { RuleSet, Text } from "./rules/types";
 import { toIso } from "./rules/dates";
 import { speciesGuide, type SpeciesTip } from "./species";
+import { specialByKey, type SpecialSpecies } from "./special";
 
 /** One fish (or cephalopod) the angler has caught today. */
 export interface CatchItem {
@@ -9,7 +10,8 @@ export interface CatchItem {
   masa_kg?: number | null;
 }
 
-export type CatchStatus = "zadrzi" | "pusti" | "izmjeri";
+/** prijavi: non-native (invasive) species – take a photo and report it (official sources say nothing about releasing it). */
+export type CatchStatus = "zadrzi" | "pusti" | "izmjeri" | "prijavi";
 
 export interface CatchVerdict {
   key: string;
@@ -19,6 +21,8 @@ export interface CatchVerdict {
   napomene: Text[];
   min: string | null;
   masa_kg: number | null;
+  /** Protected / invasive / dangerous species: big warning and what to do. */
+  posebno: Pick<SpecialSpecies, "kategorija" | "razina" | "sto_uciniti" | "prva_pomoc" | "prijava_url"> | null;
 }
 
 export interface CatchResult {
@@ -59,12 +63,24 @@ export function checkCatch(rules: RuleSet, isoDate: string, items: CatchItem[]):
 
   const stavke = items.map((it): CatchVerdict => {
     const s = guide.get(it.key);
-    const naziv = s?.naziv ?? T(it.key, it.key);
+    const sp = specialByKey(it.key);
+    const naziv = s?.naziv ?? sp?.naziv ?? T(it.key, it.key);
     const min = s?.min_velicina ?? null;
     const masa = it.masa_kg != null && it.masa_kg > 0 ? it.masa_kg : null;
-    const out: CatchVerdict = { key: it.key, naziv, status: "zadrzi", razlog: T("", ""), napomene: [], min, masa_kg: masa };
+    const posebno = sp ? { kategorija: sp.kategorija, razina: sp.razina, sto_uciniti: sp.sto_uciniti, prva_pomoc: sp.prva_pomoc, prijava_url: sp.prijava_url } : null;
+    const out: CatchVerdict = { key: it.key, naziv, status: "zadrzi", razlog: T("", ""), napomene: [], min, masa_kg: masa, posebno };
     const pusti = (r: Text) => ({ ...out, status: "pusti" as const, razlog: r });
 
+    if (sp?.ulov === "pusti")
+      return pusti(
+        sp.razlog_ulov ??
+          (sp.kategorija === "zasticena"
+          ? T("Zaštićena vrsta – ne smiješ je zadržati. Vrati je u more.", "Protected species – you may not keep it. Return it to the sea.")
+          : T("Ne smiješ je zadržati – vrati je u more.", "You may not keep it – return it to the sea.")),
+      );
+    if (sp?.ulov === "prijavi")
+      return { ...out, status: "prijavi", razlog: sp.razlog_ulov ?? T("Strana (invazivna) vrsta – fotografiraj je i prijavi nalaz.", "Non-native (invasive) species – take a photo and report it.") };
+    if (!s && sp) return { ...out, razlog: T("Smiješ je zadržati.", "You may keep it.") };
     if (!s) return pusti(T("Nepoznata vrsta – ako nisi siguran, vrati je u more.", "Unknown species – if unsure, release it."));
     if (s.lovostaj_danas) return pusti(T("Danas je u lovostaju – vrati je u more.", "Closed season today – release it."));
 

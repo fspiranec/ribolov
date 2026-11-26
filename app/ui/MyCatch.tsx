@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { CircleCheck, CircleX, Fish, Plus, Ruler, Scale, Trash2 } from "lucide-react";
+import { AlertTriangle, CircleCheck, CircleX, Fish, Plus, Ruler, Scale, Trash2 } from "lucide-react";
 import type { CatchItem, CatchResult } from "@/lib/catch";
 import type { SpeciesTip } from "@/lib/species";
+import type { SpecialSpecies } from "@/lib/special";
+import { CategoryBadge, SpecialActions } from "./Special";
 import { c, t, type Lang } from "@/lib/i18n";
 import { Card } from "./Dashboard";
 
@@ -17,6 +19,32 @@ function load(date: string): CatchItem[] {
   }
 }
 
+/** Fish album (a small game for children): species ever entered in My catch -> first date. Stored on the device. */
+const ALBUM_KEY = "ribolov:album";
+export type Album = Record<string, string>;
+
+export function readAlbum(): Album {
+  try {
+    return JSON.parse(localStorage.getItem(ALBUM_KEY) ?? "{}");
+  } catch {
+    return {};
+  }
+}
+
+function addToAlbum(keys: string[], date: string) {
+  const a = readAlbum();
+  let changed = false;
+  for (const k of keys)
+    if (!a[k] || a[k] > date) {
+      a[k] = date;
+      changed = true;
+    }
+  if (changed)
+    try {
+      localStorage.setItem(ALBUM_KEY, JSON.stringify(a));
+    } catch {}
+}
+
 /** Today's catch for the dashboard: stored on the device, checked by the server. */
 export function useCatch(date: string) {
   const [items, setItems] = useState<CatchItem[]>([]);
@@ -28,6 +56,10 @@ export function useCatch(date: string) {
     try {
       localStorage.setItem(storeKey(date), JSON.stringify(items));
     } catch {}
+    addToAlbum(
+      items.map((i) => i.key),
+      date,
+    );
     fetch("/api/catch", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ date, items }) })
       .then((r) => r.json())
       .then(setResult)
@@ -70,12 +102,14 @@ export function MyCatchSummary({ lang, result, count, onOpen }: { lang: Lang; re
 export function MyCatchSheet({
   lang,
   species,
+  special,
   items,
   setItems,
   result,
 }: {
   lang: Lang;
   species: SpeciesTip[];
+  special: SpecialSpecies[];
   items: CatchItem[];
   setItems: (f: (x: CatchItem[]) => CatchItem[]) => void;
   result: CatchResult | null;
@@ -113,6 +147,16 @@ export function MyCatchSheet({
               {s.min_velicina ? ` · min ${s.min_velicina}` : ""}
             </option>
           ))}
+          {/* protected / invasive / dangerous species not in the fish guide (pufferfish, turtle…) */}
+          <optgroup label={t("specialTitle", lang)}>
+            {special
+              .filter((p) => !species.some((s) => s.key === p.key))
+              .map((p) => (
+                <option key={p.key} value={p.key}>
+                  {c(p.naziv, lang)}
+                </option>
+              ))}
+          </optgroup>
         </select>
         <div className="grid grid-cols-2 gap-2">
           <label className="flex items-center gap-2 rounded-2xl bg-card px-3 py-2.5">
@@ -130,19 +174,47 @@ export function MyCatchSheet({
         <p className="text-xs text-slate-500">{t("weightHint", lang)}</p>
       </div>
 
-      {/* verdict of the last fish, big */}
+      {/* verdict of the last fish, big; protected / invasive species get a big red warning */}
       {last && (
-        <div className={`mt-3 flex gap-3 rounded-3xl p-4 ${last.status === "zadrzi" ? "bg-emerald-50" : last.status === "pusti" ? "bg-rose-50" : "bg-amber-50"}`}>
-          {last.status === "zadrzi" ? <CircleCheck className="h-8 w-8 shrink-0 text-go" /> : <CircleX className={`h-8 w-8 shrink-0 ${last.status === "pusti" ? "text-stop" : "text-warn"}`} />}
-          <div>
-            <div className="font-extrabold">{c(last.naziv, lang)}</div>
-            <div className="text-[15px]">{c(last.razlog, lang)}</div>
-            {last.napomene.map((n, i) => (
-              <div key={i} className="mt-1 text-sm text-slate-600">
-                • {c(n, lang)}
-              </div>
-            ))}
+        <div
+          className={`mt-3 rounded-3xl p-4 ${
+            last.posebno && last.status !== "zadrzi"
+              ? last.posebno.razina === "crveno"
+                ? "bg-stop text-white"
+                : "bg-warn text-navy-950"
+              : last.status === "zadrzi"
+                ? "bg-emerald-50"
+                : last.status === "izmjeri"
+                  ? "bg-amber-50"
+                  : "bg-rose-50"
+          }`}
+        >
+          <div className="flex gap-3">
+            {last.status === "zadrzi" ? (
+              <CircleCheck className={`h-8 w-8 shrink-0 ${last.posebno ? "" : "text-go"}`} />
+            ) : last.posebno ? (
+              <AlertTriangle className="h-8 w-8 shrink-0" />
+            ) : (
+              <CircleX className={`h-8 w-8 shrink-0 ${last.status === "pusti" ? "text-stop" : "text-warn"}`} />
+            )}
+            <div className="min-w-0">
+              {last.posebno && <CategoryBadge s={last.posebno} lang={lang} />}
+              <div className="font-extrabold">{c(last.naziv, lang)}</div>
+              <div className="text-[15px] font-semibold">{c(last.razlog, lang)}</div>
+              {last.posebno && <div className="mt-1 text-[15px]">{c(last.posebno.sto_uciniti, lang)}</div>}
+              {last.napomene.map((n, i) => (
+                <div key={i} className={`mt-1 text-sm ${last.posebno && last.status !== "zadrzi" ? "" : "text-slate-600"}`}>
+                  • {c(n, lang)}
+                </div>
+              ))}
+            </div>
           </div>
+          {last.posebno && (
+            <div className="text-ink">
+              <SpecialActions prva_pomoc={last.posebno.prva_pomoc} prijava_url={last.posebno.prijava_url} lang={lang} />
+              <p className={`mt-2 text-xs ${last.status !== "zadrzi" ? "opacity-90" : "text-slate-500"}`}>{t("speciesDisclaimer", lang)}</p>
+            </div>
+          )}
         </div>
       )}
 
@@ -180,7 +252,7 @@ export function MyCatchSheet({
         <ul className="mt-4 divide-y divide-slate-100">
           {result.stavke.map((s, i) => (
             <li key={i} className="flex items-center gap-3 py-2.5">
-              <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${s.status === "zadrzi" ? "bg-go" : s.status === "pusti" ? "bg-stop" : "bg-warn"}`} />
+              <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${s.status === "zadrzi" ? "bg-go" : s.status === "pusti" || s.status === "prijavi" ? "bg-stop" : "bg-warn"}`} />
               <div className="min-w-0 flex-1">
                 <div className="truncate font-semibold">
                   {c(s.naziv, lang)}
@@ -191,7 +263,7 @@ export function MyCatchSheet({
                 </div>
                 <div className="truncate text-xs text-slate-500">{c(s.razlog, lang)}</div>
               </div>
-              <button onClick={() => setItems((x) => x.filter((_, j) => j !== i))} className="rounded-full p-2 text-slate-400 hover:bg-sand-100" aria-label="delete">
+              <button onClick={() => setItems((x) => x.filter((_, j) => j !== i))} className="rounded-full p-2 text-slate-400 hover:bg-sand-100" aria-label={t("delete", lang)}>
                 <Trash2 className="h-4 w-4" />
               </button>
             </li>
