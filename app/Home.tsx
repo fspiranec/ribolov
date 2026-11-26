@@ -471,7 +471,10 @@ export function Home({ initial }: { initial: Initial }) {
               )}
               {result && (
                 <p className="px-1 text-xs text-slate-500">
-                  {c(result.odricanje, lang)} · {t("checked", lang)} {fmtDate(result.zadnja_provjera, lang)}
+                  {c(result.odricanje, lang)} · {t("checked", lang)} {fmtDate(result.zadnja_provjera, lang)} ·{" "}
+                  <a href={`/privatnost?lang=${lang}`} className="underline">
+                    {t("privacy", lang)}
+                  </a>
                 </p>
               )}
             </div>

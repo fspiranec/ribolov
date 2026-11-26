@@ -60,6 +60,13 @@ Redoslijed iz [docs/PLAN_DORADE.md](docs/PLAN_DORADE.md):
 - `sizeOnlySpecies` u `lib/species.ts`: ribe iz `rules/min_sizes.yaml` kojih nema u vodiču, u „Moj ulov” pod ključem `mjera:<naziv>`.
 - `scripts/missing_translations.ts [jezik]` ispisuje tekstove kojima nedostaje prijevod.
 
+**Privatnost (27. 11.):**
+- stranica `/privatnost?lang=` na 7 jezika, tekst u `data/privacy.yaml`;
+- voditelj obrade: Franjo Špiranec, f.spiranec@gmail.com;
+- poveznice su u podnožju i na QR stranici;
+- nije pravno pregledano (TODO.md);
+- obavezna je za Google Play.
+
 **Android (Capacitor) čeka** dok web nije do kraja testiran (vlasnikova odluka). JDK 21 je instaliran, a Android SDK nije. Vercel projekt „ribolov” je povezan s GitHubom.
 
 8. **Offline i pristupačnost** – ✅ gotovo (osnovno)

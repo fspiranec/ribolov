@@ -70,6 +70,11 @@ U podacima su takve stavke označene s `TODO` ili `needs_legal_check: true`; `gr
 - [ ] Prvu pomoć kod uboda neka pregleda liječnik. U sučelju uz nju stoji ograda da nije liječnički savjet.
 - [ ] Nazivi vrsta na DE/IT/PL/CS/SL upisani su ručno u `special.yaml`; provjeriti.
 
+### Privatnost (`data/privacy.yaml`, stranica /privatnost)
+- [ ] Neka tekst pregleda stručnjak za GDPR prije šire objave i prije Google Playa (pisano prema onome što kod radi 27. 11. 2026., nije pravno pregledano).
+- [ ] Provjeriti koliko dugo Vercel čuva zapise zahtjeva (logove) i po potrebi to navesti.
+- [ ] Svaka nova obrada podataka (analitika, računi, nova vanjska usluga) zahtijeva izmjenu teksta i datuma `vrijedi_od`.
+
 ### Tehnički
 - [ ] Format odgovora EMODnet REST `depth_sample` je pretpostavljen (`avg`/`mean`); radi u testu.
 - [ ] Coverage ID za EMODnet WCS (`emodnet__mean`) nije potvrđen.

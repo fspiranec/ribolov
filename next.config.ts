@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     "/api/pin": ["./rules/**/*", "./data/manual/**/*", "./data/imported/**/*", "./data/*.json"],
     // the page and the link preview image answer shared links on the server
     "/": ["./rules/**/*", "./data/manual/**/*", "./data/imported/**/*", "./data/*.json"],
+    "/privatnost": ["./data/privacy.yaml"],
     "/og": ["./rules/**/*", "./data/manual/**/*", "./data/imported/**/*", "./data/*.json"],
     "/api/species": ["./rules/**/*", "./data/species/**/*", "./data/recipes.yaml"],
     "/api/catch": ["./rules/**/*", "./data/species/**/*"],

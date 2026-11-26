@@ -94,6 +94,11 @@ export default async function QrPage({ searchParams }: { searchParams: Search })
           <div className="mt-4 print:hidden">
             <PrintButton label={t("print", lang)} />
           </div>
+          <p className="mt-3 text-center text-xs text-slate-500 print:hidden">
+            <a href={`/privatnost?lang=${lang}`} className="underline">
+              {t("privacy", lang)}
+            </a>
+          </p>
         </>
       )}
     </main>
