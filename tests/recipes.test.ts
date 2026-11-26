@@ -31,16 +31,9 @@ describe("recepti", () => {
     for (const w of ["Ljuske", "Utroba", "Škrge"]) expect(steps).toContain(w);
   });
 
-  it("recipes parked for later have the same format (and the blue crab stays 'good for the sea')", () => {
-    const later = loadRecipesFrom("../data/recipes_kasnije.yaml");
-    expect(later.recepti.find((r) => r.riba === "plavi_rak")?.istaknuto).toBe("dobro_za_more");
-    for (const r of later.recepti) expect(r.sastojci.length, r.key).toBeLessThanOrEqual(6);
+  it("six recipes; blue crab is 'good for the sea'; general cleaning guide is there", () => {
+    expect(data.recepti.map((r) => r.riba)).toEqual(["komarca", "lubin", "usata", null, "gira", "plavi_rak"]);
+    expect(data.recepti.find((r) => r.riba === "plavi_rak")?.istaknuto).toBe("dobro_za_more");
+    expect(data.ciscenje?.koraci.length).toBeGreaterThanOrEqual(3);
   });
 });
-
-// loadRecipes caches the main file; read the "later" file directly
-import fs from "node:fs";
-import yaml from "js-yaml";
-function loadRecipesFrom(rel: string) {
-  return yaml.load(fs.readFileSync(path.join(__dirname, rel), "utf8")) as { recepti: { key: string; riba: string | null; istaknuto?: string; sastojci: unknown[] }[] };
-}

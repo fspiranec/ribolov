@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     // the page and the link preview image answer shared links on the server
     "/": ["./rules/**/*", "./data/manual/**/*", "./data/imported/**/*", "./data/*.json"],
     "/og": ["./rules/**/*", "./data/manual/**/*", "./data/imported/**/*", "./data/*.json"],
-    "/api/species": ["./rules/**/*", "./data/species/**/*", "./data/recipes.yaml"], // recipes_kasnije.yaml is not shipped
+    "/api/species": ["./rules/**/*", "./data/species/**/*", "./data/recipes.yaml"],
     "/api/catch": ["./rules/**/*", "./data/species/**/*"],
     "/api/rules": ["./rules/**/*"],
   },

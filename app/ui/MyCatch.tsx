@@ -6,6 +6,8 @@ import type { CatchItem, CatchResult } from "@/lib/catch";
 import type { SpeciesTip } from "@/lib/species";
 import type { SpecialSpecies } from "@/lib/special";
 import type { SizeOnlySpecies } from "@/lib/species";
+import type { Recipe } from "@/lib/recipes";
+import { RecipeOffer } from "./Recipes";
 import { CategoryBadge, SpecialActions } from "./Special";
 import { c, LOCALE_TAG, t, type Lang } from "@/lib/i18n";
 
@@ -119,6 +121,8 @@ export function MyCatchSheet({
   species,
   special,
   sizeOnly,
+  recipeOf,
+  onRecipe,
   items,
   setItems,
   result,
@@ -127,6 +131,9 @@ export function MyCatchSheet({
   species: SpeciesTip[];
   special: SpecialSpecies[];
   sizeOnly: SizeOnlySpecies[];
+  /** Recipe for a species key, if there is one. */
+  recipeOf?: (key: string) => Recipe | undefined;
+  onRecipe?: (key: string) => void;
   items: CatchItem[];
   setItems: (f: (x: CatchItem[]) => CatchItem[]) => void;
   result: CatchResult | null;
@@ -254,6 +261,7 @@ export function MyCatchSheet({
               ))}
             </div>
           </div>
+          {last.status === "zadrzi" && recipeOf && onRecipe && <RecipeOffer recipe={recipeOf(last.key)} lang={lang} onOpen={onRecipe} className="mt-3" />}
           {last.status === "pusti" && !last.posebno && (
             <button
               onClick={() => setItems((x) => x.slice(0, -1))}

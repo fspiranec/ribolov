@@ -260,6 +260,7 @@ export function Home({ initial }: { initial: Initial }) {
   const fishSorted = [...species].filter((s) => mode !== "obala" || s.s_obale).sort((a, b) => b.ocjena_sada - a.ocjena_sada || Number(a.lovostaj_danas) - Number(b.lovostaj_danas));
   // fish key -> recipe key, for "How to prepare it" on the fish cards
   const recipeFor: Record<string, string> = Object.fromEntries((recipes?.recepti ?? []).filter((r) => r.riba).map((r) => [r.riba!, r.key]));
+  const recipeOf = (fishKey: string) => recipes?.recepti.find((r) => r.riba === fishKey);
   const openRecipe = (key: string | null) => {
     setRecipeFocus(key);
     setSheet("recipes");
@@ -557,7 +558,7 @@ export function Home({ initial }: { initial: Initial }) {
       </Sheet>
 
       <Sheet closeLabel={t("close", lang)} open={sheet === "fish" && !!fish} onClose={() => setSheet(null)}>
-        {fish && <SpeciesDetail s={fish} lang={lang} />}
+        {fish && <SpeciesDetail s={fish} lang={lang} recipe={recipeOf(fish.key)} onRecipe={openRecipe} />}
       </Sheet>
 
       <Sheet closeLabel={t("close", lang)} open={sheet === "recipes" && !!recipes} onClose={() => setSheet(null)} full>
@@ -569,11 +570,11 @@ export function Home({ initial }: { initial: Initial }) {
       </Sheet>
 
       <Sheet closeLabel={t("close", lang)} open={sheet === "special" && !!specialOpen} onClose={() => setSheet(null)}>
-        {specialOpen && <SpecialDetail s={specialOpen} lang={lang} />}
+        {specialOpen && <SpecialDetail s={specialOpen} lang={lang} recipe={recipeOf(specialOpen.key)} onRecipe={openRecipe} />}
       </Sheet>
 
       <Sheet closeLabel={t("close", lang)} open={sheet === "catch"} onClose={() => setSheet(null)} full>
-        <MyCatchSheet lang={lang} species={species} special={specialSp} sizeOnly={sizeOnly} items={myCatch.items} setItems={myCatch.setItems} result={myCatch.result} />
+        <MyCatchSheet lang={lang} species={species} special={specialSp} sizeOnly={sizeOnly} recipeOf={recipeOf} onRecipe={openRecipe} items={myCatch.items} setItems={myCatch.setItems} result={myCatch.result} />
       </Sheet>
 
       <Sheet closeLabel={t("close", lang)} open={sheet === "allfish"} onClose={() => setSheet(null)} full>

@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { Clock, Fish, MapPin, Ruler, Search, Sparkles, Wrench } from "lucide-react";
 import type { SpeciesTip } from "@/lib/species";
+import type { Recipe } from "@/lib/recipes";
+import { RecipeOffer } from "./ui/Recipes";
 import { c, t, type Lang } from "@/lib/i18n";
 
 /** Full details for one species (used inside a sheet). */
-export function SpeciesDetail({ s, lang }: { s: SpeciesTip; lang: Lang }) {
+export function SpeciesDetail({ s, lang, recipe, onRecipe }: { s: SpeciesTip; lang: Lang; recipe?: Recipe; onRecipe?: (key: string) => void }) {
   const row = (icon: React.ReactNode, label: string, value: React.ReactNode) => (
     <div className="flex gap-3">
       <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-sea-100 text-sea-600">{icon}</span>
@@ -28,6 +30,7 @@ export function SpeciesDetail({ s, lang }: { s: SpeciesTip; lang: Lang }) {
       </div>
       <h3 className="text-2xl font-extrabold tracking-tight">{c(s.naziv, lang)}</h3>
       <p className="text-sm italic text-slate-500">{s.latinski}</p>
+      {onRecipe && <RecipeOffer recipe={recipe} lang={lang} onOpen={onRecipe} className="mt-3" />}
       {s.lokalni_nazivi.length > 0 && (
         <p className="mt-1 text-sm">
           <span className="font-semibold">{t("localNames", lang)}:</span> {s.lokalni_nazivi.join(", ")}

@@ -5,6 +5,28 @@ import type { Recipe, Recipes } from "@/lib/recipes";
 import { c, t, type Lang } from "@/lib/i18n";
 import { Card } from "./Dashboard";
 
+/** "How to prepare it: <recipe>" – offered in the fish description and right after a kept fish in My catch. */
+export function RecipeOffer({ recipe, lang, onOpen, className = "" }: { recipe: Recipe | undefined; lang: Lang; onOpen: (key: string) => void; className?: string }) {
+  if (!recipe) return null;
+  return (
+    <button
+      onClick={() => onOpen(recipe.key)}
+      className={`flex w-full items-center gap-3 rounded-2xl bg-sand-100 p-3 text-left text-ink ${className}`}
+    >
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-card text-sea-600">
+        <ChefHat className="h-5 w-5" />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block text-xs font-semibold text-slate-500">{t("howToPrepare", lang)}</span>
+        <span className="block font-extrabold">{c(recipe.naziv, lang)}</span>
+      </span>
+      <span className="flex shrink-0 items-center gap-1 text-xs text-slate-500">
+        <Clock className="h-3 w-3" /> {recipe.vrijeme_min} min →
+      </span>
+    </button>
+  );
+}
+
 /** Small card on the main screen that opens the recipes. */
 export function RecipesCard({ lang, onOpen }: { lang: Lang; onOpen: () => void }) {
   return (
@@ -33,7 +55,7 @@ function RecipeView({ r, lang, open }: { r: Recipe; lang: Lang; open: boolean })
         )}
         <div className="font-extrabold">{c(r.naziv, lang)}</div>
         <div className="flex items-center gap-1 text-xs text-slate-500">
-          <Clock className="h-3 w-3" /> {r.vrijeme_min} min · {r.sastojci.length} {t("ingredients", lang).toLowerCase()}
+          <Clock className="h-3 w-3" /> {r.vrijeme_min} min · {t("ingredients", lang)}: {r.sastojci.length}
         </div>
       </summary>
       <p className="mt-2 text-sm italic text-slate-600">{c(r.prica, lang)}</p>

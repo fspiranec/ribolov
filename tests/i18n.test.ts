@@ -50,8 +50,7 @@ describe("translations", () => {
   it("every rule and tip text is translated into every language", async () => {
     const all = [...texts(rules), ...texts(yaml.load(fs.readFileSync(path.join(root, "data/species/species.yaml"), "utf8"))),
       ...texts(yaml.load(fs.readFileSync(path.join(root, "data/species/special.yaml"), "utf8"))),
-      ...texts(yaml.load(fs.readFileSync(path.join(root, "data/recipes.yaml"), "utf8"))),
-      ...texts(yaml.load(fs.readFileSync(path.join(root, "data/recipes_kasnije.yaml"), "utf8"))), ...(await allApiTexts())];
+      ...texts(yaml.load(fs.readFileSync(path.join(root, "data/recipes.yaml"), "utf8"))), ...(await allApiTexts())];
     const missing: string[] = [];
     for (const lang of LANGS)
       for (const x of all) if (!x[lang] && !hasTr(x.en, lang)) missing.push(`${lang}: ${x.en}`);

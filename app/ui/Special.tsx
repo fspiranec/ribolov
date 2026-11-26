@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { AlertTriangle, Camera, ExternalLink, HeartPulse, ShieldAlert, ShieldCheck } from "lucide-react";
 import type { SpecialCategory, SpecialSpecies } from "@/lib/special";
+import type { Recipe } from "@/lib/recipes";
+import { RecipeOffer } from "./Recipes";
 import type { Text } from "@/lib/rules/types";
 import { c, t, type Key, type Lang } from "@/lib/i18n";
 import { Card, H2 } from "./Dashboard";
@@ -102,7 +104,7 @@ export function SpecialActions({ prva_pomoc, prijava_url, lang }: { prva_pomoc: 
   );
 }
 
-export function SpecialDetail({ s, lang }: { s: SpecialSpecies; lang: Lang }) {
+export function SpecialDetail({ s, lang, recipe, onRecipe }: { s: SpecialSpecies; lang: Lang; recipe?: Recipe; onRecipe?: (key: string) => void }) {
   return (
     <div>
       {s.slika && (
@@ -118,6 +120,7 @@ export function SpecialDetail({ s, lang }: { s: SpecialSpecies; lang: Lang }) {
         <p className="mt-0.5 text-[15px] font-semibold">{c(s.sto_uciniti, lang)}</p>
       </div>
       <SpecialActions prva_pomoc={s.prva_pomoc} prijava_url={s.prijava_url} lang={lang} />
+      {onRecipe && <RecipeOffer recipe={recipe} lang={lang} onOpen={onRecipe} className="mt-3" />}
       <p className="mt-4 text-xs text-slate-500">{t("speciesDisclaimer", lang)}</p>
     </div>
   );
