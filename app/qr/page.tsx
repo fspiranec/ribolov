@@ -23,6 +23,13 @@ export default async function QrPage({ searchParams }: { searchParams: Search })
   const lat = Number(one(q.lat));
   const lon = Number(one(q.lon));
   const naziv = one(q.naziv).slice(0, 60);
+  // card size: A4 / A5 sheet or a small sticker
+  const vel = (["a4", "a5", "naljepnica"] as const).find((v) => v === q.vel) ?? "a4";
+  const SIZE = {
+    a4: { card: "max-w-xl", qr: "w-64", text: "text-[14px]", page: "A4" },
+    a5: { card: "max-w-md", qr: "w-48", text: "text-[12px]", page: "A5" },
+    naljepnica: { card: "max-w-[260px]", qr: "w-36", text: "text-[10px]", page: "auto" },
+  }[vel];
   const ok = one(q.lat) !== "" && one(q.lon) !== "" && Number.isFinite(lat) && Number.isFinite(lon) && Math.abs(lat) <= 90 && Math.abs(lon) <= 180;
 
   const h = await headers();
@@ -50,6 +57,11 @@ export default async function QrPage({ searchParams }: { searchParams: Search })
             <input type="hidden" name="lat" value={lat} />
             <input type="hidden" name="lon" value={lon} />
             <input type="hidden" name="lang" value={lang} />
+            <select name="vel" defaultValue={vel} aria-label={t("qrSize", lang)} className="rounded-2xl bg-sand-100 px-2 font-semibold">
+              <option value="a4">A4</option>
+              <option value="a5">A5</option>
+              <option value="naljepnica">{t("qrSticker", lang)}</option>
+            </select>
             <input
               name="naziv"
               defaultValue={naziv}
@@ -62,15 +74,16 @@ export default async function QrPage({ searchParams }: { searchParams: Search })
           </form>
 
           {/* the printable card */}
-          <section className="mt-5 rounded-3xl border-2 border-navy-900 bg-white p-6 text-center text-navy-900">
+          <style>{`@media print { @page { size: ${SIZE.page}; margin: 12mm } }`}</style>
+          <section className={`mx-auto mt-5 rounded-3xl border-2 border-navy-900 bg-white p-6 text-center text-navy-900 ${SIZE.card}`}>
             <div className="flex items-center justify-center gap-2 text-sm font-bold tracking-widest">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/icon.svg" alt="Ribolov" className="h-7 w-7 rounded-lg" /> RIBOLOV
             </div>
             {naziv && <div className="mt-2 text-xl font-extrabold">{naziv}</div>}
-            {place && <div className={`${naziv ? "text-base font-semibold text-slate-600" : "mt-2 text-xl font-extrabold"}`}>📍 {place.naziv}</div>}
-            <div className="mx-auto mt-4 w-64 max-w-full [&_svg]:h-auto [&_svg]:w-full" role="img" aria-label={link} dangerouslySetInnerHTML={{ __html: svg }} />
-            <ul className="mt-4 space-y-0.5 text-[14px] font-semibold">
+            {place && <div className={`${naziv ? "text-base font-semibold text-slate-600" : "mt-2 text-xl font-extrabold"}`}>{place.naziv}</div>}
+            <div className={`mx-auto mt-4 max-w-full [&_svg]:h-auto [&_svg]:w-full ${SIZE.qr}`} role="img" aria-label={link} dangerouslySetInnerHTML={{ __html: svg }} />
+            <ul className={`mt-4 space-y-0.5 font-semibold ${SIZE.text}`}>
               {CARD_LANGS.map((l) => (
                 <li key={l}>{t("qrScan", l)}</li>
               ))}

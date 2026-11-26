@@ -16,7 +16,42 @@ Iz dijelova B i C napravljeno je ovo:
 - QR kartica s nazivom mjesta, porukom na svih 7 jezika i čitljivom adresom;
 - dvojezična OG slika.
 
-Ostali prijedlozi iz B i C (redoslijed na mobitelu, kartice za prvu posjetu, objedinjena prognoza, ikone, dodatne vrste, „Pusti i dalje”…) još nisu napravljeni.
+**Dodatak (27. 11.) – prijedlozi iz B i C su napravljeni:**
+- **Prva posjeta:** kartice za prvu posjetu („Prvi put…”, „Ribolov s djecom”) ispod dozvole, a kasnije sa strane ili dolje.
+- **Raspored:**
+  - red „Danas: najbolje h · vjetar · more”;
+  - prognoza i idući dani u jednoj kartici s karticama „Danas / 3 dana”;
+  - kratki gumb postavki („S obale ▾”);
+  - uz zelenu presudu napomene umjesto „Upozorenja”.
+- **Ribe danas:**
+  - „Sad najbolje: … · mamci: …”;
+  - bez lampuge kod ribolova s obale;
+  - podnaslov bez ponavljanja, „bez mjere”, `aria-label` na karticama.
+- **Podsjetnici:** u Osnovnom samo za ribe iz vodiča.
+- **Ikone:** linijske ikone umjesto emojija.
+- **Moj ulov:**
+  - „Pustio sam je – dalje”;
+  - slika „kako mjeriti”;
+  - 14 dodatnih redova iz službene tablice mjera (špar, pic, pagar, srdela…).
+- **Savjeti:**
+  - sunce i voda ljeti, skidanje udice, čuvanje ribe;
+  - hitni brojevi 112 i 195;
+  - popis vrsta koje se označavaju;
+  - poveznica na mRecFish.
+- **QR:** veličine A4, A5 i naljepnica.
+- **Bez interneta:** umjesto karte se prikazuje naziv mjesta.
+- **Prozori:** fokus na gumbu „Zatvori”, Esc zatvara, fokus se vraća.
+- **Tamni način:** tekst u crvenim i žutim okvirima (npr. kornjača) je čitljiv.
+- **Recepti:**
+  - vodič „Kako očistiti ribu”;
+  - 6 recepata (orada, brancin, ušate, pic, girice, plavi rak – „Dobro za more”);
+  - upozorenje „Napuhača: NE JESTI”;
+  - „Kako je pripremiti” na kartici ribe;
+  - polja za autora i poveznicu.
+
+**Nije napravljeno:**
+- poredak trgovina po radnom vremenu (OSM `opening_hours` treba pouzdan parser);
+- objašnjenja pojmova „trapula” i „rampinavanje” (nisu potvrđena, TODO.md).
 
 ## A. Greške (od najvažnije prema manje važnoj)
 

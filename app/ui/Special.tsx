@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AlertTriangle, ExternalLink, HeartPulse, ShieldAlert, ShieldCheck } from "lucide-react";
+import { AlertTriangle, Camera, ExternalLink, HeartPulse, ShieldAlert, ShieldCheck } from "lucide-react";
 import type { SpecialCategory, SpecialSpecies } from "@/lib/special";
 import type { Text } from "@/lib/rules/types";
 import { c, t, type Key, type Lang } from "@/lib/i18n";
@@ -85,13 +85,15 @@ export function SpecialActions({ prva_pomoc, prijava_url, lang }: { prva_pomoc: 
             <HeartPulse className="h-4 w-4" /> {t("firstAid", lang)}
           </div>
           <p className="mt-1">{c(prva_pomoc, lang)}</p>
-          <p className="mt-2 text-xs font-semibold">⚠️ {t("medicalDisclaimer", lang)}</p>
+          <p className="mt-2 flex gap-1.5 text-xs font-semibold">
+            <AlertTriangle className="h-3.5 w-3.5 shrink-0" /> {t("medicalDisclaimer", lang)}
+          </p>
         </div>
       )}
       {prijava_url && (
         <div className="mt-3">
           <a href={prijava_url} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 rounded-2xl bg-navy-900 py-3 font-extrabold text-white">
-            📷 {t("reportFind", lang)} <ExternalLink className="h-4 w-4" />
+            <Camera className="h-4 w-4" /> {t("reportFind", lang)} <ExternalLink className="h-4 w-4" />
           </a>
           <p className="mt-1 text-xs text-slate-500">{t("reportHint", lang)}</p>
         </div>

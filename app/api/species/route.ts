@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { loadRules } from "@/lib/rules/load";
 import { speciesGuide } from "@/lib/species";
+import { loadRecipes } from "@/lib/recipes";
 import { zagrebDate } from "@/lib/env/astro";
 import { isValidIsoDate } from "@/lib/rules/dates";
 
@@ -12,5 +13,5 @@ export async function GET(req: NextRequest) {
   if (!isValidIsoDate(date)) return NextResponse.json({ error: "date must be YYYY-MM-DD" }, { status: 400 });
   const h = req.nextUrl.searchParams.get("hour");
   const hour = h != null && /^\d{1,2}$/.test(h) ? Math.min(23, Number(h)) : null;
-  return NextResponse.json(speciesGuide(loadRules(), date, hour));
+  return NextResponse.json({ ...speciesGuide(loadRules(), date, hour), recepti: loadRecipes() });
 }

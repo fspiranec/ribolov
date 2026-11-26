@@ -52,7 +52,10 @@ export function parseMin(min: string | null): { v: number; u: "cm" | "kg" | "mm"
  * the order they were caught.
  */
 export function checkCatch(rules: RuleSet, isoDate: string, items: CatchItem[]): CatchResult {
-  const guide = new Map<string, SpeciesTip>(speciesGuide(rules, isoDate).vrste.map((s) => [s.key, s]));
+  const sg = speciesGuide(rules, isoDate);
+  const guide = new Map<string, SpeciesTip>(sg.vrste.map((s) => [s.key, s]));
+  // fish from the official size table that are not in the guide (špar, pic, srdela…): checked the same way
+  for (const m of sg.mjere) guide.set(m.key, { ...(m as unknown as SpeciesTip), key: m.key, naziv: m.naziv, min_velicina: m.min_velicina, lovostaj_danas: m.lovostaj_danas });
   const lim = rules.general.dnevni_limit;
   const marking = new Set(rules.general.oznacavanje.vrste_djelomicno.map((n) => n.toLowerCase()));
   const pieces: Record<string, number> = {};

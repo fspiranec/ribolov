@@ -45,6 +45,8 @@ export interface Notice {
   /** Proper name shown after the text (e.g. an area name); not translated. */
   naziv?: string;
   izvor?: SourceRef;
+  /** Species key, for closed-season reminders (the basic view hides species outside the fish guide). */
+  kljuc?: string;
 }
 
 export interface ToolOut {
@@ -302,6 +304,7 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
         const dd = `${Number(d.slice(8))}. ${Number(d.slice(5, 7))}.`;
         base.podsjetnici.push({
           razina: "obavijest",
+          kljuc: cs.key,
           tekst: today
             ? T(`${Cap(cs.vrsta.hr)}: lovostaj završava – od ${dd} opet se smije loviti.`, `${Cap(cs.vrsta.en)}: closed season ends – open again from ${dd}`)
             : T(`${Cap(cs.vrsta.hr)}: od ${dd} počinje lovostaj.`, `${Cap(cs.vrsta.en)}: closed season starts on ${dd}`),

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   AlertTriangle,
   Bell,
@@ -11,6 +12,12 @@ import {
   Fish,
   Info,
   Moon,
+  BookOpen,
+  ChefHat,
+  Hand,
+  Ship,
+  Star,
+  Users,
   Navigation,
   Phone,
   Ruler,
@@ -125,7 +132,7 @@ export function Verdict({ r, lang }: { r: PinResult; lang: Lang }) {
       {r.upozorenja.length > 0 && (
         <details className={`mt-3 rounded-2xl px-3 py-2 text-sm ${dark ? "bg-white/40" : "bg-black/10"}`}>
           <summary className="cursor-pointer font-semibold">
-            {t("warnings", lang)} ({r.upozorenja.length})
+            {t(r.semafor === "zeleno" ? "notices" : "warnings", lang)} ({r.upozorenja.length})
           </summary>
           <ul className="mt-1 list-disc space-y-1 pl-5">
             {r.upozorenja.map((u, i) => (
@@ -155,16 +162,19 @@ function Tile({ icon, label, value, sub }: { icon: React.ReactNode; label: strin
   );
 }
 
-export function Forecast({ r, lang, view, onDetailed }: { r: PinResult; lang: Lang; view: View; onDetailed?: () => void }) {
+export function Forecast({ r, lang, view, onDetailed, bare = false }: { r: PinResult; lang: Lang; view: View; onDetailed?: () => void; bare?: boolean }) {
   const full = view === "detaljno";
   const w = r.vrijeme;
   const sm = r.sunce_mjesec;
   const n = (x: number | null | undefined, d = 0) => num(x, lang, d);
+  const Wrap = bare ? Bare : Card;
   return (
-    <Card>
-      <H2 icon={<Wind className="h-4 w-4 text-sea-600" />} right={w && <span className="text-xs text-slate-500">{w.sat}</span>}>
-        {t("forecast", lang)}
-      </H2>
+    <Wrap>
+      {!bare && (
+        <H2 icon={<Wind className="h-4 w-4 text-sea-600" />} right={w && <span className="text-xs text-slate-500">{w.sat}</span>}>
+          {t("forecast", lang)}
+        </H2>
+      )}
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
         <Tile
           icon={<Wind className="h-3.5 w-3.5" />}
@@ -235,7 +245,72 @@ export function Forecast({ r, lang, view, onDetailed }: { r: PinResult; lang: La
         </button>
       )}
       {full && w && <p className="mt-2 text-[11px] text-slate-400">{w.izvor}</p>}
+    </Wrap>
+  );
+}
+
+function Bare({ children }: { children: React.ReactNode }) {
+  return <div>{children}</div>;
+}
+
+/** Weather in one card: "Today" (forecast tiles) and "3 days" (next days), instead of two long cards. */
+export function WeatherCard({ r, lang, view, onDetailed }: { r: PinResult; lang: Lang; view: View; onDetailed?: () => void }) {
+  const [tab, setTab] = useState<"danas" | "dani">("danas");
+  const hasDays = r.sljedeci_dani.length >= 2;
+  return (
+    <Card>
+      <H2 icon={<Wind className="h-4 w-4 text-sea-600" />} right={tab === "danas" && r.vrijeme && <span className="text-xs text-slate-500">{r.vrijeme.sat}</span>}>
+        {t("forecast", lang)}
+      </H2>
+      {hasDays && (
+        <div className="mb-3 flex rounded-2xl bg-sand-100 p-1" role="tablist">
+          {(["danas", "dani"] as const).map((k) => (
+            <button
+              key={k}
+              role="tab"
+              aria-selected={tab === k}
+              onClick={() => setTab(k)}
+              className={`flex-1 rounded-xl px-2 py-1.5 text-sm font-bold ${tab === k ? "bg-card text-ink shadow" : "text-slate-500"}`}
+            >
+              {k === "danas" ? t("today", lang) : t("threeDays", lang)}
+            </button>
+          ))}
+        </div>
+      )}
+      {tab === "danas" || !hasDays ? <Forecast r={r} lang={lang} view={view} onDetailed={onDetailed} bare /> : <NextDays r={r} lang={lang} bare />}
     </Card>
+  );
+}
+
+/** One line under the licence: the day at a glance ("Today: best 13–15 h · wind 15 km/h · sea 16°"). */
+export function TodayStrip({ r, lang, nowHour, isToday }: { r: PinResult; lang: Lang; nowHour: number | null; isToday: boolean }) {
+  const best = r.aktivnost ? bestTimeToday(r.aktivnost.najbolje, isToday ? nowHour : null) : null;
+  const w = r.vrijeme;
+  const parts: React.ReactNode[] = [];
+  if (best && !best.passed)
+    parts.push(
+      <span key="b" className="inline-flex items-center gap-1">
+        <Fish className="h-4 w-4 text-sea-600" /> {best.text}
+      </span>,
+    );
+  if (w?.vjetar.brzina_kmh != null)
+    parts.push(
+      <span key="w" className="inline-flex items-center gap-1">
+        <Wind className="h-4 w-4 text-sea-600" /> {num(w.vjetar.brzina_kmh, lang)} km/h
+      </span>,
+    );
+  if (w?.temperatura_mora_c != null)
+    parts.push(
+      <span key="s" className="inline-flex items-center gap-1">
+        <Thermometer className="h-4 w-4 text-sea-600" /> {t("seaTempShort", lang)} {num(w.temperatura_mora_c, lang)}°
+      </span>,
+    );
+  if (!parts.length) return null;
+  return (
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 rounded-2xl bg-card px-4 py-3 text-sm font-bold shadow-sm">
+      <span className="text-slate-500">{isToday ? t("today", lang) : t("date", lang)}:</span>
+      {parts}
+    </div>
   );
 }
 
@@ -321,8 +396,29 @@ export function ActivityCard({ r, lang, nowHour, view, isToday }: { r: PinResult
 
 // ---------------------------------------------------------------- fish strip
 
-export function FishStrip({ species, lang, onOpen, onAll }: { species: SpeciesTip[]; lang: Lang; onOpen: (s: SpeciesTip) => void; onAll: () => void }) {
+/** Subtitle under the fish name: a local name that is not already in the title (no "Lubin (brancin)" / "brancin"). */
+const subtitle = (s: SpeciesTip, lang: Lang) => {
+  const title = c(s.naziv, lang).toLowerCase();
+  return s.lokalni_nazivi.find((n) => !title.includes(n.replace(/\s*\(.*\)$/, "").toLowerCase())) ?? "";
+};
+
+export function FishStrip({
+  species,
+  lang,
+  onOpen,
+  onAll,
+  recipeFor,
+  onRecipe,
+}: {
+  species: SpeciesTip[];
+  lang: Lang;
+  onOpen: (s: SpeciesTip) => void;
+  onAll: () => void;
+  recipeFor?: Record<string, string>;
+  onRecipe?: (recipeKey: string) => void;
+}) {
   if (!species.length) return null;
+  const top = species.find((s) => s.ocjena_sada >= 3 && !s.lovostaj_danas);
   return (
     <Card className="px-0">
       <div className="px-4">
@@ -336,10 +432,20 @@ export function FishStrip({ species, lang, onOpen, onAll }: { species: SpeciesTi
         >
           {t("fishToday", lang)}
         </H2>
+        {top && (
+          <p className="-mt-1 mb-3 line-clamp-2 text-sm">
+            <b>{t("bestNow", lang)}:</b> {c(top.naziv, lang)} · {t("bait", lang).toLowerCase()}: {c(top.mamci, lang)}
+          </p>
+        )}
       </div>
       <div className="no-scrollbar flex snap-x gap-3 overflow-x-auto px-4 pb-1">
         {species.map((s) => (
-          <button key={s.key} onClick={() => onOpen(s)} className="w-40 shrink-0 snap-start overflow-hidden rounded-2xl bg-sand-50 text-left">
+          <div key={s.key} className="w-40 shrink-0 snap-start overflow-hidden rounded-2xl bg-sand-50">
+          <button
+            onClick={() => onOpen(s)}
+            aria-label={[c(s.naziv, lang), s.min_velicina ?? t("noMinSize", lang), s.lovostaj_danas ? t("closed", lang) : s.ocjena_sada >= 3 ? t("biteNow", lang) : ""].filter(Boolean).join(", ")}
+            className="block w-full text-left"
+          >
             <div className="relative h-24 bg-sea-100">
               {s.slika ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -350,21 +456,25 @@ export function FishStrip({ species, lang, onOpen, onAll }: { species: SpeciesTi
               {s.lovostaj_danas ? (
                 <span className="absolute left-2 top-2 rounded-full bg-stop px-2 py-0.5 text-[10px] font-bold text-white">{t("closed", lang)}</span>
               ) : s.ocjena_sada >= 3 ? (
-                <span className="absolute left-2 top-2 rounded-full bg-go px-2 py-0.5 text-[10px] font-bold text-white">🎣 {t("biteNow", lang)}</span>
+                <span className="absolute left-2 top-2 rounded-full bg-go px-2 py-0.5 text-[10px] font-bold text-white"><Fish className="mr-0.5 inline h-3 w-3" />{t("biteNow", lang)}</span>
               ) : s.sezona_sada ? (
                 <span className="absolute left-2 top-2 rounded-full bg-card/90 px-2 py-0.5 text-[10px] font-bold text-sea-600">{t("inSeason", lang)}</span>
               ) : null}
             </div>
             <div className="p-2.5">
               <div className="truncate text-sm font-bold">{c(s.naziv, lang)}</div>
-              <div className="truncate text-[11px] text-slate-500">{s.lokalni_nazivi[0] ?? s.latinski}</div>
-              {s.min_velicina && (
-                <div className="mt-1 inline-flex items-center gap-1 text-[11px] font-semibold text-slate-600">
-                  <Ruler className="h-3 w-3" /> {s.min_velicina}
-                </div>
-              )}
+              <div className="h-4 truncate text-[11px] text-slate-500">{subtitle(s, lang)}</div>
+              <div className="mt-1 inline-flex items-center gap-1 text-[11px] font-semibold text-slate-600">
+                <Ruler className="h-3 w-3" /> {s.min_velicina ?? t("noMinSize", lang)}
+              </div>
             </div>
           </button>
+          {recipeFor?.[s.key] && onRecipe && (
+            <button onClick={() => onRecipe(recipeFor[s.key])} className="flex w-full items-center gap-1 border-t border-slate-100 px-2.5 py-1.5 text-left text-[11px] font-bold text-sea-600">
+              <ChefHat className="h-3 w-3" /> {t("howToPrepare", lang)}
+            </button>
+          )}
+          </div>
         ))}
       </div>
     </Card>
@@ -373,7 +483,7 @@ export function FishStrip({ species, lang, onOpen, onAll }: { species: SpeciesTi
 
 // ---------------------------------------------------------------- next days & reminders
 
-export function NextDays({ r, lang }: { r: PinResult; lang: Lang }) {
+export function NextDays({ r, lang, bare = false }: { r: PinResult; lang: Lang; bare?: boolean }) {
   if (r.sljedeci_dani.length < 2) return null;
   const best = Math.max(...r.sljedeci_dani.map((d) => d.ocjena));
   const name = (iso: string, i: number) =>
@@ -382,9 +492,10 @@ export function NextDays({ r, lang }: { r: PinResult; lang: Lang }) {
       : i === 1
         ? t("tomorrow", lang)
         : new Intl.DateTimeFormat(LOCALE_TAG[lang], { weekday: "long" }).format(new Date(`${iso}T12:00:00Z`));
+  const Wrap = bare ? Bare : Card;
   return (
-    <Card>
-      <H2 icon={<Calendar className="h-4 w-4 text-sea-600" />}>{t("nextDays", lang)}</H2>
+    <Wrap>
+      {!bare && <H2 icon={<Calendar className="h-4 w-4 text-sea-600" />}>{t("nextDays", lang)}</H2>}
       <div className="grid grid-cols-3 gap-2">
         {r.sljedeci_dani.map((d, i) => {
           const rough = (d.udari_max_kmh ?? 0) > 50 || (d.valovi_max_m ?? 0) > 2;
@@ -397,10 +508,14 @@ export function NextDays({ r, lang }: { r: PinResult; lang: Lang }) {
               <div className="mt-1 text-[11px] text-slate-500">{t("maxGusts", lang)}</div>
               <div className="text-[11px]">
                 {d.udari_max_kmh != null && (
-                  <span className={(d.udari_max_kmh ?? 0) > 50 ? "font-bold text-stop" : "text-slate-600"}>💨 {Math.round(d.udari_max_kmh)} km/h</span>
+                  <span className={`inline-flex items-center gap-0.5 ${(d.udari_max_kmh ?? 0) > 50 ? "font-bold text-stop" : "text-slate-600"}`}>
+                    <Wind className="h-3 w-3" /> {Math.round(d.udari_max_kmh)} km/h
+                  </span>
                 )}
                 {d.valovi_max_m != null && (
-                  <span className={(d.valovi_max_m ?? 0) > 2 ? "font-bold text-stop" : "text-slate-600"}> · 🌊 {num(d.valovi_max_m, lang, 1)} m</span>
+                  <span className={`ml-1 inline-flex items-center gap-0.5 ${(d.valovi_max_m ?? 0) > 2 ? "font-bold text-stop" : "text-slate-600"}`}>
+                    <Waves className="h-3 w-3" /> {num(d.valovi_max_m, lang, 1)} m
+                  </span>
                 )}
               </div>
             </div>
@@ -408,15 +523,16 @@ export function NextDays({ r, lang }: { r: PinResult; lang: Lang }) {
         })}
       </div>
       <p className="mt-2 text-[11px] text-slate-400">{t("nextDaysNote", lang)}</p>
-    </Card>
+    </Wrap>
   );
 }
 
-export function Reminders({ r, lang }: { r: PinResult; lang: Lang }) {
-  if (!r.podsjetnici.length) return null;
+export function Reminders({ r, lang, view, guideKeys }: { r: PinResult; lang: Lang; view: View; guideKeys: Set<string> }) {
+  const items = r.podsjetnici.filter((p) => view === "detaljno" || !p.kljuc || guideKeys.has(p.kljuc));
+  if (!items.length) return null;
   return (
     <div className="space-y-2">
-      {r.podsjetnici.map((p, i) => (
+      {items.map((p, i) => (
         <div key={i} className={`flex items-start gap-2 rounded-2xl px-4 py-2.5 text-sm font-semibold ${p.razina === "zuto" ? "bg-amber-100 text-amber-900" : "bg-card text-ink shadow-sm"}`}>
           <Bell className="mt-0.5 h-4 w-4 shrink-0" /> {c(p.tekst, lang)}
         </div>
@@ -434,7 +550,9 @@ export function FirstTimeCard({ lang }: { lang: Lang }) {
     <Card>
       <details>
         <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
-          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sand-100 text-xl">👋</span>
+          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sand-100 text-sea-600">
+            <Hand className="h-5 w-5" />
+          </span>
           <span className="flex-1">
             <span className="block font-extrabold">{t("firstTime", lang)}</span>
             <span className="block text-sm text-slate-500">{t("firstTimeSub", lang)}</span>
@@ -449,21 +567,38 @@ export function FirstTimeCard({ lang }: { lang: Lang }) {
             </li>
           ))}
         </ol>
+        <Emergency lang={lang} />
         <p className="mt-3 text-xs text-slate-500">{t("tipsDisclaimer", lang)}</p>
       </details>
     </Card>
   );
 }
 
+/** Emergency numbers: 112 (all emergencies) and 195 (search and rescue at sea, MRCC Rijeka). */
+function Emergency({ lang }: { lang: Lang }) {
+  return (
+    <div className="mt-3 flex flex-wrap items-center gap-2 rounded-2xl bg-rose-50 px-3 py-2 text-sm font-semibold text-rose-950">
+      <Phone className="h-4 w-4" /> {t("emergency", lang)}:
+      <a href="tel:112" className="rounded-full bg-stop px-2.5 py-0.5 font-extrabold text-white">
+        112
+      </a>
+      <span>{t("seaRescue", lang)}:</span>
+      <a href="tel:195" className="rounded-full bg-stop px-2.5 py-0.5 font-extrabold text-white">
+        195
+      </a>
+    </div>
+  );
+}
+
 /** Fishing with children and good conduct, plus the fish album (a small collecting game). */
 export function KidsCard({ lang, albumCount, albumTotal, onAlbum }: { lang: Lang; albumCount: number; albumTotal: number; onAlbum: () => void }) {
-  const tips = ["kid1", "kid2", "kid3", "kid4", "kid5", "kid6"] as const;
+  const tips = ["kid1", "kid2", "kid7", "kid3", "kid8", "kid4", "kid9", "kid5", "kid6"] as const;
   return (
     <Card>
       <details>
         <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
-          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sand-100 text-xl" aria-hidden>
-            👨‍👧
+          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sand-100 text-sea-600" aria-hidden>
+            <Users className="h-5 w-5" />
           </span>
           <span className="flex-1">
             <span className="block font-extrabold">{t("kidsTitle", lang)}</span>
@@ -479,11 +614,12 @@ export function KidsCard({ lang, albumCount, albumTotal, onAlbum }: { lang: Lang
             </li>
           ))}
         </ul>
+        <Emergency lang={lang} />
         <p className="mt-3 text-xs text-slate-500">{t("tipsDisclaimer", lang)}</p>
       </details>
       <button onClick={onAlbum} className="mt-3 flex w-full items-center gap-3 rounded-2xl bg-sea-100 p-3 text-left">
         <span className="text-2xl" aria-hidden>
-          📒
+          <BookOpen className="h-6 w-6 text-sea-600" />
         </span>
         <span className="min-w-0 flex-1">
           <span className="block font-extrabold text-sea-600">{t("album", lang)}</span>
@@ -502,7 +638,9 @@ export function AlbumSheet({ species, album, lang }: { species: { key: string; n
   const n = species.filter((s) => album[s.key]).length;
   return (
     <div>
-      <h3 className="text-2xl font-extrabold tracking-tight">📒 {t("album", lang)}</h3>
+      <h3 className="flex items-center gap-2 text-2xl font-extrabold tracking-tight">
+        <BookOpen className="h-6 w-6 text-sea-600" /> {t("album", lang)}
+      </h3>
       <p className="text-sm text-slate-500">{t("albumSub", lang).replace("{n}", String(n)).replace("{m}", String(species.length))}</p>
       <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
         {sorted.map((s) => {
@@ -517,7 +655,7 @@ export function AlbumSheet({ species, album, lang }: { species: { key: string; n
               </div>
               <div className="p-2">
                 <div className="truncate text-sm font-bold">
-                  {got ? "⭐ " : ""}
+                  {got && <Star className="mr-1 inline h-3.5 w-3.5 fill-amber-400 text-amber-400" />}
                   {c(s.naziv, lang)}
                 </div>
                 {got && (
@@ -577,7 +715,8 @@ function AcrossSea({ s, lang, className }: { s: Reach; lang: Lang; className: st
   if (s.isto_kopno) return null;
   return (
     <div className={`text-xs font-semibold ${className}`}>
-      ⛴ {s.otok ? t("acrossSeaIsland", lang).replace("{x}", s.otok) : t("acrossSeaMainland", lang)}
+      <Ship className="mr-1 inline h-3.5 w-3.5" />
+      {s.otok ? t("acrossSeaIsland", lang).replace("{x}", s.otok) : t("acrossSeaMainland", lang)}
     </div>
   );
 }
@@ -595,7 +734,9 @@ export function LicenceCard({ r, lang }: { r: PinResult; lang: Lang }) {
         <div>
           <div className="text-lg font-extrabold">{t("licenceNeeded", lang)}</div>
           <p className="text-sm text-white/75">{t("licenceSub", lang)}</p>
-          <p className="mt-1 text-sm font-semibold text-amber-200">👧 {t("kid1", lang)}</p>
+          <p className="mt-1 flex gap-1.5 text-sm font-semibold text-amber-200">
+            <Users className="mt-0.5 h-4 w-4 shrink-0" /> {t("kid1", lang)}
+          </p>
         </div>
       </div>
       <div className="mt-4 grid grid-cols-3 gap-2 text-center">
@@ -772,8 +913,22 @@ export function RulesCard({ r, lang, view }: { r: PinResult; lang: Lang; view: V
         <Notices items={d.zabranjeno} lang={lang} />
         <div className="pt-2 font-semibold">{t("marking", lang)}</div>
         <Notices items={[d.oznacavanje]} lang={lang} />
+        {d.oznacavanje.vrste_djelomicno.length > 0 && (
+          <p className="text-xs text-slate-600">
+            {t("markedSpecies", lang)}: {d.oznacavanje.vrste_djelomicno.join(", ")}
+          </p>
+        )}
         <div className="pt-2 font-semibold">{t("reporting", lang)}</div>
         <Notices items={[d.evidencija]} lang={lang} />
+        <p className="text-xs">
+          <a href={r.dozvola.mrecfish.info_url} target="_blank" rel="noreferrer" className="font-semibold text-sea-600 underline">
+            mRecFish – {t("instructions", lang)}
+          </a>
+          {" · "}
+          <a href={r.dozvola.mrecfish.ios_url} target="_blank" rel="noreferrer" className="font-semibold text-sea-600 underline">
+            App Store
+          </a>
+        </p>
         <Notices items={[d.bez_dozvole]} lang={lang} />
       </Accordion>
       {r.trgovine.length > 0 && (

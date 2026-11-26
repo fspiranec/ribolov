@@ -107,6 +107,15 @@ Kartice idu ovim redom (na računalu je desni stupac sa strane, a na mobitelu id
 - Sve se sprema samo na uređaju (`ribolov:ulov:<datum>`), a provjera ide na `POST /api/catch`.
 - Svaka upisana vrsta ulazi u **album** (`ribolov:album`) s datumom prvog ulova.
 
+## Recepti
+
+- Kartica „Iz mora u tavu – recepti” (sa strane / dolje) i poveznica „Kako je pripremiti” na karticama u „Ribe danas”.
+- U prozoru je ovaj redoslijed:
+  1. veliko upozorenje „Napuhača: NE JESTI – otrovna!”;
+  2. vodič „Kako očistiti ribu”;
+  3. 6 recepata, svaki s najviše 6 sastojaka, koracima, vremenom i jednom rečenicom priče.
+- Plavi rak je istaknut kao „Dobro za more”. Recept može imati autora (npr. konobu) i poveznicu.
+
 ## Ostale stranice i API
 
 | Put | Što radi |

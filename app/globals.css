@@ -72,6 +72,9 @@ body {
     --color-amber-700: #fbbf24;
     --color-amber-800: #fde68a;
     --color-amber-900: #fde68a;
+    /* dark text on light boxes (Special: "Što učiniti", first aid) must turn light too */
+    --color-rose-950: #ffe4e6;
+    --color-amber-950: #fef3c7;
     color-scheme: dark;
   }
 }
@@ -97,6 +100,9 @@ body {
   --color-amber-700: #fbbf24;
   --color-amber-800: #fde68a;
   --color-amber-900: #fde68a;
+    /* dark text on light boxes (Special: "Što učiniti", first aid) must turn light too */
+    --color-rose-950: #ffe4e6;
+    --color-amber-950: #fef3c7;
   color-scheme: dark;
 }
 

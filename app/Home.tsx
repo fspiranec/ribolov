@@ -3,16 +3,18 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Calendar, CloudOff, Moon, Star, Sun, Crosshair, Loader2, Map as MapIcon, MapPin, QrCode, RefreshCw, SlidersHorizontal, X } from "lucide-react";
 import type { PinResult } from "@/lib/pin";
-import type { SpeciesTip } from "@/lib/species";
+import type { SizeOnlySpecies, SpeciesTip } from "@/lib/species";
 import { LANGS, LOCALE_TAG, c, t, type Lang } from "@/lib/i18n";
 import { MapView } from "./ui/MapView";
-import { ActivityCard, AlbumSheet, Card, fmtDate, FirstTimeCard, KidsCard, FishStrip, Forecast, LicenceCard, NextDays, Reminders, RulesCard, Skeleton, Verdict } from "./ui/Dashboard";
+import { ActivityCard, AlbumSheet, Card, fmtDate, FirstTimeCard, KidsCard, FishStrip, LicenceCard, Reminders, RulesCard, Skeleton, TodayStrip, Verdict, WeatherCard } from "./ui/Dashboard";
 import { SpeciesDetail, SpeciesList } from "./SpeciesGuide";
 import { MyCatchSheet, MyCatchSummary, readAlbum, useCatch, type Album } from "./ui/MyCatch";
 import { readView, VIEW_KEY, type View } from "@/lib/view";
 import { num } from "@/lib/format";
 import type { SpecialSpecies } from "@/lib/special";
 import { SpecialCard, SpecialDetail } from "./ui/Special";
+import { RecipesCard, RecipesSheet } from "./ui/Recipes";
+import type { Recipes } from "@/lib/recipes";
 
 const SPECIAL = ["parangal", "vrse", "osti", "rasvjeta", "velika_riba"] as const;
 type Mode = "obala" | "brod" | "podvodni";
@@ -25,6 +27,19 @@ function todayZagreb() {
 
 /** Bottom sheet on mobile, centred dialog on desktop. */
 function Sheet({ open, onClose, children, full = false, closeLabel = "Zatvori" }: { open: boolean; onClose: () => void; children: React.ReactNode; full?: boolean; closeLabel?: string }) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const back = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      back?.focus?.(); // keyboard users return to where they were
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-navy-950/50 backdrop-blur-sm sm:items-center" onClick={onClose} role="dialog" aria-modal="true">
@@ -32,7 +47,7 @@ function Sheet({ open, onClose, children, full = false, closeLabel = "Zatvori" }
         onClick={(e) => e.stopPropagation()}
         className={`relative w-full overflow-y-auto rounded-t-3xl bg-card p-5 shadow-2xl sm:max-w-lg sm:rounded-3xl ${full ? "h-[92dvh] sm:h-[85dvh]" : "max-h-[92dvh]"}`}
       >
-        <button onClick={onClose} className="absolute right-3 top-3 z-10 rounded-full bg-card/90 p-2 shadow" aria-label={closeLabel}>
+        <button ref={closeRef} onClick={onClose} className="absolute right-3 top-3 z-10 rounded-full bg-card/90 p-2 shadow" aria-label={closeLabel}>
           <X className="h-4 w-4" />
         </button>
         {children}
@@ -74,15 +89,28 @@ export function Home({ initial }: { initial: Initial }) {
   const skipFirstFetch = useRef(!!initial?.result);
   const [species, setSpecies] = useState<SpeciesTip[]>([]);
   const [specialSp, setSpecialSp] = useState<SpecialSpecies[]>([]);
+  const [sizeOnly, setSizeOnly] = useState<SizeOnlySpecies[]>([]);
+  const [recipes, setRecipes] = useState<Recipes | null>(null);
+  const [recipeFocus, setRecipeFocus] = useState<string | null>(null);
   const [specialOpen, setSpecialOpen] = useState<SpecialSpecies | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [sheet, setSheet] = useState<null | "map" | "settings" | "fish" | "allfish" | "catch" | "special" | "album">(null);
+  const [sheet, setSheet] = useState<null | "map" | "settings" | "fish" | "allfish" | "catch" | "special" | "album" | "recipes">(null);
   const [fish, setFish] = useState<SpeciesTip | null>(null);
   const [draft, setDraft] = useState<{ lat: number; lon: number } | null>(null);
   const [offline, setOffline] = useState(false);
   const [retry, setRetry] = useState(0);
   const myCatch = useCatch(date);
+  // First visit: "First time in Croatia?" and "Fishing with children" go to the top; later they move down.
+  const [firstVisit, setFirstVisit] = useState(false);
+  useEffect(() => {
+    try {
+      if (!localStorage.getItem("ribolov:upoznat")) {
+        setFirstVisit(true);
+        localStorage.setItem("ribolov:upoznat", "1");
+      }
+    } catch {}
+  }, []);
   // screen readers pronounce the page in the chosen language
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -178,6 +206,8 @@ export function Home({ initial }: { initial: Initial }) {
       .then((g) => {
         setSpecies(g.vrste ?? []);
         setSpecialSp(g.posebne ?? []);
+        setSizeOnly(g.mjere ?? []);
+        setRecipes(g.recepti ?? null);
       })
       .catch(() => setSpecies([]));
   }, [date]);
@@ -226,13 +256,27 @@ export function Home({ initial }: { initial: Initial }) {
   // Best biting now first (season + time of day), closed-season species last.
   // album: every species you can enter in My catch (fish guide + protected/invasive/dangerous), same total everywhere
   const albumSpecies = [...species, ...specialSp.filter((p) => !species.some((s) => s.key === p.key))];
-  const fishSorted = [...species].sort((a, b) => b.ocjena_sada - a.ocjena_sada || Number(a.lovostaj_danas) - Number(b.lovostaj_danas));
+  const guideKeys = new Set(species.map((s) => s.key));
+  const fishSorted = [...species].filter((s) => mode !== "obala" || s.s_obale).sort((a, b) => b.ocjena_sada - a.ocjena_sada || Number(a.lovostaj_danas) - Number(b.lovostaj_danas));
+  // fish key -> recipe key, for "How to prepare it" on the fish cards
+  const recipeFor: Record<string, string> = Object.fromEntries((recipes?.recepti ?? []).filter((r) => r.riba).map((r) => [r.riba!, r.key]));
+  const openRecipe = (key: string | null) => {
+    setRecipeFocus(key);
+    setSheet("recipes");
+    if (key) setTimeout(() => document.getElementById(`recept-${key}`)?.scrollIntoView({ block: "start", behavior: "smooth" }), 50);
+  };
+  const touristCards = (
+    <>
+      <FirstTimeCard lang={lang} />
+      <KidsCard lang={lang} albumCount={albumSpecies.filter((s) => album[s.key]).length} albumTotal={albumSpecies.length} onAlbum={() => setSheet("album")} />
+    </>
+  );
   const [y, mo, dd] = date.split("-").map(Number);
   const isToday = date === todayZagreb();
   const dateLabel =
     (isToday ? t("today", lang) + ", " : "") +
     new Intl.DateTimeFormat(LOCALE_TAG[lang], { day: "numeric", month: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(Date.UTC(y, mo - 1, dd)));
-  const settingsSummary = [t(permit, lang), ...special.map((s) => t(s as (typeof SPECIAL)[number], lang)), t(mode, lang), t(view === "osnovno" ? "viewBasic" : "viewDetailed", lang)].join(" · ");
+  const settingsSummary = [t(mode, lang), ...(permit === "sportska" ? [t("sportska", lang)] : []), ...special.map((s) => t(s as (typeof SPECIAL)[number], lang))].join(" · ") + " ▾";
 
   return (
     <div className="min-h-dvh">
@@ -364,10 +408,12 @@ export function Home({ initial }: { initial: Initial }) {
               {!result && loading && <Skeleton />}
               {/* Order: status, licence, my catch, fish today, protected/invasive/dangerous, activity, forecast, next days; map and rules on the side (below on mobile). */}
               {result && <Verdict r={result} lang={lang} />}
-              {result && result.status === "ok" && <Reminders r={result} lang={lang} />}
+              {result && result.status === "ok" && <Reminders r={result} lang={lang} view={view} guideKeys={guideKeys} />}
               {result && result.status === "ok" && (
                 <>
                   <LicenceCard r={result} lang={lang} />
+                  <TodayStrip r={result} lang={lang} nowHour={nowHour} isToday={isToday} />
+                  {firstVisit && touristCards}
                   <MyCatchSummary lang={lang} result={myCatch.result} count={myCatch.items.length} onOpen={() => setSheet("catch")} />
                   <FishStrip
                     species={fishSorted}
@@ -377,6 +423,8 @@ export function Home({ initial }: { initial: Initial }) {
                       setSheet("fish");
                     }}
                     onAll={() => setSheet("allfish")}
+                    recipeFor={recipeFor}
+                    onRecipe={openRecipe}
                   />
                   <SpecialCard
                     species={specialSp}
@@ -387,8 +435,7 @@ export function Home({ initial }: { initial: Initial }) {
                     }}
                   />
                   <ActivityCard r={result} lang={lang} nowHour={nowHour} view={view} isToday={isToday} />
-                  <Forecast r={result} lang={lang} view={view} onDetailed={() => setView("detaljno")} />
-                  <NextDays r={result} lang={lang} />
+                  <WeatherCard r={result} lang={lang} view={view} onDetailed={() => setView("detaljno")} />
                 </>
               )}
             </div>
@@ -400,13 +447,21 @@ export function Home({ initial }: { initial: Initial }) {
                 }}
                 className="relative block h-40 w-full overflow-hidden rounded-3xl shadow"
               >
-                <MapView lat={loc.lat} lon={loc.lon} interactive={false} />
+                {offline ? (
+                  <span className="flex h-full w-full flex-col items-center justify-center gap-1 bg-sea-100 text-sm font-semibold text-sea-600">
+                    <MapPin className="h-6 w-6" />
+                    {result?.mjesto?.naziv ?? `${loc.lat.toFixed(3)}, ${loc.lon.toFixed(3)}`}
+                    <span className="text-xs font-normal text-slate-500">{t("mapOffline", lang)}</span>
+                  </span>
+                ) : (
+                  <MapView lat={loc.lat} lon={loc.lon} interactive={false} />
+                )}
                 <span className="absolute right-2 top-2 flex items-center gap-1 rounded-full bg-card/95 px-3 py-1 text-sm font-bold shadow">
                   <MapIcon className="h-4 w-4" /> {t("openMap", lang)}
                 </span>
               </button>
-              <FirstTimeCard lang={lang} />
-              <KidsCard lang={lang} albumCount={albumSpecies.filter((s) => album[s.key]).length} albumTotal={albumSpecies.length} onAlbum={() => setSheet("album")} />
+              {!firstVisit && touristCards}
+              {recipes && recipes.recepti.length > 0 && <RecipesCard lang={lang} onOpen={() => openRecipe(null)} />}
               {result && result.status === "ok" && result.danas && (
                 <>
                   <h2 className="px-1 pt-1 text-[15px] font-bold">{t("rules", lang)}</h2>
@@ -505,6 +560,10 @@ export function Home({ initial }: { initial: Initial }) {
         {fish && <SpeciesDetail s={fish} lang={lang} />}
       </Sheet>
 
+      <Sheet closeLabel={t("close", lang)} open={sheet === "recipes" && !!recipes} onClose={() => setSheet(null)} full>
+        {recipes && <RecipesSheet data={recipes} lang={lang} focus={recipeFocus} />}
+      </Sheet>
+
       <Sheet closeLabel={t("close", lang)} open={sheet === "album"} onClose={() => setSheet(null)} full>
         <AlbumSheet species={albumSpecies} album={album} lang={lang} />
       </Sheet>
@@ -514,7 +573,7 @@ export function Home({ initial }: { initial: Initial }) {
       </Sheet>
 
       <Sheet closeLabel={t("close", lang)} open={sheet === "catch"} onClose={() => setSheet(null)} full>
-        <MyCatchSheet lang={lang} species={species} special={specialSp} items={myCatch.items} setItems={myCatch.setItems} result={myCatch.result} />
+        <MyCatchSheet lang={lang} species={species} special={specialSp} sizeOnly={sizeOnly} items={myCatch.items} setItems={myCatch.setItems} result={myCatch.result} />
       </Sheet>
 
       <Sheet closeLabel={t("close", lang)} open={sheet === "allfish"} onClose={() => setSheet(null)} full>

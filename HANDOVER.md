@@ -51,6 +51,14 @@ Redoslijed iz [docs/PLAN_DORADE.md](docs/PLAN_DORADE.md):
 - brojevi idu kroz `lib/format.ts` (`num`, `dist`, `prettyCase`);
 - link čuva `date`, `lang` i `mode`.
 
+**Prijedlozi iz izvještaja (B, C) i recepti (27. 11.):** vidi „Dodatak” u izvještaju. Novo:
+- `data/recipes.yaml` + `lib/recipes.ts` + `app/ui/Recipes.tsx`:
+  - recepti dolaze u `/api/species` kao `recepti`;
+  - polja `autor` i `link` služe za lokalnu konobu;
+  - `istaknuto: dobro_za_more`.
+- `sizeOnlySpecies` u `lib/species.ts`: ribe iz `rules/min_sizes.yaml` kojih nema u vodiču, u „Moj ulov” pod ključem `mjera:<naziv>`.
+- `scripts/missing_translations.ts [jezik]` ispisuje tekstove kojima nedostaje prijevod.
+
 **Android (Capacitor) čeka** dok web nije do kraja testiran (vlasnikova odluka). JDK 21 je instaliran, a Android SDK nije. Vercel projekt „ribolov” je povezan s GitHubom.
 
 8. **Offline i pristupačnost** – ✅ gotovo (osnovno)
@@ -76,7 +84,7 @@ Cilj vlasnika je **educirati turiste**. Moguće je kasnije predstavljanje Minist
 | Područje | Stanje |
 |---|---|
 | Web aplikacija (Next.js) | radi lokalno, nije objavljena |
-| Testovi | 59 od 59 prolazi (`npm test`) |
+| Testovi | 62 od 62 prolazi (`npm test`) |
 | Jezici | HR, EN, DE, IT, PL, CS, SL; sve prevedeno, izvorni govornik nije pregledao |
 | Tamni način | da (prati uređaj, gumb ☀️/🌙) |
 | Pravna točnost pravila | **nije provjerena**; članci su `TODO` (vidi §8) |

@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, CircleCheck, CircleX, Fish, Plus, Ruler, Scale, Trash2 } from "lucide-react";
+import { AlertTriangle, CircleCheck, CircleX, Smartphone, Fish, Plus, Ruler, Scale, Trash2 } from "lucide-react";
 import type { CatchItem, CatchResult } from "@/lib/catch";
 import type { SpeciesTip } from "@/lib/species";
 import type { SpecialSpecies } from "@/lib/special";
+import type { SizeOnlySpecies } from "@/lib/species";
 import { CategoryBadge, SpecialActions } from "./Special";
 import { c, LOCALE_TAG, t, type Lang } from "@/lib/i18n";
 
@@ -46,6 +47,17 @@ function addToAlbum(keys: string[], date: string) {
     try {
       localStorage.setItem(ALBUM_KEY, JSON.stringify(a));
     } catch {}
+}
+
+/** How to measure: from the tip of the snout to the end of the tail. */
+function MeasureFish() {
+  return (
+    <svg viewBox="0 0 120 48" className="h-12 w-28 shrink-0 text-sea-600" role="img" aria-label="↔">
+      <path d="M14 24c12-14 44-16 66-6l16-10v32l-16-10c-22 10-54 8-66-6z" fill="currentColor" opacity=".25" />
+      <circle cx="26" cy="21" r="2" fill="currentColor" />
+      <path d="M12 42h86M12 38v8M98 38v8" stroke="currentColor" strokeWidth="2" fill="none" />
+    </svg>
+  );
 }
 
 /** Today's catch for the dashboard: stored on the device, checked by the server. */
@@ -106,6 +118,7 @@ export function MyCatchSheet({
   lang,
   species,
   special,
+  sizeOnly,
   items,
   setItems,
   result,
@@ -113,6 +126,7 @@ export function MyCatchSheet({
   lang: Lang;
   species: SpeciesTip[];
   special: SpecialSpecies[];
+  sizeOnly: SizeOnlySpecies[];
   items: CatchItem[];
   setItems: (f: (x: CatchItem[]) => CatchItem[]) => void;
   result: CatchResult | null;
@@ -124,6 +138,7 @@ export function MyCatchSheet({
   const [invalid, setInvalid] = useState(false);
   const selected = species.find((s) => s.key === key);
   const needsKg = selected?.min_velicina?.includes("kg");
+  const sizeOnlySorted = useMemo(() => [...sizeOnly].sort((a, b) => c(a.naziv, lang).localeCompare(c(b.naziv, lang), LOCALE_TAG[lang])), [sizeOnly, lang]);
 
   const add = () => {
     if (!key) return;
@@ -159,6 +174,16 @@ export function MyCatchSheet({
               {s.min_velicina ? ` · min ${s.min_velicina}` : ""}
             </option>
           ))}
+          {/* other fish from the official minimum-size table (špar, pic, srdela…) */}
+          {sizeOnlySorted.length > 0 && (
+            <optgroup label={t("otherSizedFish", lang)}>
+              {sizeOnlySorted.map((m) => (
+                <option key={m.key} value={m.key}>
+                  {c(m.naziv, lang)} · min {m.min_velicina}
+                </option>
+              ))}
+            </optgroup>
+          )}
           {/* protected / invasive / dangerous species not in the fish guide (pufferfish, turtle…) */}
           <optgroup label={t("specialTitle", lang)}>
             {special
@@ -188,7 +213,10 @@ export function MyCatchSheet({
             {t("invalidCatch", lang)}
           </p>
         )}
-        <p className="text-xs text-slate-500">{t("weightHint", lang)}</p>
+        <div className="flex items-center gap-3">
+          <MeasureFish />
+          <p className="text-xs text-slate-500">{t("weightHint", lang)}</p>
+        </div>
       </div>
 
       {/* verdict of the last fish, big; protected / invasive species get a big red warning */}
@@ -226,6 +254,14 @@ export function MyCatchSheet({
               ))}
             </div>
           </div>
+          {last.status === "pusti" && !last.posebno && (
+            <button
+              onClick={() => setItems((x) => x.slice(0, -1))}
+              className="mt-3 w-full rounded-2xl bg-navy-900 py-3 font-extrabold text-white"
+            >
+              {t("releasedNext", lang)}
+            </button>
+          )}
           {last.posebno && (
             <div className="text-ink">
               <SpecialActions prva_pomoc={last.posebno.prva_pomoc} prijava_url={last.posebno.prijava_url} lang={lang} />
@@ -250,7 +286,9 @@ export function MyCatchSheet({
           {result.bez_mase > 0 && <p className="mt-1 text-xs text-slate-500">{t("noWeightCount", lang).replace("{n}", String(result.bez_mase))}</p>}
           {result.mrecfish && (
             <div className="mt-2 rounded-2xl bg-navy-900 px-3 py-2.5 text-sm text-white">
-              <p className="font-semibold">📱 {c(result.mrecfish, lang)}</p>
+              <p className="flex gap-1.5 font-semibold">
+                <Smartphone className="mt-0.5 h-4 w-4 shrink-0" /> {c(result.mrecfish, lang)}
+              </p>
               <div className="mt-1.5 flex gap-3 text-xs">
                 <a href={result.mrecfish_linkovi.ios_url} target="_blank" rel="noreferrer" className="underline">
                   mRecFish (App Store)
