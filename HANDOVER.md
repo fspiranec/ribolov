@@ -52,6 +52,7 @@ Redoslijed iz [docs/PLAN_DORADE.md](docs/PLAN_DORADE.md):
 - link čuva `date`, `lang` i `mode`.
 
 **Prijedlozi iz izvještaja (B, C) i recepti (27. 11.):** vidi „Dodatak” u izvještaju. Novo:
+- **Recepti: zasad samo orada** (vlasnik želi prvo vidjeti kako izgleda), s vlastitim uputama za čišćenje (`ciscenje` u receptu). Ostalih 5 recepata i opći vodič za čišćenje čekaju u `data/recipes_kasnije.yaml` (ne učitava se; prijevodi postoje).
 - `data/recipes.yaml` + `lib/recipes.ts` + `app/ui/Recipes.tsx`:
   - recepti dolaze u `/api/species` kao `recepti`;
   - polja `autor` i `link` služe za lokalnu konobu;

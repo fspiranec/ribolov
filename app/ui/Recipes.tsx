@@ -1,6 +1,6 @@
 "use client";
 
-import { ChefHat, Clock, ExternalLink, Leaf, Skull } from "lucide-react";
+import { ChefHat, Clock, ExternalLink, Leaf, Scissors, Skull } from "lucide-react";
 import type { Recipe, Recipes } from "@/lib/recipes";
 import { c, t, type Lang } from "@/lib/i18n";
 import { Card } from "./Dashboard";
@@ -37,7 +37,19 @@ function RecipeView({ r, lang, open }: { r: Recipe; lang: Lang; open: boolean })
         </div>
       </summary>
       <p className="mt-2 text-sm italic text-slate-600">{c(r.prica, lang)}</p>
-      <div className="mt-2 text-sm font-bold">{t("ingredients", lang)}</div>
+      {r.ciscenje.length > 0 && (
+        <div className="mt-3 rounded-xl bg-sea-100 p-3">
+          <div className="flex items-center gap-1.5 text-sm font-bold">
+            <Scissors className="h-4 w-4 text-sea-600" /> {t("cleaningFish", lang)}
+          </div>
+          <ol className="mt-1 list-decimal space-y-1 pl-5 text-sm">
+            {r.ciscenje.map((s, i) => (
+              <li key={i}>{c(s, lang)}</li>
+            ))}
+          </ol>
+        </div>
+      )}
+      <div className="mt-3 text-sm font-bold">{t("ingredients", lang)}</div>
       <ul className="list-disc pl-5 text-sm">
         {r.sastojci.map((s, i) => (
           <li key={i}>{c(s, lang)}</li>
@@ -82,18 +94,20 @@ export function RecipesSheet({ data, lang, focus }: { data: Recipes; lang: Lang;
         </div>
       </div>
 
-      <details open={!focus} className="mt-4 rounded-2xl bg-sea-100 p-3">
-        <summary className="cursor-pointer font-extrabold">{c(data.ciscenje.naslov, lang)}</summary>
-        <ol className="mt-2 list-decimal space-y-1.5 pl-5 text-sm">
-          {data.ciscenje.koraci.map((k, i) => (
-            <li key={i}>{c(k, lang)}</li>
-          ))}
-        </ol>
-      </details>
+      {data.ciscenje && (
+        <details open={!focus} className="mt-4 rounded-2xl bg-sea-100 p-3">
+          <summary className="cursor-pointer font-extrabold">{c(data.ciscenje.naslov, lang)}</summary>
+          <ol className="mt-2 list-decimal space-y-1.5 pl-5 text-sm">
+            {data.ciscenje.koraci.map((k, i) => (
+              <li key={i}>{c(k, lang)}</li>
+            ))}
+          </ol>
+        </details>
+      )}
 
       <div className="mt-4 space-y-3">
         {data.recepti.map((r) => (
-          <RecipeView key={r.key} r={r} lang={lang} open={focus === r.key} />
+          <RecipeView key={r.key} r={r} lang={lang} open={focus === r.key || data.recepti.length === 1} />
         ))}
       </div>
       <p className="mt-4 text-xs text-slate-500">{t("recipesDisclaimer", lang)}</p>

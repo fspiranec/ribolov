@@ -5,16 +5,10 @@
 # vrijeme_min: ukupno vrijeme pripreme u minutama
 # istaknuto:   dobro_za_more – npr. invazivna vrsta: što je više pojedemo, to bolje za more
 # autor, link: neobavezno – npr. lokalna konoba koja je dala recept
+# ciscenje:    neobavezno – upute za čišćenje baš te ribe (prikazuju se u receptu)
+#
+# Zasad samo orada (vlasnik želi prvo vidjeti kako izgleda). Ostali recepti čekaju u recipes_kasnije.yaml.
 zadnja_provjera: 2026-11-27
-
-ciscenje:
-  naslov: { hr: "Kako očistiti ribu", en: "How to clean a fish" }
-  koraci:
-    - { hr: "Ljuske: drži ribu za rep i hrptom noža stružeš od repa prema glavi. Radi u vrećici ili pod vodom da ljuske ne lete.", en: "Scales: hold the fish by the tail and scrape from tail to head with the back of a knife. Work inside a bag or under water so the scales don't fly." }
-    - { hr: "Utroba: zareži trbuh od otvora kod repa do glave, izvadi utrobu i isperi tamnu opnu u trbuhu.", en: "Guts: cut the belly open from the vent to the head, remove the guts and rinse off the dark lining inside." }
-    - { hr: "Škrge: izreži ili iščupaj škrge jer su gorke.", en: "Gills: cut or pull out the gills, they are bitter." }
-    - { hr: "Isperi ribu hladnom vodom i osuši je papirnatim ručnikom.", en: "Rinse the fish in cold water and pat it dry with a paper towel." }
-    - { hr: "Sitnu ribu (girice) ne treba čistiti – prži se cijela. Pazi na bodlje škrpine i pauka, radi s rukavicama ili krpom.", en: "Small fish (picarel) need no cleaning – they are fried whole. Mind the spines of scorpionfish and weever; use gloves or a cloth." }
 
 recepti:
   - key: orada_tava
@@ -23,6 +17,13 @@ recepti:
     vrijeme_min: 25
     autor: null
     link: null
+    # upute za čišćenje baš ove ribe (prikazuju se u receptu, prije sastojaka)
+    ciscenje:
+      - { hr: "Prije čišćenja: oradu drži na hladnom. Leđna peraja ima oštre bodlje – odreži je škarama ili radi s krpom.", en: "Before cleaning, keep the seabream cold. The dorsal fin has sharp spines – cut it off with scissors or hold the fish with a cloth." }
+      - { hr: "Ljuske: orada ima krupne, čvrste ljuske. Drži je za rep i hrptom noža ili žlicom struži od repa prema glavi, u vrećici ili pod mlazom vode. Ne zaboravi trbuh i dio uz peraje.", en: "Scales: seabream has large, tough scales. Hold it by the tail and scrape from tail to head with the back of a knife or a spoon, inside a bag or under running water. Don't forget the belly and around the fins." }
+      - { hr: "Utroba: vrhom noža zareži trbuh od otvora kod repa do glave, izvadi utrobu i palcem sastruži tamnu krv uz kralježnicu.", en: "Guts: with the tip of a knife cut the belly from the vent to the head, remove the guts and scrape out the dark blood along the backbone with your thumb." }
+      - { hr: "Škrge: škarama ih prereži gdje se spajaju ispod glave i izvuci – gorke su.", en: "Gills: cut them with scissors where they join under the head and pull them out – they are bitter." }
+      - { hr: "Isperi oradu hladnom vodom iznutra i izvana i osuši je papirnatim ručnikom. Do pripreme je drži u hladnjaku.", en: "Rinse the seabream inside and out with cold water and pat it dry with a paper towel. Keep it in the fridge until you cook it." }
     sastojci:
       - { hr: "1–2 orade, očišćene", en: "1–2 gilthead seabream, cleaned" }
       - { hr: "maslinovo ulje", en: "olive oil" }
@@ -35,98 +36,3 @@ recepti:
       - { hr: "Na srednjoj vatri peci je u ulju 6–8 minuta sa svake strane, dok se meso ne odvaja od kosti.", en: "Fry it in oil over medium heat for 6–8 minutes on each side, until the flesh comes away from the bone." }
       - { hr: "Pred kraj dodaj sitno sjeckani češnjak i peršin, a na tanjuru pokapaj limunom.", en: "Near the end add chopped garlic and parsley; squeeze lemon over it on the plate." }
     prica: { hr: "U Dalmaciji se kaže da riba mora plivati tri puta: u moru, u ulju i u vinu.", en: "In Dalmatia they say a fish must swim three times: in the sea, in oil and in wine." }
-
-  - key: brancin_leso
-    riba: lubin
-    naziv: { hr: "Brancin na lešo s krumpirom", en: "Poached seabass with potatoes" }
-    vrijeme_min: 35
-    autor: null
-    link: null
-    sastojci:
-      - { hr: "1 brancin, očišćen", en: "1 seabass, cleaned" }
-      - { hr: "3–4 krumpira", en: "3–4 potatoes" }
-      - { hr: "lovorov list", en: "bay leaf" }
-      - { hr: "maslinovo ulje", en: "olive oil" }
-      - { hr: "limun", en: "lemon" }
-      - { hr: "sol", en: "salt" }
-    koraci:
-      - { hr: "Oguljeni krumpir nareži na kolutove i kuhaj 10 minuta u posoljenoj vodi s lovorom.", en: "Slice the peeled potatoes and boil them for 10 minutes in salted water with the bay leaf." }
-      - { hr: "Dodaj ribu i kuhaj na laganoj vatri još 12–15 minuta, da voda samo lagano ključa.", en: "Add the fish and simmer for another 12–15 minutes, the water just bubbling." }
-      - { hr: "Izvadi ribu i krumpir, polij maslinovim uljem i limunom.", en: "Lift out the fish and potatoes and dress with olive oil and lemon." }
-    prica: { hr: "Riba na lešo, kuhana s krumpirom i prelivena maslinovim uljem, stari je ribarski ručak.", en: "Poached fish with potatoes and olive oil is an old fishermen's lunch." }
-
-  - key: usate_przene
-    riba: usata
-    naziv: { hr: "Pržene ušate", en: "Fried saddled seabream" }
-    vrijeme_min: 25
-    autor: null
-    link: null
-    sastojci:
-      - { hr: "ušate, očišćene", en: "saddled seabream, cleaned" }
-      - { hr: "brašno", en: "flour" }
-      - { hr: "ulje za prženje", en: "oil for frying" }
-      - { hr: "limun", en: "lemon" }
-      - { hr: "sol", en: "salt" }
-    koraci:
-      - { hr: "Posoli ribe i uvaljaj ih u brašno, višak otresi.", en: "Salt the fish and roll them in flour, shaking off the excess." }
-      - { hr: "Prži ih u vrućem ulju 3–4 minute sa svake strane, dok ne porumene.", en: "Fry them in hot oil for 3–4 minutes on each side until golden." }
-      - { hr: "Ocijedi na papirnatom ručniku i posluži s limunom.", en: "Drain on a paper towel and serve with lemon." }
-    prica: { hr: "Pržena sitna riba jede se prstima, kao u konobi uz more.", en: "Small fried fish is eaten with your fingers, as in a seaside tavern." }
-
-  - key: brudet_pic
-    riba: null
-    naziv: { hr: "Brudet od pica i druge ribe", en: "Fish stew with sharpsnout seabream" }
-    vrijeme_min: 40
-    autor: null
-    link: null
-    sastojci:
-      - { hr: "pic ili druga riba, očišćena", en: "sharpsnout seabream or other fish, cleaned" }
-      - { hr: "1 luk", en: "1 onion" }
-      - { hr: "1 limenka pelata", en: "1 tin of peeled tomatoes" }
-      - { hr: "maslinovo ulje", en: "olive oil" }
-      - { hr: "peršin", en: "parsley" }
-      - { hr: "sol", en: "salt" }
-    koraci:
-      - { hr: "Na ulju pirjaj sitno sjeckani luk dok ne omekša.", en: "Soften the chopped onion in olive oil." }
-      - { hr: "Dodaj pelate i malo vode, posoli i kuhaj 10 minuta.", en: "Add the tomatoes and a little water, salt and simmer for 10 minutes." }
-      - { hr: "Složi ribu u umak i kuhaj poklopljeno 15–20 minuta. Ne miješaj, samo protresi lonac.", en: "Lay the fish in the sauce and cook covered for 15–20 minutes. Don't stir, just shake the pot." }
-      - { hr: "Pospi peršinom; uz brudet ide palenta ili kruh.", en: "Sprinkle with parsley; serve with polenta or bread." }
-    prica: { hr: "Brudet se kuha od ribe koja se taj dan uhvati – zato nema dva ista.", en: "Brudet is made from whatever fish was caught that day – so no two are the same." }
-
-  - key: girice_przene
-    riba: gira
-    naziv: { hr: "Pržene girice", en: "Fried picarel" }
-    vrijeme_min: 20
-    autor: null
-    link: null
-    sastojci:
-      - { hr: "girice", en: "picarel" }
-      - { hr: "brašno", en: "flour" }
-      - { hr: "ulje za prženje", en: "oil for frying" }
-      - { hr: "limun", en: "lemon" }
-      - { hr: "sol", en: "salt" }
-    koraci:
-      - { hr: "Operi i osuši girice, uvaljaj ih u brašno.", en: "Wash and dry the picarel and roll them in flour." }
-      - { hr: "Prži ih u vrućem ulju 2–3 minute, dok ne postanu hrskave.", en: "Fry them in hot oil for 2–3 minutes until crisp." }
-      - { hr: "Posoli i posluži s limunom.", en: "Salt and serve with lemon." }
-    prica: { hr: "Girice su omiljeni ljetni zalogaj uz more – jedu se cijele, s glavom.", en: "Picarel are a favourite summer snack by the sea – eaten whole, head and all." }
-
-  - key: plavi_rak_buzara
-    riba: plavi_rak
-    istaknuto: dobro_za_more
-    naziv: { hr: "Plavi rak na buzaru", en: "Blue crab buzara" }
-    vrijeme_min: 30
-    autor: null
-    link: null
-    sastojci:
-      - { hr: "plavi rakovi", en: "blue crabs" }
-      - { hr: "3 češnja češnjaka", en: "3 garlic cloves" }
-      - { hr: "maslinovo ulje", en: "olive oil" }
-      - { hr: "1 čaša bijelog vina", en: "1 glass of white wine" }
-      - { hr: "peršin", en: "parsley" }
-      - { hr: "krušne mrvice", en: "breadcrumbs" }
-    koraci:
-      - { hr: "Rakove dobro operi; drži ih straga da te kliješta ne uhvate.", en: "Wash the crabs well; hold them from behind so the claws can't catch you." }
-      - { hr: "Na ulju kratko popirjaj češnjak, dodaj rakove i vino te kuhaj poklopljeno 10–12 minuta.", en: "Briefly fry the garlic in oil, add the crabs and wine and cook covered for 10–12 minutes." }
-      - { hr: "Dodaj peršin i malo krušnih mrvica da se umak zgusne, kuhaj još 2 minute.", en: "Add parsley and a few breadcrumbs to thicken the sauce, cook 2 more minutes." }
-    prica: { hr: "Plavi rak je strana vrsta koja se širi Jadranom – svaki pojedeni rak pomaže domaćim vrstama.", en: "The blue crab is a non-native species spreading in the Adriatic – every crab eaten helps the native species." }

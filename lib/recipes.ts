@@ -10,6 +10,8 @@ export interface Recipe {
   riba: string | null;
   naziv: Text;
   vrijeme_min: number;
+  /** How to clean this particular fish (shown in the recipe, before the ingredients). */
+  ciscenje: Text[];
   sastojci: Text[];
   koraci: Text[];
   prica: Text;
@@ -21,7 +23,8 @@ export interface Recipe {
 }
 
 export interface Recipes {
-  ciscenje: { naslov: Text; koraci: Text[] };
+  /** Optional general cleaning guide (when there are recipes for several fish). */
+  ciscenje: { naslov: Text; koraci: Text[] } | null;
   recepti: Recipe[];
 }
 
@@ -29,15 +32,16 @@ let cache: Recipes | null = null;
 
 export function loadRecipes(file = path.join(process.cwd(), "data/recipes.yaml")): Recipes {
   if (cache) return cache;
-  if (!fs.existsSync(file)) return (cache = { ciscenje: { naslov: { hr: "", en: "" }, koraci: [] }, recepti: [] });
+  if (!fs.existsSync(file)) return (cache = { ciscenje: null, recepti: [] });
   const y = yaml.load(fs.readFileSync(file, "utf8")) as Recipes & { recepti: (Partial<Recipe> & Recipe)[] };
   cache = {
-    ciscenje: y.ciscenje,
+    ciscenje: y.ciscenje ?? null,
     recepti: y.recepti.map((r) => ({
       key: r.key,
       riba: r.riba ?? null,
       naziv: r.naziv,
       vrijeme_min: r.vrijeme_min,
+      ciscenje: r.ciscenje ?? [],
       sastojci: r.sastojci ?? [],
       koraci: r.koraci ?? [],
       prica: r.prica,

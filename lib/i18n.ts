@@ -253,6 +253,7 @@ const dict2 = {
   recipesSub: ["Kako očistiti ribu i jednostavni recepti za apartman", "How to clean a fish and simple recipes for your apartment"],
   howToPrepare: ["Kako je pripremiti", "How to prepare it"],
   ingredients: ["Sastojci", "Ingredients"],
+  cleaningFish: ["Kako je očistiti", "How to clean it"],
   steps: ["Priprema", "Method"],
   recipeBy: ["Recept", "Recipe by"],
   goodForSea: ["Dobro za more", "Good for the sea"],

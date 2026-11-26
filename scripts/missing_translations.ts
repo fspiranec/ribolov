@@ -19,7 +19,7 @@ const walk = (v: unknown) => {
     Object.values(o).forEach(walk);
   }
 };
-for (const f of ["data/recipes.yaml", "data/species/special.yaml", "data/species/species.yaml"]) walk(yaml.load(fs.readFileSync(f, "utf8")));
+for (const f of ["data/recipes.yaml", "data/recipes_kasnije.yaml", "data/species/special.yaml", "data/species/species.yaml"]) walk(yaml.load(fs.readFileSync(f, "utf8")));
 for (const f of fs.readdirSync("rules")) walk(yaml.load(fs.readFileSync(`rules/${f}`, "utf8")));
 
 const src = fs.readFileSync("lib/i18n.ts", "utf8");
