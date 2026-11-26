@@ -78,7 +78,7 @@ async function main() {
     console.log(`  ${fc.features.length} fetched, ${kept} kept`);
   }
   console.log("Po sloju:", countBy(all, (f) => String(f.properties?.layer)));
-  writeCollection("bioportal.geojson", all);
+  writeCollection("bioportal.geojson", all, "Bioportal (MINGOR / ZZOP)");
 }
 
 main().catch((e) => {

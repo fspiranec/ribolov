@@ -115,7 +115,6 @@
  "Near a beach (its boundary is unknown) – check.": "Vicino a una spiaggia (confine sconosciuto) – verifica.",
  "Near a boundary – check: {0} ({1} m).": "Vicino a un confine – verifica: {0} ({1} m).",
  "Needs a special permit: {0}.": "Serve un permesso speciale: {0}.",
- "No known area restrictions at this point; follow the general rules below.": "Nessun divieto di zona noto in questo punto; rispetta le regole generali qui sotto.",
  "Noah's ark shell": "Arca di Noè",
  "Not allowed in this area.": "Non consentito in questa zona.",
  "Octopus: max 2 per day.": "Polpo: massimo 2 al giorno.",
@@ -370,5 +369,10 @@
  "Measure your fish: release undersized ones. Some species are in closed season today.": "Misura il pesce: rilascia quelli sotto misura. Alcune specie oggi sono in fermo pesca.",
  "Max 5 kg of catch per person per day (+ one bigger fish). Selling your catch is not allowed.": "Massimo 5 kg di pescato a persona al giorno (+ un pesce più grande). Vendere il pescato è vietato.",
  "Spearfishing only with a sport licence, in daylight, breath-hold and with a buoy.": "Pesca subacquea solo con licenza sportiva, di giorno, in apnea e con la boa.",
- "Light / dark theme": "Tema chiaro / scuro"
+ "Light / dark theme": "Tema chiaro / scuro",
+ "Next to an industrial site: industrial ports and piers are usually closed to fishing – check locally.": "Accanto a una zona industriale: porti e moli industriali sono di solito chiusi alla pesca – verifica sul posto.",
+ "We have no record of bans for this spot. General rules apply: licence, minimum sizes and closed seasons.": "Per questo punto non abbiamo dati su divieti. Valgono le regole generali: licenza, misure minime e fermi pesca.",
+ "strongest gusts / waves": "raffiche / onde più forti",
+ "Area data": "Dati sulle zone",
+ "rules checked": "regole verificate"
 }

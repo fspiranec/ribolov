@@ -51,6 +51,8 @@ export interface GeneralRules {
 
 export interface ClosedSeason extends Source {
   key: string;
+  trajno_zabranjeno?: boolean;
+  s_obale?: boolean;
   vrsta: Text;
   razdoblja: Period[];
 }

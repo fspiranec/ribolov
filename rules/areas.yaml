@@ -86,6 +86,23 @@ podrucja:
       hr: "Blizu plaže (granica plaže nije poznata) – provjeri."
       en: "Near a beach (its boundary is unknown) – check."
 
+  - key: industrija
+    layer: industrija
+    priority: 4
+    razina: zuto
+    blizina_m: 200
+    blizina_razina: zuto
+    needs_legal_check: true
+    <<: *zakon
+    clanak: "TODO"
+    razlog:
+      hr: "Uz industrijsku zonu: industrijske luke i pristani obično su zatvoreni za ribolov – provjeri na licu mjesta."
+      en: "Next to an industrial site: industrial ports and piers are usually closed to fishing – check locally."
+    razlog_blizina:
+      hr: "Uz industrijsku zonu: industrijske luke i pristani obično su zatvoreni za ribolov – provjeri na licu mjesta."
+      en: "Next to an industrial site: industrial ports and piers are usually closed to fishing – check locally."
+    napomena: "OSM landuse=industrial; industrijska luka često nije posebno ucrtana."
+
   - key: uzgajaliste_riba
     layer: uzgajaliste
     priority: 5

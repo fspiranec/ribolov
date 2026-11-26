@@ -115,7 +115,6 @@
  "Near a beach (its boundary is unknown) – check.": "Blizu plaže (meja ni znana) – preveri.",
  "Near a boundary – check: {0} ({1} m).": "Blizu meje – preveri: {0} ({1} m).",
  "Needs a special permit: {0}.": "Potrebno je posebno dovoljenje: {0}.",
- "No known area restrictions at this point; follow the general rules below.": "Na tej točki ni znanih omejitev območja; upoštevaj splošna pravila spodaj.",
  "Noah's ark shell": "Noetova barčica",
  "Not allowed in this area.": "Na tem območju ni dovoljeno.",
  "Octopus: max 2 per day.": "Hobotnica: največ 2 na dan.",
@@ -370,5 +369,10 @@
  "Measure your fish: release undersized ones. Some species are in closed season today.": "Izmeri ribo: premajhne izpusti. Nekatere vrste so danes v varstveni dobi.",
  "Max 5 kg of catch per person per day (+ one bigger fish). Selling your catch is not allowed.": "Največ 5 kg ulova na osebo na dan (+ ena večja riba). Prodaja ulova ni dovoljena.",
  "Spearfishing only with a sport licence, in daylight, breath-hold and with a buoy.": "Podvodni ribolov samo s športno dovolilnico, podnevi, na dah in z bojo.",
- "Light / dark theme": "Svetla / temna tema"
+ "Light / dark theme": "Svetla / temna tema",
+ "Next to an industrial site: industrial ports and piers are usually closed to fishing – check locally.": "Ob industrijskem območju: industrijska pristanišča in pomoli so običajno zaprti za ribolov – preveri na kraju samem.",
+ "We have no record of bans for this spot. General rules apply: licence, minimum sizes and closed seasons.": "Za to mesto nimamo podatkov o prepovedih. Veljajo splošna pravila: dovolilnica, najmanjše velikosti in varstvene dobe.",
+ "strongest gusts / waves": "najmočnejši sunki / valovi",
+ "Area data": "Podatki o območjih",
+ "rules checked": "pravila preverjena"
 }

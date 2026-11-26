@@ -22,13 +22,13 @@ export function hmToMinutes(hm: string): number {
 
 const PHASES: Text[] = [
   { hr: "mlađak", en: "new moon" },
-  { hr: "srp koji raste", en: "waxing crescent" },
+  { hr: "mladi mjesec, raste", en: "waxing crescent" },
   { hr: "prva četvrt", en: "first quarter" },
-  { hr: "izbočeni mjesec koji raste", en: "waxing gibbous" },
+  { hr: "skoro pun mjesec, raste", en: "waxing gibbous" },
   { hr: "uštap", en: "full moon" },
-  { hr: "izbočeni mjesec koji pada", en: "waning gibbous" },
+  { hr: "skoro pun mjesec, opada", en: "waning gibbous" },
   { hr: "zadnja četvrt", en: "last quarter" },
-  { hr: "srp koji pada", en: "waning crescent" },
+  { hr: "stari mjesec, opada", en: "waning crescent" },
 ];
 
 export interface SunMoon {

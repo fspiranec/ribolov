@@ -19,16 +19,24 @@ const QUERY = `
   nwr["harbour"](${BBOX});
   nwr["leisure"="marina"](${BBOX});
   nwr["landuse"="harbour"](${BBOX});
+  nwr["landuse"="port"](${BBOX});
+  nwr["industrial"="port"](${BBOX});
+  way["landuse"="industrial"](${BBOX});
+  relation["landuse"="industrial"](${BBOX});
   nwr["natural"="beach"](${BBOX});
   nwr["leisure"="beach_resort"](${BBOX});
 );
 out geom;`;
 
-function classify(tags: Record<string, string>): "luka" | "plaza" | null {
+type Layer = "luka" | "plaza" | "industrija";
+function classify(tags: Record<string, string>): Layer | null {
   if (tags.natural === "beach" || tags.leisure === "beach_resort") return "plaza";
-  if (tags.harbour || tags.leisure === "marina" || tags.landuse === "harbour") return "luka";
+  if (tags.harbour || tags.leisure === "marina" || tags.landuse === "harbour" || tags.landuse === "port" || tags.industrial === "port") return "luka";
+  // Industrial sites by the sea often have their own (industrial) port that is not mapped separately.
+  if (tags.landuse === "industrial") return "industrija";
   return null;
 }
+const PRIORITY: Record<Layer, number> = { luka: 3, plaza: 4, industrija: 4 };
 
 async function main() {
   console.log(`Overpass: ${OVERPASS}`);
@@ -42,19 +50,19 @@ async function main() {
   const gj = osmtogeojson(osm) as { features: Feature<Geometry>[] };
   const sea = hrSea();
 
-  const luke: Feature[] = [];
-  const plaze: Feature[] = [];
+  const out: Record<Layer, Feature[]> = { luka: [], plaza: [], industrija: [] };
   for (const f of gj.features) {
     const tags = (f.properties?.tags ?? f.properties ?? {}) as Record<string, string>;
     const layer = classify(tags);
     if (!layer || !inHrSea(f, sea)) continue;
-    const out: Feature = {
+    if (layer === "industrija" && f.geometry.type === "Point") continue;
+    const feat: Feature = {
       type: "Feature",
       geometry: f.geometry,
       properties: {
         layer,
         rule_key: layer,
-        priority: layer === "luka" ? 3 : 4,
+        priority: PRIORITY[layer],
         name: tags.name ?? tags["name:hr"] ?? null,
         source: `OSM ${f.id}`,
         placeholder: false,
@@ -62,12 +70,12 @@ async function main() {
         osm_tags: tags,
       },
     };
-    (layer === "luka" ? luke : plaze).push(out);
+    out[layer].push(feat);
   }
-  console.log("Luke/lučice po tipu geometrije:", countBy(luke, (f) => f.geometry.type));
-  console.log("Plaže po tipu geometrije:", countBy(plaze, (f) => f.geometry.type));
-  writeCollection("osm_luke.geojson", luke);
-  writeCollection("osm_plaze.geojson", plaze);
+  for (const [k, v] of Object.entries(out)) console.log(k, countBy(v, (f) => f.geometry.type));
+  writeCollection("osm_luke.geojson", out.luka, "OpenStreetMap");
+  writeCollection("osm_plaze.geojson", out.plaza, "OpenStreetMap");
+  writeCollection("osm_industrija.geojson", out.industrija, "OpenStreetMap");
 }
 
 main().catch((e) => {

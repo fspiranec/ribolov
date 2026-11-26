@@ -115,7 +115,6 @@
  "Near a beach (its boundary is unknown) – check.": "Blízko pláže (hranice není známa) – ověřte.",
  "Near a boundary – check: {0} ({1} m).": "Blízko hranice – ověřte: {0} ({1} m).",
  "Needs a special permit: {0}.": "Vyžaduje zvláštní povolení: {0}.",
- "No known area restrictions at this point; follow the general rules below.": "Na tomto místě nejsou známá žádná územní omezení; dodržujte obecná pravidla níže.",
  "Noah's ark shell": "Archa Noemova",
  "Not allowed in this area.": "V této oblasti není povoleno.",
  "Octopus: max 2 per day.": "Chobotnice: nejvýše 2 za den.",
@@ -370,5 +369,10 @@
  "Measure your fish: release undersized ones. Some species are in closed season today.": "Změřte rybu: podměrečné pusťte. Některé druhy mají dnes dobu hájení.",
  "Max 5 kg of catch per person per day (+ one bigger fish). Selling your catch is not allowed.": "Nejvýše 5 kg úlovku na osobu za den (+ jedna větší ryba). Prodávat úlovek je zakázáno.",
  "Spearfishing only with a sport licence, in daylight, breath-hold and with a buoy.": "Podvodní lov jen se sportovní povolenkou, za denního světla, na nádech a s bójkou.",
- "Light / dark theme": "Světlý / tmavý motiv"
+ "Light / dark theme": "Světlý / tmavý motiv",
+ "Next to an industrial site: industrial ports and piers are usually closed to fishing – check locally.": "U průmyslové zóny: průmyslové přístavy a mola bývají pro rybolov uzavřené – ověřte na místě.",
+ "We have no record of bans for this spot. General rules apply: licence, minimum sizes and closed seasons.": "Pro toto místo nemáme údaje o zákazech. Platí obecná pravidla: povolenka, minimální míry a doby hájení.",
+ "strongest gusts / waves": "nejsilnější nárazy / vlny",
+ "Area data": "Údaje o zónách",
+ "rules checked": "pravidla ověřena"
 }

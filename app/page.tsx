@@ -213,7 +213,7 @@ export default function Home() {
                 {result?.mjesto?.naziv ?? (loc ? `${loc.lat.toFixed(3)}, ${loc.lon.toFixed(3)}` : "Jadran")}
               </h1>
               {result?.mjesto && result.status === "ok" && (
-                <div className="truncate text-sm text-white/75">
+                <div className="text-sm text-white/75">
                   {result.na_kopnu ? t("onShore", lang) : t("atSea", lang)}
                   {result.mjesto.udaljenost_km >= 0.8 &&
                     ` · ${result.mjesto.udaljenost_km.toLocaleString(LOCALE_TAG[lang])} km ${t("fromCentre", lang)}`}

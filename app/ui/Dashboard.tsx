@@ -87,6 +87,10 @@ const VERDICT = {
   crveno: { bg: "from-rose-500 to-red-600", icon: CircleX },
 } as const;
 
+/** "2026-11-26" -> locale date with year. */
+export const fmtDate = (iso: string, lang: Lang) =>
+  iso ? new Intl.DateTimeFormat(LOCALE_TAG[lang], { day: "numeric", month: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${iso}T12:00:00Z`)) : "";
+
 export function Verdict({ r, lang }: { r: PinResult; lang: Lang }) {
   if (r.status !== "ok" || !r.semafor) {
     return (
@@ -105,6 +109,12 @@ export function Verdict({ r, lang }: { r: PinResult; lang: Lang }) {
         <div className="min-w-0">
           <div className="text-2xl font-extrabold leading-tight tracking-tight">{t(r.semafor, lang)}</div>
           <p className="mt-1 text-[15px] font-medium opacity-95">{c(r.razlog, lang)}</p>
+          {r.izvori_podataka.length > 0 && (
+            <p className="mt-2 text-xs opacity-80">
+              {t("dataFrom", lang)}: {r.izvori_podataka.map((s) => `${s.izvor} (${fmtDate(s.datum, lang)})`).join(", ")} · {t("rulesChecked", lang)}{" "}
+              {fmtDate(r.zadnja_provjera, lang)}
+            </p>
+          )}
         </div>
       </div>
       {r.upozorenja.length > 0 && (
@@ -218,9 +228,9 @@ function ScoreRing({ value }: { value: number }) {
   const len = 2 * Math.PI * r;
   return (
     <svg viewBox="0 0 76 76" className="h-20 w-20 shrink-0 -rotate-90">
-      <circle cx="38" cy="38" r={r} fill="none" stroke="#e8eef3" strokeWidth="8" />
+      <circle cx="38" cy="38" r={r} fill="none" className="stroke-slate-200" strokeWidth="8" />
       <circle cx="38" cy="38" r={r} fill="none" stroke="#0891b2" strokeWidth="8" strokeLinecap="round" strokeDasharray={`${(value / 100) * len} ${len}`} />
-      <text x="38" y="38" textAnchor="middle" dominantBaseline="central" className="rotate-90 fill-navy-900 text-[20px] font-extrabold" style={{ transformOrigin: "38px 38px" }}>
+      <text x="38" y="38" textAnchor="middle" dominantBaseline="central" className="rotate-90 fill-ink text-[22px] font-extrabold" style={{ transformOrigin: "38px 38px" }}>
         {value}
       </text>
     </svg>
@@ -346,9 +356,15 @@ export function NextDays({ r, lang }: { r: PinResult; lang: Lang }) {
               <div className="text-xs font-bold capitalize text-slate-500">{name(d.datum, i)}</div>
               <div className="text-2xl font-extrabold">{d.ocjena}</div>
               <div className="text-xs capitalize">{c(d.oznaka, lang)}</div>
-              <div className={`mt-1 text-[11px] ${rough ? "font-bold text-stop" : "text-slate-500"}`}>
-                {d.udari_max_kmh != null ? `💨 ${Math.round(d.udari_max_kmh)} km/h` : ""}
-                {d.valovi_max_m != null ? ` · 🌊 ${d.valovi_max_m.toFixed(1)} m` : ""}
+              {/* each value is coloured on its own: gusts > 50 km/h, waves > 2 m */}
+              <div className="mt-1 text-[11px] text-slate-500">{t("maxGusts", lang)}</div>
+              <div className="text-[11px]">
+                {d.udari_max_kmh != null && (
+                  <span className={(d.udari_max_kmh ?? 0) > 50 ? "font-bold text-stop" : "text-slate-600"}>💨 {Math.round(d.udari_max_kmh)} km/h</span>
+                )}
+                {d.valovi_max_m != null && (
+                  <span className={(d.valovi_max_m ?? 0) > 2 ? "font-bold text-stop" : "text-slate-600"}> · 🌊 {d.valovi_max_m.toFixed(1)} m</span>
+                )}
               </div>
             </div>
           );

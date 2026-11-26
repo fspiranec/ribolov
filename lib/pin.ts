@@ -80,7 +80,7 @@ export interface PinResult {
   };
   alati: ToolOut[];
   danas: {
-    lovostaj: { vrsta: Text; razdoblja: { od: string; do: string }[]; napomena: Text | null; izvor: SourceRef }[];
+    lovostaj: { vrsta: Text; razdoblja: { od: string; do: string }[]; napomena: Text | null; trajno_zabranjeno: boolean; s_obale: boolean; izvor: SourceRef }[];
     uvijek: Notice[];
     trajno_zabranjene: { vrsta: Text; izvor: SourceRef }[];
     strogo_zasticene: { vrste: Text; izvor: SourceRef };
@@ -112,6 +112,8 @@ export interface PinResult {
   /** Timely reminders: sunset soon, closed season starting or ending within a week. */
   podsjetnici: Notice[];
   zadnja_provjera: string;
+  /** Where the area data comes from and when it was imported (shown under the verdict). */
+  izvori_podataka: { izvor: string; datum: string }[];
   odricanje: Text;
 }
 
@@ -124,6 +126,7 @@ export interface PinDeps {
   sellers?: PermitSeller[];
   shops?: Shop[];
   getPlace?: (lat: number, lon: number) => Promise<Place | null>;
+  dataSources?: { izvor: string; datum: string }[];
   now?: () => Date;
 }
 
@@ -228,6 +231,7 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
     sljedeci_dani: [],
     podsjetnici: [],
     zadnja_provjera: toIso(zp) ?? "",
+    izvori_podataka: deps.dataSources ?? [],
     odricanje: g.odricanje,
   };
 
@@ -285,6 +289,7 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
   }
   const Cap = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
   for (const cs of rules.closedSeasons.lovostaji) {
+    if (cs.trajno_zabranjeno) continue; // banned anyway – a reminder would mislead
     const today = inAnyPeriod(p.date, cs.razdoblja);
     for (let k = 1; k <= 7; k++) {
       const d = addDays(p.date, k);
@@ -382,7 +387,7 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
     }
     if (!applies) continue;
 
-    if (["ihtioloski_rezervat", "stroga_zastita", "nacionalni_park", "posebni_rezervat_more", "park_prirode", "telascica_obalni_pojas", "posebno_staniste", "posebna_regulacija", "luka", "plaza", "uzgajaliste"].includes(rule.layer))
+    if (["ihtioloski_rezervat", "stroga_zastita", "nacionalni_park", "posebni_rezervat_more", "park_prirode", "telascica_obalni_pojas", "posebno_staniste", "posebna_regulacija", "luka", "plaza", "uzgajaliste", "industrija"].includes(rule.layer))
       base.gdje.podrucja.push({ naziv: hit.name, sloj: rule.layer, razina: level });
 
     if (!seasonActive) {
@@ -501,8 +506,8 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
   } else {
     base.semafor = "zeleno";
     base.razlog = T(
-      "Nema poznatih prostornih zabrana za ovu točku; poštuj opća pravila ispod.",
-      "No known area restrictions at this point; follow the general rules below.",
+      "Za ovo mjesto nemamo podatke o zabranama. Vrijede opća pravila: dozvola, najmanje veličine i lovostaji.",
+      "We have no record of bans for this spot. General rules apply: licence, minimum sizes and closed seasons.",
     );
     base.izvor = gref(g.bez_dozvole);
   }
@@ -565,6 +570,8 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
         vrsta: c.vrsta,
         razdoblja: c.razdoblja,
         napomena: (c.napomena as Text | undefined) ?? null,
+        trajno_zabranjeno: Boolean(c.trajno_zabranjeno),
+        s_obale: c.s_obale !== false,
         izvor: ref(c, cs.zadnja_provjera),
       })),
     uvijek: cs.uvijek.map((u) => ({ razina: "obavijest" as const, tekst: u.tekst, izvor: ref(u, cs.zadnja_provjera) })),

@@ -1,4 +1,6 @@
 # Lovostaji. Razdoblja su MM-DD, uključivo; od > do znači raspon preko nove godine.
+# trajno_zabranjeno: vrsta je rekreativcima ionako trajno zabranjena (prohibited.yaml) – bez podsjetnika „opet se smije”.
+# s_obale: false – ne lovi se s obale (prikaz Osnovno je skriva).
 zadnja_provjera: 2026-11-26
 izvor_default: &izvor
   izvor: "Pravilnik o zaštiti riba i drugih morskih organizama (pročišćeni tekst NN 64/23, 134/24); Pravilnik o sportskom i rekreacijskom ribolovu na moru (NN 48/2026)"
@@ -13,19 +15,20 @@ lovostaji:
   - { <<: *izvor, key: kirnje, vrsta: { hr: "kirnje (sve tri vrste)", en: "groupers (all three species)" }, razdoblja: [{ od: "07-01", do: "08-31" }] }
   - <<: *izvor
     key: lampuga
+    s_obale: false
     vrsta: { hr: "lampuga", en: "dolphinfish" }
     razdoblja: [{ od: "01-01", do: "08-14" }]
     napomena: { hr: "Samo za sportski i rekreacijski ribolov.", en: "Sport and recreational fishing only." }
   - { <<: *izvor, key: rakovica, vrsta: { hr: "rakovica", en: "spiny spider crab" }, razdoblja: [{ od: "06-01", do: "11-30" }] }
   - { <<: *izvor, key: kuka, vrsta: { hr: "kuka", en: "Noah's ark shell" }, razdoblja: [{ od: "09-01", do: "07-15" }] }
-  - { <<: *izvor, key: jastog, vrsta: { hr: "jastog", en: "spiny lobster" }, razdoblja: [{ od: "09-01", do: "05-05" }] }
-  - { <<: *izvor, key: hlap, vrsta: { hr: "hlap", en: "European lobster" }, razdoblja: [{ od: "09-01", do: "05-05" }] }
-  - { <<: *izvor, key: jegulja, vrsta: { hr: "jegulja", en: "eel" }, razdoblja: [{ od: "03-01", do: "10-31" }] }
-  - { <<: *izvor, key: iglun, vrsta: { hr: "iglun", en: "swordfish" }, razdoblja: [{ od: "01-01", do: "03-31" }] }
-  - { <<: *izvor, key: dugokrila_tuna, vrsta: { hr: "dugokrila tuna", en: "albacore" }, razdoblja: [{ od: "03-01", do: "03-31" }, { od: "10-01", do: "11-30" }] }
-  - { <<: *izvor, key: spuzve, vrsta: { hr: "spužve", en: "sponges" }, razdoblja: [{ od: "11-01", do: "05-31" }] }
-  - { <<: *izvor, key: trpovi, vrsta: { hr: "trpovi", en: "sea cucumbers" }, razdoblja: [{ od: "01-01", do: "12-31" }] }
-  - { <<: *izvor, key: crveni_koralj, vrsta: { hr: "crveni koralj", en: "red coral" }, razdoblja: [{ od: "01-01", do: "12-31" }] }
+  - { <<: *izvor, key: jastog, trajno_zabranjeno: true, vrsta: { hr: "jastog", en: "spiny lobster" }, razdoblja: [{ od: "09-01", do: "05-05" }] }
+  - { <<: *izvor, key: hlap, trajno_zabranjeno: true, vrsta: { hr: "hlap", en: "European lobster" }, razdoblja: [{ od: "09-01", do: "05-05" }] }
+  - { <<: *izvor, key: jegulja, trajno_zabranjeno: true, vrsta: { hr: "jegulja", en: "eel" }, razdoblja: [{ od: "03-01", do: "10-31" }] }
+  - { <<: *izvor, key: iglun, trajno_zabranjeno: true, s_obale: false, vrsta: { hr: "iglun", en: "swordfish" }, razdoblja: [{ od: "01-01", do: "03-31" }] }
+  - { <<: *izvor, key: dugokrila_tuna, trajno_zabranjeno: true, s_obale: false, vrsta: { hr: "dugokrila tuna", en: "albacore" }, razdoblja: [{ od: "03-01", do: "03-31" }, { od: "10-01", do: "11-30" }] }
+  - { <<: *izvor, key: spuzve, trajno_zabranjeno: true, vrsta: { hr: "spužve", en: "sponges" }, razdoblja: [{ od: "11-01", do: "05-31" }] }
+  - { <<: *izvor, key: trpovi, trajno_zabranjeno: true, vrsta: { hr: "trpovi", en: "sea cucumbers" }, razdoblja: [{ od: "01-01", do: "12-31" }] }
+  - { <<: *izvor, key: crveni_koralj, trajno_zabranjeno: true, vrsta: { hr: "crveni koralj", en: "red coral" }, razdoblja: [{ od: "01-01", do: "12-31" }] }
 
 uvijek:
   - <<: *izvor

@@ -1,0 +1,22 @@
+{
+ "osm_luke.geojson": {
+  "izvor": "OpenStreetMap",
+  "datum": "2026-11-26",
+  "broj": 501
+ },
+ "osm_plaze.geojson": {
+  "izvor": "OpenStreetMap",
+  "datum": "2026-11-26",
+  "broj": 3149
+ },
+ "osm_industrija.geojson": {
+  "izvor": "OpenStreetMap",
+  "datum": "2026-11-26",
+  "broj": 945
+ },
+ "bioportal.geojson": {
+  "izvor": "Bioportal (MINGOR / ZZOP)",
+  "datum": "2026-11-26",
+  "broj": 45
+ }
+}

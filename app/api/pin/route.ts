@@ -31,6 +31,18 @@ function loadShops(): Shop[] {
   return shops;
 }
 
+let sources: { izvor: string; datum: string }[] | null = null;
+/** Area data sources and import dates (data/imported/_meta.json, written by the import scripts). */
+function loadSources() {
+  if (sources) return sources;
+  const f = path.join(process.cwd(), "data/imported/_meta.json");
+  const meta: Record<string, { izvor: string; datum: string }> = fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : {};
+  const by = new Map<string, string>();
+  for (const m of Object.values(meta)) if (!by.has(m.izvor) || by.get(m.izvor)! < m.datum) by.set(m.izvor, m.datum);
+  sources = [...by].map(([izvor, datum]) => ({ izvor, datum }));
+  return sources;
+}
+
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
@@ -51,6 +63,7 @@ export async function GET(req: NextRequest) {
       sellers: loadSellers(),
       shops: loadShops(),
       getPlace,
+      dataSources: loadSources(),
     });
     return NextResponse.json(result, { headers: { "Cache-Control": "no-store" } });
   } catch (e) {

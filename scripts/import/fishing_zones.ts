@@ -70,7 +70,7 @@ async function main() {
   }
   if (features.length && !features[0].properties?.zona)
     console.warn("! ZONA/PODZONA fields not found – set ZONA_FIELD / PODZONA_FIELD (see field list above).");
-  writeCollection("ribolovne_zone.geojson", features);
+  writeCollection("ribolovne_zone.geojson", features, "Uprava ribarstva");
 }
 
 main().catch((e) => {

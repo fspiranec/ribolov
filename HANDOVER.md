@@ -2,6 +2,50 @@
 
 Stanje na dan 26. 11. 2026. Ovaj dokument je za svakoga tko nastavlja rad na projektu: čovjeka ili novu AI sesiju.
 
+> **Za novu AI sesiju – počni ovdje:** trenutni zadatak je **plan dorade** u [docs/PLAN_DORADE.md](docs/PLAN_DORADE.md) (vlasnikov dokument). Stanje po koracima je u §0 ispod. Prije rada pročitaj §5 (odluke vlasnika), a nakon svake promjene pokreni `npm test`. Vlasnik piše na hrvatskom i želi kratke, jasne odgovore.
+
+## 0. Plan dorade – stanje (26. 11. 2026.)
+
+Redoslijed iz [docs/PLAN_DORADE.md](docs/PLAN_DORADE.md):
+
+1. **Zone zabrana s izvorom i datumom; blaži status** – ✅ gotovo
+   - novi OSM sloj `industrija` (`data/imported/osm_industrija.geojson`, 945 zona, `landuse=industrial`); unutar 200 m odgovor je žut, pravilo `industrija` u `rules/areas.yaml`. Luke sad uključuju i `landuse=port` / `industrial=port` (501). Industrijska luka Koromačno u OSM-u nije ucrtana posebno, a zona Holcim je ~2 km od testne točke 44.958, 14.104.
+   - uvozi pišu izvor i datum u `data/imported/_meta.json`; API vraća `izvori_podataka`, a presuda ih prikazuje uz „pravila provjerena …”, s godinom.
+   - zeleni naslov je sada „Nema poznatih zabrana”, s tekstom „Za ovo mjesto nemamo podatke o zabranama. Vrijede opća pravila…”.
+2. **Brzi popravci** – ✅ gotovo
+   - „Idući dani” imaju oznaku „najjači udari / valovi”, a boje se računaju za svaku vrijednost posebno;
+   - broj u krugu aktivnosti koristi `fill-ink`, čitljiv u oba načina;
+   - podnaslov lokacije se više ne reže;
+   - faze mjeseca na HR: „skoro pun mjesec, opada”;
+   - podsjetnici se ne prikazuju za vrste koje su rekreativcima trajno zabranjene (`trajno_zabranjeno` u `closed_seasons.yaml`).
+   - **Nije napravljeno:** dubina s objašnjenjem za lov s obale (točka 6 u planu). Lovostaj u API-ju ima polja `trajno_zabranjeno` i `s_obale`, ali ih sučelje još ne koristi.
+3. **Osnovno / Detaljno i novi redoslijed** – ⏳ nije počelo
+   - izbor u postavkama (sheet „settings” u `app/page.tsx`), spremanje u localStorage, zadano „Osnovno”;
+   - redoslijed: status, dozvola, moj ulov, ribe danas, vrste, aktivnost, prognoza, idući dani, karta;
+   - Osnovno: aktivnost samo kao rečenica („Najbolje vrijeme danas: 13–15 h”), osnovna prognoza, a lovostaji samo za `s_obale && !trajno_zabranjeno`;
+   - upozorenja i zabrane se nikad ne skrivaju.
+4. **Vrste: zaštićene, invazivne, opasne** – ⏳ nije počelo
+   - 10–15 vrsta s fotografijom, jednom rečenicom i porukom „što učiniti”:
+     - **zaštićene:** periska, prstac (morski datulj), kornjače, dupini, zaštićeni morski psi i raže;
+     - **invazivne:** plavi rak, napuhače (*Lagocephalus*, otrovne), riba lav ili vatrenjača, strijelka (*Fistularia commersonii*);
+     - **opasne:** pauk, škrpina, raža žutulja.
+   - Popis treba provjeriti prema službenim izvorima.
+   - U „Moj ulov” za takvu vrstu prikazati veliko crveno upozorenje (`lib/catch.ts` + `app/ui/MyCatch.tsx`).
+   - Dodati prvu pomoć kod uboda: vruća voda (podnošljivo vruća, oko 45 °C) 30–90 min, izvaditi bodlje, liječnik kod jače reakcije. Gumb „Prijavi nalaz” (IRB, projekt ALIENA) za sada vodi na vanjsku poveznicu.
+   - Za svaki novi tekst dodati prijevod u `locales/*.json`; inače test pada.
+5. **Linkovi s lokacijom na serveru (SSR), Open Graph pregled, QR kodovi** – ⏳ nije počelo
+   - `app/page.tsx` je sada potpuno klijentska komponenta. Treba serverska stranica koja za `?lat&lon` pozove `evaluatePin` i preda rezultat klijentu, te `generateMetadata` za OG, npr. „Koromačno: nema poznatih zabrana”.
+   - QR: stranica ili gumb „QR za moj apartman” (paket `qrcode`).
+6. **Ribolov s djecom i pravila ponašanja** – ⏳ nije počelo
+   - kartica slična „Prvi put loviš u Hrvatskoj?” (`FirstTimeCard`): djeca, sigurnost, kruh i udica, nježno puštanje ribe, ne ostavljati najlon, ne loviti među kupačima; „album” ulovljenih vrsta.
+7. **Kontakt s IRB-om i turističkom zajednicom** – posao za vlasnika, ne za kod.
+8. **Offline i pristupačnost** – ⏳ nije počelo
+   - sada se samo zadnji odgovor sprema u localStorage. Treba service worker koji čuva stranicu i `/api/species`, a po želji i lokalni izračun iz `/api/rules`;
+   - alt tekstovi na logu i slikama;
+   - godina uz datum (djelomično gotovo: izvori je imaju).
+
+Koraci 1–2 su u commitu „Plan dorade: zone, izvori, brzi popravci” na GitHubu (`main`).
+
 ## 1. Što je aplikacija
 
 Web aplikacija (kasnije i Android) za **sportski i rekreacijski ribolov na hrvatskom Jadranu**, namijenjena prije svega **turistima**. Za lokaciju (GPS ili odabranu na karti) kaže:
@@ -23,7 +67,7 @@ Cilj vlasnika je **educirati turiste**. Moguće je kasnije predstavljanje Minist
 | Jezici | HR, EN, DE, IT, PL, CS, SL; sve prevedeno, izvorni govornik nije pregledao |
 | Tamni način | da (prati uređaj, gumb ☀️/🌙) |
 | Pravna točnost pravila | **nije provjerena**; članci su `TODO` (vidi §8) |
-| Git | repozitorij postoji, **nema nijednog commita** |
+| Git | https://github.com/fspiranec/ribolov (grana `main`) |
 | Hosting | pripremljeno za Vercel (`vercel.json`, regija Frankfurt), nije objavljeno |
 | Android | nije započet; vlasnik želi prvo dovršiti web |
 

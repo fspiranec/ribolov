@@ -6,10 +6,15 @@ import type { Feature, FeatureCollection, Geometry, Polygon } from "geojson";
 export const ROOT = process.cwd();
 export const IMPORTED = path.join(ROOT, "data/imported");
 
-export function writeCollection(file: string, features: Feature[]): void {
+/** Writes a layer and records its source and import date in data/imported/_meta.json (shown in the app). */
+export function writeCollection(file: string, features: Feature[], izvor: string): void {
   fs.mkdirSync(IMPORTED, { recursive: true });
   const out = path.join(IMPORTED, file);
   fs.writeFileSync(out, JSON.stringify({ type: "FeatureCollection", features } satisfies FeatureCollection));
+  const metaFile = path.join(IMPORTED, "_meta.json");
+  const meta = fs.existsSync(metaFile) ? JSON.parse(fs.readFileSync(metaFile, "utf8")) : {};
+  meta[file] = { izvor, datum: new Date().toISOString().slice(0, 10), broj: features.length };
+  fs.writeFileSync(metaFile, JSON.stringify(meta, null, 1));
   console.log(`  -> ${path.relative(ROOT, out)} (${features.length} features)`);
 }
 
