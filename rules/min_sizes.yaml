@@ -12,7 +12,7 @@ velicine:
   - { <<: *izvor, vrsta: { hr: "palamida", en: "Atlantic bonito" }, min: "40 cm" }
   - { <<: *izvor, vrsta: { hr: "gof", en: "greater amberjack" }, min: "35 cm" }
   - { <<: *izvor, vrsta: { hr: "lampuga", en: "dolphinfish" }, min: "35 cm" }
-  - { <<: *izvor, vrsta: { hr: "jegulja", en: "eel" }, min: "35 cm" }
+  - { <<: *izvor, vrsta: { hr: "jegulja", en: "eel" }, min: "35 cm", napomena: { hr: "Rekreativcima trajno zabranjena.", en: "Permanently banned for recreational anglers." } }   # vidi prohibited.yaml
   - { <<: *izvor, vrsta: { hr: "okan", en: "okan" }, min: "33 cm" }
   - { <<: *izvor, vrsta: { hr: "zubatac", en: "common dentex" }, min: "30 cm" }
   - { <<: *izvor, vrsta: { hr: "kavala", en: "brown meagre" }, min: "30 cm" }

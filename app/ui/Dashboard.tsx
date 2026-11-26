@@ -11,6 +11,8 @@ import {
   Fish,
   Info,
   Moon,
+  Navigation,
+  Phone,
   Ruler,
   Store,
   Sunrise,
@@ -22,8 +24,10 @@ import {
 } from "lucide-react";
 import type { Notice, PinResult, Reach, SourceRef } from "@/lib/pin";
 import type { SpeciesTip } from "@/lib/species";
-import { c, COMPASS, LOCALE_TAG, t, type Lang } from "@/lib/i18n";
-import { bestWindow, visibleClosedSeasons, type View } from "@/lib/view";
+import type { Text } from "@/lib/rules/types";
+import { c, COMPASS_LONG, LOCALE_TAG, t, type Lang } from "@/lib/i18n";
+import { dist, num, prettyCase } from "@/lib/format";
+import { bestTimeToday, visibleClosedSeasons, windowPassed, type View } from "@/lib/view";
 
 // ---------------------------------------------------------------- shared bits
 
@@ -136,7 +140,7 @@ export function Verdict({ r, lang }: { r: PinResult; lang: Lang }) {
 
 // ---------------------------------------------------------------- forecast & activity
 
-const dirName = (deg: number | null, lang: Lang) => (deg == null ? "" : COMPASS[lang][Math.round(deg / 45) % 8]);
+const dirName = (deg: number | null, lang: Lang) => (deg == null ? "" : COMPASS_LONG[lang][Math.round(deg / 45) % 8]);
 
 function Tile({ icon, label, value, sub }: { icon: React.ReactNode; label: string; value: React.ReactNode; sub?: React.ReactNode }) {
   return (
@@ -155,7 +159,7 @@ export function Forecast({ r, lang, view, onDetailed }: { r: PinResult; lang: La
   const full = view === "detaljno";
   const w = r.vrijeme;
   const sm = r.sunce_mjesec;
-  const n = (x: number | null | undefined, d = 0) => (x == null ? "–" : x.toFixed(d));
+  const n = (x: number | null | undefined, d = 0) => num(x, lang, d);
   return (
     <Card>
       <H2 icon={<Wind className="h-4 w-4 text-sea-600" />} right={w && <span className="text-xs text-slate-500">{w.sat}</span>}>
@@ -252,8 +256,9 @@ function ScoreRing({ value }: { value: number }) {
 export function ActivityCard({ r, lang, nowHour, view, isToday }: { r: PinResult; lang: Lang; nowHour: number | null; view: View; isToday: boolean }) {
   const a = r.aktivnost;
   if (!a) return null;
-  const best = bestWindow(a.najbolje);
-  const sentence = best ? t(isToday ? "bestToday" : "bestOnDay", lang).replace("{t}", best) : null;
+  // today: only windows still ahead; when all are over, say so instead of advising a time in the past
+  const best = bestTimeToday(a.najbolje, isToday ? nowHour : null);
+  const sentence = best ? t(!isToday ? "bestOnDay" : best.passed ? "bestPassed" : "bestToday", lang).replace("{t}", best.text) : null;
   if (view === "osnovno")
     return (
       <Card className="flex items-center gap-3">
@@ -278,11 +283,14 @@ export function ActivityCard({ r, lang, nowHour, view, isToday }: { r: PinResult
           {sentence && <div className="text-sm font-bold">{sentence}</div>}
           <div className="text-sm text-slate-600">{t("bestTimes", lang)}:</div>
           <div className="mt-0.5 flex flex-wrap gap-1.5">
-            {a.najbolje.map((w) => (
-              <span key={w.od} className="rounded-full bg-sea-100 px-2.5 py-0.5 text-sm font-bold text-sea-600">
-                {w.od}–{w.do}
-              </span>
-            ))}
+            {a.najbolje.map((w) => {
+              const past = isToday && windowPassed(w, nowHour);
+              return (
+                <span key={w.od} className={`rounded-full px-2.5 py-0.5 text-sm font-bold ${past ? "bg-sand-100 text-slate-400 line-through" : "bg-sea-100 text-sea-600"}`}>
+                  {w.od}–{w.do}
+                </span>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -392,7 +400,7 @@ export function NextDays({ r, lang }: { r: PinResult; lang: Lang }) {
                   <span className={(d.udari_max_kmh ?? 0) > 50 ? "font-bold text-stop" : "text-slate-600"}>💨 {Math.round(d.udari_max_kmh)} km/h</span>
                 )}
                 {d.valovi_max_m != null && (
-                  <span className={(d.valovi_max_m ?? 0) > 2 ? "font-bold text-stop" : "text-slate-600"}> · 🌊 {d.valovi_max_m.toFixed(1)} m</span>
+                  <span className={(d.valovi_max_m ?? 0) > 2 ? "font-bold text-stop" : "text-slate-600"}> · 🌊 {num(d.valovi_max_m, lang, 1)} m</span>
                 )}
               </div>
             </div>
@@ -489,8 +497,8 @@ export function KidsCard({ lang, albumCount, albumTotal, onAlbum }: { lang: Lang
 }
 
 /** Album sheet: caught species in colour with the first date, the rest greyed out. */
-export function AlbumSheet({ species, album, lang }: { species: SpeciesTip[]; album: Record<string, string>; lang: Lang }) {
-  const sorted = [...species].sort((a, b) => Number(!album[a.key]) - Number(!album[b.key]) || c(a.naziv, lang).localeCompare(c(b.naziv, lang)));
+export function AlbumSheet({ species, album, lang }: { species: { key: string; naziv: Text; slika: string | null }[]; album: Record<string, string>; lang: Lang }) {
+  const sorted = [...species].sort((a, b) => Number(!album[a.key]) - Number(!album[b.key]) || c(a.naziv, lang).localeCompare(c(b.naziv, lang), LOCALE_TAG[lang]));
   const n = species.filter((s) => album[s.key]).length;
   return (
     <div>
@@ -544,6 +552,26 @@ export function Skeleton() {
   );
 }
 
+/** Call and navigation buttons for a shop or licence seller (instead of numbers run together in text). */
+function PlaceActions({ phones, lat, lon, lang, dark = false }: { phones: string[]; lat: number | null; lon: number | null; lang: Lang; dark?: boolean }) {
+  const btn = `inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold ${dark ? "bg-white/15 text-white" : "bg-sea-100 text-sea-600"}`;
+  return (
+    <div className="mt-1 flex flex-wrap gap-1.5">
+      {phones.map((tel) => (
+        <a key={tel} href={`tel:${tel.replace(/[^\d+]/g, "")}`} className={btn} aria-label={`${t("call", lang)} ${tel}`}>
+          <Phone className="h-3 w-3" /> {tel}
+        </a>
+      ))}
+      {phones.length === 0 && <span className={`text-xs ${dark ? "text-white/60" : "text-slate-400"}`}>{t("noPhone", lang)}</span>}
+      {lat != null && lon != null && (
+        <a href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}`} target="_blank" rel="noreferrer" className={btn}>
+          <Navigation className="h-3 w-3" /> {t("navigate", lang)}
+        </a>
+      )}
+    </div>
+  );
+}
+
 /** "On Cres – ferry or boat needed" for a shop or seller across the sea. */
 function AcrossSea({ s, lang, className }: { s: Reach; lang: Lang; className: string }) {
   if (s.isto_kopno) return null;
@@ -567,12 +595,13 @@ export function LicenceCard({ r, lang }: { r: PinResult; lang: Lang }) {
         <div>
           <div className="text-lg font-extrabold">{t("licenceNeeded", lang)}</div>
           <p className="text-sm text-white/75">{t("licenceSub", lang)}</p>
+          <p className="mt-1 text-sm font-semibold text-amber-200">👧 {t("kid1", lang)}</p>
         </div>
       </div>
       <div className="mt-4 grid grid-cols-3 gap-2 text-center">
         {d.cijene.slice(0, 3).map((pc) => (
           <div key={pc.trajanje.hr} className="rounded-2xl bg-white/10 py-2">
-            <div className="text-lg font-extrabold">{pc.cijena_eur.toFixed(0)} €</div>
+            <div className="text-lg font-extrabold">{num(pc.cijena_eur, lang)} €</div>
             <div className="text-xs text-white/70">{c(pc.trajanje, lang)}</div>
           </div>
         ))}
@@ -588,7 +617,7 @@ export function LicenceCard({ r, lang }: { r: PinResult; lang: Lang }) {
             {d.cijene.slice(3).map((pc) => (
               <li key={pc.trajanje.hr} className="flex justify-between border-b border-white/10 py-0.5">
                 <span>{c(pc.trajanje, lang)}</span>
-                <span>{pc.cijena_eur.toFixed(2)} €</span>
+                <span>{num(pc.cijena_eur, lang, 2)} €</span>
               </li>
             ))}
           </ul>
@@ -601,15 +630,10 @@ export function LicenceCard({ r, lang }: { r: PinResult; lang: Lang }) {
               <ul className="space-y-1.5">
                 {d.najblizi_prodavaci.map((s) => (
                   <li key={s.naziv + s.adresa}>
-                    <b>{s.naziv}</b> · {[s.adresa, s.grad].filter(Boolean).join(", ")} <span className="text-white/60">(~{s.udaljenost_km} km)</span>
+                    <b>{prettyCase(s.naziv)}</b> <span className="text-white/60">(~{num(s.udaljenost_km, lang, 1)} km)</span>
+                    <div className="text-xs text-white/80">{prettyCase([s.adresa, s.grad].filter(Boolean).join(", "))}</div>
                     <AcrossSea s={s} lang={lang} className="text-amber-200" />
-                    <div className="text-xs">
-                      {s.telefon.map((tel) => (
-                        <a key={tel} href={`tel:${tel.replace(/\s/g, "")}`} className="mr-2 underline">
-                          {tel}
-                        </a>
-                      ))}
-                    </div>
+                    <PlaceActions phones={s.telefon} lat={s.lat} lon={s.lon} lang={lang} dark />
                   </li>
                 ))}
               </ul>
@@ -639,7 +663,7 @@ function GearItem({ a, lang }: { a: PinResult["alati"][number]; lang: Lang }) {
       {!a.dopusteno && a.razlog && <p className="mt-1 text-xs font-semibold text-stop">{c(a.razlog, lang)}</p>}
       {!a.dopusteno && a.posebna_dozvola_cijena_eur != null && (
         <p className="mt-0.5 text-xs text-slate-500">
-          {t("permitPrice", lang).replace("{eur}", a.posebna_dozvola_cijena_eur.toFixed(2).replace(".", lang === "hr" ? "," : "."))}
+          {t("permitPrice", lang).replace("{eur}", num(a.posebna_dozvola_cijena_eur, lang, 2))}
         </p>
       )}
       {a.napomena && <p className="mt-1 text-xs font-semibold text-amber-700">{c(a.napomena, lang)}</p>}
@@ -679,7 +703,7 @@ export function RulesCard({ r, lang, view }: { r: PinResult; lang: Lang; view: V
   const d = r.danas!;
   const closed = visibleClosedSeasons(d.lovostaj, view);
   const g = r.gdje;
-  const km = (m: number | null) => (m == null ? t("unknown", lang) : m < 1000 ? `${m} m` : `${(m / 1000).toFixed(1)} km`);
+  const km = (m: number | null) => (m == null ? t("unknown", lang) : dist(m, lang));
   return (
     <Card className="py-1">
       <Accordion title={t("tools", lang)} icon={<Fish className="h-4 w-4" />}>
@@ -707,7 +731,10 @@ export function RulesCard({ r, lang, view }: { r: PinResult; lang: Lang; view: V
             <div key={i} className="flex justify-between gap-2 border-b border-slate-100 py-1 text-xs">
               <span>{c(m.vrsta, lang)}</span>
               {/* some values are "hr / en" (e.g. sea urchins); show one language and let long values wrap */}
-              <b className="min-w-0 text-right [overflow-wrap:anywhere]">{m.min.includes(" / ") ? m.min.split(" / ")[lang === "hr" ? 0 : 1] : m.min}</b>
+              <span className="min-w-0 text-right">
+                <b className="[overflow-wrap:anywhere]">{m.min.includes(" / ") ? m.min.split(" / ")[lang === "hr" ? 0 : 1] : m.min}</b>
+                {m.napomena && <span className="block text-[11px] font-semibold text-stop">{c(m.napomena, lang)}</span>}
+              </span>
             </div>
           ))}
         </div>
@@ -718,9 +745,17 @@ export function RulesCard({ r, lang, view }: { r: PinResult; lang: Lang; view: V
         <p className="text-xs">{c(d.strogo_zasticene.vrste, lang)}</p>
       </Accordion>
       <Accordion title={t("where", lang)} icon={<Anchor className="h-4 w-4" />}>
-        <p>
-          {t("zone", lang)}: <b>{g.ribolovna_zona ?? t("unknown", lang)}</b> · {t("subzone", lang)}: <b>{g.podzona ?? t("unknown", lang)}</b>
-        </p>
+        {g.ribolovna_zona && (
+          <p>
+            {t("zone", lang)}: <b>{g.ribolovna_zona}</b>
+            {g.podzona && (
+              <>
+                {" "}
+                · {t("subzone", lang)}: <b>{g.podzona}</b>
+              </>
+            )}
+          </p>
+        )}
         <p>
           {t("areas", lang)}: {g.podrucja.length ? g.podrucja.map((p) => p.naziv ?? p.sloj).join(", ") : t("none", lang)}
         </p>
@@ -748,22 +783,11 @@ export function RulesCard({ r, lang, view }: { r: PinResult; lang: Lang; view: V
               <li key={s.naziv + s.lat}>
                 <b>{s.naziv}</b>
                 {s.partner && <span className="ml-1 rounded bg-sea-100 px-1 text-xs text-sea-600">{t("partner", lang)}</span>}{" "}
-                <span className="text-slate-500">(~{s.udaljenost_km} km)</span>
+                <span className="text-slate-500">(~{num(s.udaljenost_km, lang, 1)} km)</span>
                 {s.vrsta === "sport" && <div className="text-xs text-slate-500">{t("sportShop", lang)}</div>}
+                {(s.adresa || s.grad) && <div className="text-xs text-slate-600">{prettyCase([s.adresa, s.grad].filter(Boolean).join(", "))}</div>}
                 <AcrossSea s={s} lang={lang} className="text-amber-700" />
-                <div className="text-xs text-slate-600">
-                  {[s.adresa, s.grad].filter(Boolean).join(", ")}
-                  {s.telefon.map((tel) => (
-                    <a key={tel} href={`tel:${tel.replace(/\s/g, "")}`} className="ml-2 underline">
-                      {tel}
-                    </a>
-                  ))}
-                  {s.lat != null && (
-                    <a href={`https://www.openstreetmap.org/?mlat=${s.lat}&mlon=${s.lon}#map=17/${s.lat}/${s.lon}`} target="_blank" rel="noreferrer" className="ml-2 underline">
-                      {t("onMap", lang)}
-                    </a>
-                  )}
-                </div>
+                <PlaceActions phones={s.telefon} lat={s.lat} lon={s.lon} lang={lang} />
               </li>
             ))}
           </ul>

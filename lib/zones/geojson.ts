@@ -46,7 +46,8 @@ export class GeoJsonZoneProvider implements ZoneProvider {
   constructor(collections: FeatureCollection[]) {
     this.items = collections
       .flatMap((c) => c.features)
-      .filter((f) => f.geometry)
+      // only features that carry a rule are zones (e.g. osm_otoci.geojson is island outlines for shop ranking)
+      .filter((f) => f.geometry && f.properties?.layer && f.properties?.rule_key)
       .map((f) => ({ f: f as Feature<Geometry>, bb: turfBbox(f) }));
     // Once a layer has real (imported) features, its placeholders are dropped.
     const real = new Set(this.items.filter((i) => !i.f.properties?.placeholder).map((i) => i.f.properties?.layer));

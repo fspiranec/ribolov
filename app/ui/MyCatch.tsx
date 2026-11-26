@@ -6,7 +6,10 @@ import type { CatchItem, CatchResult } from "@/lib/catch";
 import type { SpeciesTip } from "@/lib/species";
 import type { SpecialSpecies } from "@/lib/special";
 import { CategoryBadge, SpecialActions } from "./Special";
-import { c, t, type Lang } from "@/lib/i18n";
+import { c, LOCALE_TAG, t, type Lang } from "@/lib/i18n";
+
+const MAX_CM = 400;
+const MAX_KG = 700;
 import { Card } from "./Dashboard";
 
 const storeKey = (date: string) => `ribolov:ulov:${date}`;
@@ -117,14 +120,23 @@ export function MyCatchSheet({
   const [key, setKey] = useState("");
   const [len, setLen] = useState("");
   const [kg, setKg] = useState("");
-  const sorted = useMemo(() => [...species].sort((a, b) => c(a.naziv, lang).localeCompare(c(b.naziv, lang))), [species, lang]);
+  const sorted = useMemo(() => [...species].sort((a, b) => c(a.naziv, lang).localeCompare(c(b.naziv, lang), LOCALE_TAG[lang])), [species, lang]);
+  const [invalid, setInvalid] = useState(false);
   const selected = species.find((s) => s.key === key);
   const needsKg = selected?.min_velicina?.includes("kg");
 
   const add = () => {
     if (!key) return;
     const n = (v: string) => (v.trim() ? Number(v.replace(",", ".")) : null);
-    setItems((x) => [...x, { key, duljina_cm: n(len), masa_kg: n(kg) }]);
+    const l = n(len);
+    const m = n(kg);
+    // plausible values only: 1–400 cm, 0,01–700 kg (a big bluefin tuna is the upper end)
+    if ((l != null && !(l >= 1 && l <= MAX_CM)) || (m != null && !(m >= 0.01 && m <= MAX_KG))) {
+      setInvalid(true);
+      return;
+    }
+    setInvalid(false);
+    setItems((x) => [...x, { key, duljina_cm: l, masa_kg: m }]);
     setLen("");
     setKg("");
   };
@@ -161,16 +173,21 @@ export function MyCatchSheet({
         <div className="grid grid-cols-2 gap-2">
           <label className="flex items-center gap-2 rounded-2xl bg-card px-3 py-2.5">
             <Ruler className="h-4 w-4 shrink-0 text-slate-400" />
-            <input inputMode="decimal" value={len} onChange={(e) => setLen(e.target.value)} placeholder={t("lengthCm", lang)} className="w-full outline-none" />
+            <input inputMode="decimal" value={len} onChange={(e) => setLen(e.target.value)} placeholder={t("lengthCm", lang)} aria-label={t("lengthCm", lang)} className="w-full outline-none" />
           </label>
           <label className={`flex items-center gap-2 rounded-2xl bg-card px-3 py-2.5 ${needsKg ? "ring-2 ring-sea-500" : ""}`}>
             <Scale className="h-4 w-4 shrink-0 text-slate-400" />
-            <input inputMode="decimal" value={kg} onChange={(e) => setKg(e.target.value)} placeholder={t("weightKg", lang)} className="w-full outline-none" />
+            <input inputMode="decimal" value={kg} onChange={(e) => setKg(e.target.value)} placeholder={t("weightKg", lang)} aria-label={t("weightKg", lang)} className="w-full outline-none" />
           </label>
         </div>
         <button onClick={add} disabled={!key} className="w-full rounded-2xl bg-sea-500 py-3 font-extrabold text-white disabled:opacity-40">
           {t("checkFish", lang)}
         </button>
+        {invalid && (
+          <p role="alert" className="text-sm font-semibold text-stop">
+            {t("invalidCatch", lang)}
+          </p>
+        )}
         <p className="text-xs text-slate-500">{t("weightHint", lang)}</p>
       </div>
 
@@ -247,10 +264,22 @@ export function MyCatchSheet({
         </div>
       )}
 
-      {/* list */}
-      {result && items.length > 0 && (
-        <ul className="mt-4 divide-y divide-slate-100">
-          {result.stavke.map((s, i) => (
+      {/* list: kept fish first, then released / to measure / reported (indexes stay those of `items`) */}
+      {result &&
+        items.length > 0 &&
+        ([
+          ["keptList", (st: string) => st === "zadrzi"],
+          ["releasedList", (st: string) => st !== "zadrzi"],
+        ] as const).map(([title, pick]) => {
+          const rows = result.stavke.map((s, i) => ({ s, i })).filter(({ s }) => pick(s.status));
+          if (!rows.length) return null;
+          return (
+            <div key={title} className="mt-4">
+              <div className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                {t(title, lang)} ({rows.length})
+              </div>
+        <ul className="divide-y divide-slate-100">
+          {rows.map(({ s, i }) => (
             <li key={i} className="flex items-center gap-3 py-2.5">
               <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${s.status === "zadrzi" ? "bg-go" : s.status === "pusti" || s.status === "prijavi" ? "bg-stop" : "bg-warn"}`} />
               <div className="min-w-0 flex-1">
@@ -269,7 +298,9 @@ export function MyCatchSheet({
             </li>
           ))}
         </ul>
-      )}
+            </div>
+          );
+        })}
       <p className="mt-4 text-[11px] text-slate-400">{t("catchPrivacy", lang)}</p>
     </div>
   );

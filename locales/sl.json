@@ -462,5 +462,16 @@
  "Silver-cheeked toadfish": "Srebrnoproga napihovalka",
  "sports shop with fishing gear": "športna trgovina z ribiško opremo",
  "on the island of {x} – ferry or boat needed": "na otoku {x} – potreben trajekt ali čoln",
- "on the mainland – ferry or boat needed": "na celini – potreben trajekt ali čoln"
+ "on the mainland – ferry or boat needed": "na celini – potreben trajekt ali čoln",
+ "Today's best time has passed ({t})": "Najboljši čas danes je že mimo ({t})",
+ "Permanently banned for recreational anglers.": "Za rekreativne ribiče trajno prepovedana.",
+ "Sharks and rays: may not be kept (0 per day).": "Morski psi in skati: ne smejo se obdržati (0 na dan).",
+ "The chosen point is on land ({0} m above sea level). Pick the sea or the shore where you fish.": "Izbrana točka je na kopnem ({0} m nad morjem). Izberi morje ali obalo, kjer loviš.",
+ "Fishing is prohibited within 300 m of fish farms and 50 m of shellfish farms.": "Ribolov je prepovedan 300 m od ribogojnic in 50 m od školjčišč.",
+ "Call": "Pokliči",
+ "Directions": "Navigacija",
+ "no phone": "ni telefona",
+ "Check the length (1–400 cm) or weight (up to 700 kg).": "Preveri dolžino (1–400 cm) ali maso (do 700 kg).",
+ "Kept": "Obdržano",
+ "Released and other": "Izpuščeno in drugo"
 }

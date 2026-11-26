@@ -18,6 +18,20 @@ export function hourRange(od: string, doo: string): string {
   return `${f(od)}–${f(doo)} h`;
 }
 
+/**
+ * Best time sentence for the activity card. Today, windows that have already ended are skipped;
+ * if all have ended, `passed` is true and the best one of the day is returned for reference.
+ */
+export function bestTimeToday(najbolje: { od: string; do: string; ocjena: number }[], nowHour: number | null): { text: string; passed: boolean } | null {
+  if (!najbolje.length) return null;
+  if (nowHour == null) return { text: bestWindow(najbolje)!, passed: false };
+  const ahead = najbolje.filter((w) => Number(w.do.slice(0, 2)) > nowHour);
+  return ahead.length ? { text: bestWindow(ahead)!, passed: false } : { text: bestWindow(najbolje)!, passed: true };
+}
+
+/** True when the window has already ended at nowHour (today only). */
+export const windowPassed = (w: { do: string }, nowHour: number | null) => nowHour != null && Number(w.do.slice(0, 2)) <= nowHour;
+
 /** The single best window of the day (highest score), as "13–15 h". */
 export function bestWindow(najbolje: { od: string; do: string; ocjena: number }[]): string | null {
   if (!najbolje.length) return null;

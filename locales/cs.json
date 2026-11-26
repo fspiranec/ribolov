@@ -462,5 +462,16 @@
  "Silver-cheeked toadfish": "Čtverzubec stříbropruhý",
  "sports shop with fishing gear": "sportovní obchod s rybářskými potřebami",
  "on the island of {x} – ferry or boat needed": "na ostrově {x} – je potřeba trajekt nebo loď",
- "on the mainland – ferry or boat needed": "na pevnině – je potřeba trajekt nebo loď"
+ "on the mainland – ferry or boat needed": "na pevnině – je potřeba trajekt nebo loď",
+ "Today's best time has passed ({t})": "Nejlepší čas dnes už minul ({t})",
+ "Permanently banned for recreational anglers.": "Pro rekreační rybáře trvale zakázána.",
+ "Sharks and rays: may not be kept (0 per day).": "Žraloci a rejnoci: nesmějí se ponechat (0 denně).",
+ "The chosen point is on land ({0} m above sea level). Pick the sea or the shore where you fish.": "Zvolený bod je na pevnině ({0} m nad mořem). Vyberte moře nebo břeh, kde lovíte.",
+ "Fishing is prohibited within 300 m of fish farms and 50 m of shellfish farms.": "Rybolov je zakázán do 300 m od chovů ryb a 50 m od chovů mlžů.",
+ "Call": "Zavolat",
+ "Directions": "Navigace",
+ "no phone": "bez telefonu",
+ "Check the length (1–400 cm) or weight (up to 700 kg).": "Zkontrolujte délku (1–400 cm) nebo hmotnost (do 700 kg).",
+ "Kept": "Ponecháno",
+ "Released and other": "Vráceno do moře a ostatní"
 }

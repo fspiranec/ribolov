@@ -10,6 +10,7 @@ import { ActivityCard, AlbumSheet, Card, fmtDate, FirstTimeCard, KidsCard, FishS
 import { SpeciesDetail, SpeciesList } from "./SpeciesGuide";
 import { MyCatchSheet, MyCatchSummary, readAlbum, useCatch, type Album } from "./ui/MyCatch";
 import { readView, VIEW_KEY, type View } from "@/lib/view";
+import { num } from "@/lib/format";
 import type { SpecialSpecies } from "@/lib/special";
 import { SpecialCard, SpecialDetail } from "./ui/Special";
 
@@ -57,14 +58,14 @@ function Segmented<T extends string>({ value, options, onChange }: { value: T; o
 }
 
 /** Server-rendered start: a shared link (?lat&lon) already carries the answer. */
-export type Initial = { lat: number; lon: number; result: PinResult | null } | null;
+export type Initial = { lat: number; lon: number; result: PinResult | null; date?: string; lang?: Lang; mode?: Mode } | null;
 
 export function Home({ initial }: { initial: Initial }) {
-  const [lang, setLang] = useState<Lang>("hr");
+  const [lang, setLang] = useState<Lang>(initial?.lang ?? "hr");
   const [permit, setPermit] = useState<Permit>("rekreacijska");
   const [special, setSpecial] = useState<string[]>([]);
-  const [mode, setMode] = useState<Mode>("obala");
-  const [date, setDate] = useState(todayZagreb());
+  const [mode, setMode] = useState<Mode>(initial?.mode ?? "obala");
+  const [date, setDate] = useState(initial?.date ?? todayZagreb());
   const [time, setTime] = useState("");
   const [loc, setLoc] = useState<Loc | null>(initial ? { lat: initial.lat, lon: initial.lon, source: "map" } : null);
   const [gps, setGps] = useState<"idle" | "locating" | "denied">("idle");
@@ -147,6 +148,12 @@ export function Home({ initial }: { initial: Initial }) {
   useEffect(() => {
     if (initial) return; // location came with the server-rendered link
     const q = new URLSearchParams(window.location.search);
+    const ql = q.get("lang");
+    if (ql && LANGS.some((l) => l.code === ql)) setLang(ql as Lang);
+    const qd = q.get("date");
+    if (qd && /^\d{4}-\d{2}-\d{2}$/.test(qd)) setDate(qd);
+    const qm = q.get("mode");
+    if (qm === "obala" || qm === "brod" || qm === "podvodni") setMode(qm);
     const lat = Number(q.get("lat"));
     const lon = Number(q.get("lon"));
     if (q.get("lat") && q.get("lon") && Number.isFinite(lat) && Number.isFinite(lon)) setLoc({ lat, lon, source: "map" });
@@ -155,8 +162,14 @@ export function Home({ initial }: { initial: Initial }) {
 
   // Keep the URL shareable.
   useEffect(() => {
-    if (loc) window.history.replaceState(null, "", `?lat=${loc.lat}&lon=${loc.lon}`);
-  }, [loc]);
+    if (!loc) return;
+    // a shared link keeps the day, language and mode (e.g. a host sending a link to a German guest)
+    const q = new URLSearchParams({ lat: String(loc.lat), lon: String(loc.lon) });
+    if (date !== todayZagreb()) q.set("date", date);
+    if (lang !== "hr") q.set("lang", lang);
+    if (mode !== "obala") q.set("mode", mode);
+    window.history.replaceState(null, "", `?${q}`);
+  }, [loc, date, lang, mode]);
 
   useEffect(() => {
     const h = date === todayZagreb() ? new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Zagreb", hour: "2-digit", hour12: false }).format(new Date()) : "";
@@ -211,6 +224,8 @@ export function Home({ initial }: { initial: Initial }) {
   const nowHour = date === todayZagreb() ? Number(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Zagreb", hour: "2-digit", hour12: false }).format(new Date())) : null;
   // Open-season species first.
   // Best biting now first (season + time of day), closed-season species last.
+  // album: every species you can enter in My catch (fish guide + protected/invasive/dangerous), same total everywhere
+  const albumSpecies = [...species, ...specialSp.filter((p) => !species.some((s) => s.key === p.key))];
   const fishSorted = [...species].sort((a, b) => b.ocjena_sada - a.ocjena_sada || Number(a.lovostaj_danas) - Number(b.lovostaj_danas));
   const [y, mo, dd] = date.split("-").map(Number);
   const isToday = date === todayZagreb();
@@ -258,7 +273,7 @@ export function Home({ initial }: { initial: Initial }) {
                 <div className="text-sm text-white/75">
                   {result.na_kopnu ? t("onShore", lang) : t("atSea", lang)}
                   {result.mjesto.udaljenost_km >= 0.8 &&
-                    ` · ${result.mjesto.udaljenost_km.toLocaleString(LOCALE_TAG[lang])} km ${t("fromCentre", lang)}`}
+                    ` · ${num(result.mjesto.udaljenost_km, lang, 1)} km ${t("fromCentre", lang)}`}
                 </div>
               )}
             </div>
@@ -284,8 +299,8 @@ export function Home({ initial }: { initial: Initial }) {
             </div>
           </div>
 
-          <div className="no-scrollbar mt-4 flex gap-2 overflow-x-auto">
-            <button onClick={() => setSheet("settings")} className="flex shrink-0 items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold hover:bg-white/20">
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button onClick={() => setSheet("settings")} className="flex min-w-0 items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-left text-sm font-semibold hover:bg-white/20">
               <SlidersHorizontal className="h-4 w-4" /> {settingsSummary}
             </button>
             <label className="relative flex shrink-0 items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold">
@@ -294,6 +309,9 @@ export function Home({ initial }: { initial: Initial }) {
               {/* native picker on top, invisible: shows our own Croatian date label */}
               <input type="date" value={date} onChange={(e) => setDate(e.target.value || todayZagreb())} className="absolute inset-0 cursor-pointer opacity-0" aria-label={t("date", lang)} />
             </label>
+          </div>
+          {saved.length > 0 && (
+          <div className="no-scrollbar mt-2 flex gap-2 overflow-x-auto">
             {saved.map((p) => (
               <button
                 key={`${p.lat},${p.lon}`}
@@ -304,6 +322,7 @@ export function Home({ initial }: { initial: Initial }) {
               </button>
             ))}
           </div>
+          )}
         </div>
       </header>
 
@@ -387,7 +406,7 @@ export function Home({ initial }: { initial: Initial }) {
                 </span>
               </button>
               <FirstTimeCard lang={lang} />
-              <KidsCard lang={lang} albumCount={species.filter((s) => album[s.key]).length} albumTotal={species.length} onAlbum={() => setSheet("album")} />
+              <KidsCard lang={lang} albumCount={albumSpecies.filter((s) => album[s.key]).length} albumTotal={albumSpecies.length} onAlbum={() => setSheet("album")} />
               {result && result.status === "ok" && result.danas && (
                 <>
                   <h2 className="px-1 pt-1 text-[15px] font-bold">{t("rules", lang)}</h2>
@@ -487,7 +506,7 @@ export function Home({ initial }: { initial: Initial }) {
       </Sheet>
 
       <Sheet closeLabel={t("close", lang)} open={sheet === "album"} onClose={() => setSheet(null)} full>
-        <AlbumSheet species={species} album={album} lang={lang} />
+        <AlbumSheet species={albumSpecies} album={album} lang={lang} />
       </Sheet>
 
       <Sheet closeLabel={t("close", lang)} open={sheet === "special" && !!specialOpen} onClose={() => setSheet(null)}>

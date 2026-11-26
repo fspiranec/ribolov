@@ -21,6 +21,17 @@ export const LANGS: { code: Lang; label: string }[] = [
 export const LOCALE_TAG: Record<Lang, string> = { hr: "hr-HR", en: "en-GB", de: "de-DE", it: "it-IT", pl: "pl-PL", cs: "cs-CZ", sl: "sl-SI" };
 
 /** Compass points N, NE, E, SE, S, SW, W, NW in each language. */
+/** Full names, used where a single letter is ambiguous (HR/CS/SL "S" = north). */
+export const COMPASS_LONG: Record<Lang, string[]> = {
+  hr: ["sjever", "sjeveroistok", "istok", "jugoistok", "jug", "jugozapad", "zapad", "sjeverozapad"],
+  en: ["north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west"],
+  de: ["Nord", "Nordost", "Ost", "Südost", "Süd", "Südwest", "West", "Nordwest"],
+  it: ["nord", "nord-est", "est", "sud-est", "sud", "sud-ovest", "ovest", "nord-ovest"],
+  pl: ["północ", "północny wschód", "wschód", "południowy wschód", "południe", "południowy zachód", "zachód", "północny zachód"],
+  cs: ["sever", "severovýchod", "východ", "jihovýchod", "jih", "jihozápad", "západ", "severozápad"],
+  sl: ["sever", "severovzhod", "vzhod", "jugovzhod", "jug", "jugozahod", "zahod", "severozahod"],
+};
+
 export const COMPASS: Record<Lang, string[]> = {
   hr: ["S", "SI", "I", "JI", "J", "JZ", "Z", "SZ"],
   en: ["N", "NE", "E", "SE", "S", "SW", "W", "NW"],
@@ -209,6 +220,7 @@ const dict2 = {
   viewHint: ["Osnovno prikazuje najvažnije. Upozorenja i zabrane vide se uvijek.", "Basic shows the essentials. Warnings and bans are always shown."],
   bestToday: ["Najbolje vrijeme danas: {t}", "Best time today: {t}"],
   bestOnDay: ["Najbolje vrijeme: {t}", "Best time: {t}"],
+  bestPassed: ["Najbolje vrijeme danas je prošlo ({t})", "Today's best time has passed ({t})"],
   showDetailed: ["Prikaži detaljno", "Show details"],
   depthHere: ["Dubina na odabranoj točki, ne uz samu obalu. Uz obalu je more obično pliće.", "Depth at the chosen point, not right at the shore. Near the shore the sea is usually shallower."],
   depthOnLand: ["Točka je na kopnu, pa dubinu ne znamo. Za dubinu odaberi na karti more ispred sebe.", "The point is on land, so we don't know the depth. To see it, pick the sea in front of you on the map."],
@@ -235,6 +247,12 @@ const dict2 = {
   album: ["Moj album riba", "My fish album"],
   albumSub: ["{n} od {m} vrsta – upiši ulov u „Moj ulov danas” i skupljaj vrste.", "{n} of {m} species – add your catch in “My catch today” to collect species."],
   firstCaught: ["prvi put", "first caught"],
+  call: ["Nazovi", "Call"],
+  invalidCatch: ["Provjeri upisanu duljinu (1–400 cm) ili masu (do 700 kg).", "Check the length (1–400 cm) or weight (up to 700 kg)."],
+  keptList: ["Zadržano", "Kept"],
+  releasedList: ["Vraćeno u more i ostalo", "Released and other"],
+  navigate: ["Navigacija", "Directions"],
+  noPhone: ["nema telefona", "no phone"],
   sportShop: ["sportska trgovina s ribolovnom opremom", "sports shop with fishing gear"],
   acrossSeaIsland: ["na otoku {x} – treba trajekt ili brod", "on the island of {x} – ferry or boat needed"],
   acrossSeaMainland: ["na kopnu – treba trajekt ili brod", "on the mainland – ferry or boat needed"],

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import QRCode from "qrcode";
 import { LANGS, t, type Lang } from "@/lib/i18n";
+import { getPlace } from "@/lib/env/place";
 import { PrintButton } from "./PrintButton";
 
 export const dynamic = "force-dynamic";
@@ -10,7 +11,7 @@ export const metadata: Metadata = { title: "QR · Ribolov", robots: { index: fal
 type Search = Promise<Record<string, string | string[] | undefined>>;
 const one = (v: string | string[] | undefined) => (typeof v === "string" ? v : "");
 /** Languages printed on the card for guests (the page itself uses ?lang). */
-const CARD_LANGS: Lang[] = ["hr", "en", "de", "it"];
+const CARD_LANGS: Lang[] = ["hr", "en", "de", "it", "pl", "cs", "sl"];
 
 /**
  * /qr?lat=&lon=&naziv=&lang= – printable QR card for hosts (apartments, campsites).
@@ -28,6 +29,7 @@ export default async function QrPage({ searchParams }: { searchParams: Search })
   const host = h.get("x-forwarded-host") ?? h.get("host") ?? "localhost:3000";
   const proto = h.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   const link = ok ? `${proto}://${host}/?lat=${lat.toFixed(5)}&lon=${lon.toFixed(5)}` : "";
+  const place = ok ? await getPlace(lat, lon).catch(() => null) : null;
   const svg = ok ? await QRCode.toString(link, { type: "svg", margin: 1, errorCorrectionLevel: "M", color: { dark: "#0b2540", light: "#ffffff" } }) : "";
 
   return (
@@ -66,13 +68,14 @@ export default async function QrPage({ searchParams }: { searchParams: Search })
               <img src="/icon.svg" alt="Ribolov" className="h-7 w-7 rounded-lg" /> RIBOLOV
             </div>
             {naziv && <div className="mt-2 text-xl font-extrabold">{naziv}</div>}
+            {place && <div className={`${naziv ? "text-base font-semibold text-slate-600" : "mt-2 text-xl font-extrabold"}`}>📍 {place.naziv}</div>}
             <div className="mx-auto mt-4 w-64 max-w-full [&_svg]:h-auto [&_svg]:w-full" role="img" aria-label={link} dangerouslySetInnerHTML={{ __html: svg }} />
-            <ul className="mt-4 space-y-1 text-[15px] font-semibold">
+            <ul className="mt-4 space-y-0.5 text-[14px] font-semibold">
               {CARD_LANGS.map((l) => (
                 <li key={l}>{t("qrScan", l)}</li>
               ))}
             </ul>
-            <div className="mt-3 break-all text-[11px] text-slate-500">{link}</div>
+            <div className="mt-3 break-all text-sm font-semibold text-navy-900">{link}</div>
           </section>
 
           <div className="mt-4 print:hidden">

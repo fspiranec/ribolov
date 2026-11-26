@@ -462,5 +462,16 @@
  "Silver-cheeked toadfish": "Rozdymka srebrnopręga",
  "sports shop with fishing gear": "sklep sportowy ze sprzętem wędkarskim",
  "on the island of {x} – ferry or boat needed": "na wyspie {x} – potrzebny prom lub łódź",
- "on the mainland – ferry or boat needed": "na lądzie stałym – potrzebny prom lub łódź"
+ "on the mainland – ferry or boat needed": "na lądzie stałym – potrzebny prom lub łódź",
+ "Today's best time has passed ({t})": "Najlepsza pora dziś już minęła ({t})",
+ "Permanently banned for recreational anglers.": "Dla wędkarzy rekreacyjnych zakazana na stałe.",
+ "Sharks and rays: may not be kept (0 per day).": "Rekiny i płaszczki: nie wolno ich zatrzymywać (0 dziennie).",
+ "The chosen point is on land ({0} m above sea level). Pick the sea or the shore where you fish.": "Wybrany punkt jest na lądzie ({0} m n.p.m.). Wybierz morze lub brzeg, gdzie łowisz.",
+ "Fishing is prohibited within 300 m of fish farms and 50 m of shellfish farms.": "Łowienie jest zabronione w promieniu 300 m od hodowli ryb i 50 m od hodowli małży.",
+ "Call": "Zadzwoń",
+ "Directions": "Nawiguj",
+ "no phone": "brak telefonu",
+ "Check the length (1–400 cm) or weight (up to 700 kg).": "Sprawdź długość (1–400 cm) lub masę (do 700 kg).",
+ "Kept": "Zatrzymane",
+ "Released and other": "Wypuszczone i inne"
 }

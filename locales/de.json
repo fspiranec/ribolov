@@ -462,5 +462,16 @@
  "Silver-cheeked toadfish": "Silberstreifen-Kugelfisch",
  "sports shop with fishing gear": "Sportgeschäft mit Angelzubehör",
  "on the island of {x} – ferry or boat needed": "auf der Insel {x} – Fähre oder Boot nötig",
- "on the mainland – ferry or boat needed": "auf dem Festland – Fähre oder Boot nötig"
+ "on the mainland – ferry or boat needed": "auf dem Festland – Fähre oder Boot nötig",
+ "Today's best time has passed ({t})": "Die beste Zeit heute ist vorbei ({t})",
+ "Permanently banned for recreational anglers.": "Für Freizeitangler dauerhaft verboten.",
+ "Sharks and rays: may not be kept (0 per day).": "Haie und Rochen: dürfen nicht behalten werden (0 pro Tag).",
+ "The chosen point is on land ({0} m above sea level). Pick the sea or the shore where you fish.": "Der gewählte Punkt liegt an Land ({0} m über dem Meer). Wähle das Meer oder das Ufer, an dem du angelst.",
+ "Fishing is prohibited within 300 m of fish farms and 50 m of shellfish farms.": "Angeln ist im Umkreis von 300 m um Fischzuchten und 50 m um Muschelzuchten verboten.",
+ "Call": "Anrufen",
+ "Directions": "Route",
+ "no phone": "kein Telefon",
+ "Check the length (1–400 cm) or weight (up to 700 kg).": "Prüfe die Länge (1–400 cm) oder das Gewicht (bis 700 kg).",
+ "Kept": "Behalten",
+ "Released and other": "Zurückgesetzt und anderes"
 }

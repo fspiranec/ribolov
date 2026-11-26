@@ -14,6 +14,7 @@ export async function GET(req: NextRequest) {
   const { params } = parsePinParams(new URLSearchParams({ lat: q.get("lat") ?? "", lon: q.get("lon") ?? "" }));
   let place = "Jadran";
   let status = "Pomoćnik za ribolov na moru";
+  let statusEn = "Sea fishing helper";
   let sub = "Smiješ li loviti, što grize i kakvo je more";
   let color = "#0b2540";
   if (params) {
@@ -22,9 +23,13 @@ export async function GET(req: NextRequest) {
       place = r.mjesto?.naziv ?? `${params.lat.toFixed(3)}, ${params.lon.toFixed(3)}`;
       if (r.status === "ok" && r.semafor) {
         status = t(r.semafor, "hr");
+        statusEn = t(r.semafor, "en");
         color = COLORS[r.semafor];
-      } else status = c(r.razlog, "hr");
-      sub = "Provjeri pravila, ribe i prognozu za ovo mjesto";
+      } else {
+        status = c(r.razlog, "hr");
+        statusEn = c(r.razlog, "en");
+      }
+      sub = "Pravila, ribe i prognoza · Rules, fish and forecast";
     } catch (e) {
       console.error(e);
     }
@@ -35,7 +40,10 @@ export async function GET(req: NextRequest) {
         <div style={{ fontSize: 34, fontWeight: 700, letterSpacing: 4, opacity: 0.8 }}>RIBOLOV</div>
         <div style={{ fontSize: 96, fontWeight: 800, marginTop: 40, lineHeight: 1.05 }}>{place}</div>
         <div style={{ display: "flex", marginTop: 40 }}>
-          <div style={{ background: color, color: color === COLORS.zuto ? "#0b2540" : "white", borderRadius: 32, padding: "18px 36px", fontSize: 52, fontWeight: 800 }}>{status}</div>
+          <div style={{ display: "flex", flexDirection: "column", background: color, color: color === COLORS.zuto ? "#0b2540" : "white", borderRadius: 32, padding: "18px 36px" }}>
+            <div style={{ fontSize: 52, fontWeight: 800 }}>{status}</div>
+            <div style={{ fontSize: 32, opacity: 0.9 }}>{statusEn}</div>
+          </div>
         </div>
         <div style={{ fontSize: 34, marginTop: "auto", opacity: 0.8 }}>{sub}</div>
       </div>

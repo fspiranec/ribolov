@@ -43,6 +43,16 @@ Redoslijed iz [docs/PLAN_DORADE.md](docs/PLAN_DORADE.md):
 7. **Kontakt s IRB-om i turističkom zajednicom** – posao za vlasnika, ne za kod.
 **Trgovine i prodavači dozvola (26. 11., vlasnikov zahtjev):** `npm run import:shops` sad uvozi ribolovne trgovine, Decathlon (`vrsta: sport`), „lov i ribolov” i trgovine s „ribolov/ribički” u nazivu; mjesto se dopunjava iz GeoNames; uvozi i obrise otoka ≥ 1 km² (`data/imported/osm_otoci.geojson`). `nearestReachable` u `lib/pin.ts`: trgovina/prodavač preko mora dobiva +30 km i oznaku „na otoku X – treba trajekt ili brod”; Krk, Pag, Čiovo, Murter i Vir su kopno, Cres+Lošinj i Ugljan+Pašman jedna cjelina (`lib/islands.ts`, test `tests/shops.test.ts`).
 
+**Izvještaj testiranja (27. 11.):** [docs/IZVJESTAJ_TESTIRANJA.md](docs/IZVJESTAJ_TESTIRANJA.md); greške iz dijela A popravljene (vidi „Stanje popravaka” u izvještaju). Važno:
+- sloj otoka više nije zona (`lib/zones/geojson.ts` učitava samo značajke s `layer` i `rule_key`);
+- točka više od 30 m iznad mora daje žuto;
+- podsjetnik o zalasku prati odabrani datum i sat;
+- najbolje vrijeme preskače termine koji su prošli;
+- brojevi idu kroz `lib/format.ts` (`num`, `dist`, `prettyCase`);
+- link čuva `date`, `lang` i `mode`.
+
+**Android (Capacitor) čeka** dok web nije do kraja testiran (vlasnikova odluka). JDK 21 je instaliran, a Android SDK nije. Vercel projekt „ribolov” je povezan s GitHubom.
+
 8. **Offline i pristupačnost** – ✅ gotovo (osnovno)
    - `public/sw.js` (v2, samo produkcija): stranice, `/api/species` i `/api/pin` network-first s rezervom iz cachea (zaglavlje `X-Ribolov-Offline` → traka „Bez interneta”), slike riba cache-first. „Moj ulov” (POST) offline ne radi; lokalni izračun iz `/api/rules` nije napravljen;
    - alt na logu, `role="dialog"` na sheetovima, prevedeni natpisi gumba zatvori/obriši, `lang` na `<html>` prati odabrani jezik, oznaka uz krug aktivnosti; datum u zaglavlju i podnožju uvijek s godinom.
@@ -66,7 +76,7 @@ Cilj vlasnika je **educirati turiste**. Moguće je kasnije predstavljanje Minist
 | Područje | Stanje |
 |---|---|
 | Web aplikacija (Next.js) | radi lokalno, nije objavljena |
-| Testovi | 53 od 53 prolazi (`npm test`) |
+| Testovi | 59 od 59 prolazi (`npm test`) |
 | Jezici | HR, EN, DE, IT, PL, CS, SL; sve prevedeno, izvorni govornik nije pregledao |
 | Tamni način | da (prati uređaj, gumb ☀️/🌙) |
 | Pravna točnost pravila | **nije provjerena**; članci su `TODO` (vidi §8) |

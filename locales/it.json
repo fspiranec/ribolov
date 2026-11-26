@@ -462,5 +462,16 @@
  "Silver-cheeked toadfish": "Pesce palla maculato",
  "sports shop with fishing gear": "negozio di articoli sportivi con attrezzatura da pesca",
  "on the island of {x} – ferry or boat needed": "sull'isola di {x} – serve il traghetto o la barca",
- "on the mainland – ferry or boat needed": "sulla terraferma – serve il traghetto o la barca"
+ "on the mainland – ferry or boat needed": "sulla terraferma – serve il traghetto o la barca",
+ "Today's best time has passed ({t})": "L'orario migliore di oggi è passato ({t})",
+ "Permanently banned for recreational anglers.": "Sempre vietata ai pescatori ricreativi.",
+ "Sharks and rays: may not be kept (0 per day).": "Squali e razze: non possono essere trattenuti (0 al giorno).",
+ "The chosen point is on land ({0} m above sea level). Pick the sea or the shore where you fish.": "Il punto scelto è sulla terraferma ({0} m sul livello del mare). Scegli il mare o la riva dove peschi.",
+ "Fishing is prohibited within 300 m of fish farms and 50 m of shellfish farms.": "La pesca è vietata entro 300 m dagli allevamenti di pesci e 50 m da quelli di molluschi.",
+ "Call": "Chiama",
+ "Directions": "Indicazioni",
+ "no phone": "nessun telefono",
+ "Check the length (1–400 cm) or weight (up to 700 kg).": "Controlla la lunghezza (1–400 cm) o il peso (fino a 700 kg).",
+ "Kept": "Trattenuti",
+ "Released and other": "Rilasciati e altro"
 }

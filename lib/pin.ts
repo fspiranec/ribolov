@@ -278,8 +278,10 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
   });
 
   // Reminders.
-  if (p.date === zagrebDate(now) && sm.zalazak) {
-    const left = hmToMinutes(sm.zalazak) - hmToMinutes(zagrebHM(now));
+  // the chosen time (settings) wins; otherwise the real time, but only for today
+  const refTime = p.time ?? (p.date === zagrebDate(now) ? zagrebHM(now) : null);
+  if (refTime && sm.zalazak) {
+    const left = hmToMinutes(sm.zalazak) - hmToMinutes(refTime);
     if (left > 0 && left <= 60)
       base.podsjetnici.push({
         razina: p.mode === "podvodni" ? "zuto" : "obavijest",
@@ -310,6 +312,7 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
   }
   // On land (e.g. GPS position of someone fishing from the shore): keep evaluating,
   // the area rules (beach, port, park) apply to the shore and the sea in front of it.
+  let inland: number | null = null;
   if (dubina && dubina.dubina_m == null) {
     base.na_kopnu = true;
     obavijesti.push({
@@ -324,14 +327,7 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
         razina: "zuto",
         tekst: T("S kopna se lovi s obale – odaberi način „S obale”.", "From land you fish from the shore – choose “Shore”."),
       });
-    if (dubina.elevation_m > 30)
-      upozorenja.push({
-        razina: "zuto",
-        tekst: T(
-          `Točka je ${Math.round(dubina.elevation_m)} m iznad mora – jesi li uz obalu? Provjeri.`,
-          `The point is ${Math.round(dubina.elevation_m)} m above sea level – are you at the shore? Check.`,
-        ),
-      });
+    if (dubina.elevation_m > 30) inland = Math.round(dubina.elevation_m);
   }
   if (!dubina) {
     obavijesti.push({
@@ -342,6 +338,17 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
 
   // 2–3. Spatial rules.
   const candidates: Candidate[] = [];
+  // A point well above the sea is inland, not a fishing spot: never green.
+  if (inland != null)
+    candidates.push({
+      level: "zuto",
+      priority: 40,
+      razlog: T(
+        `Odabrana točka je na kopnu (${inland} m iznad mora). Odaberi more ili obalu gdje loviš.`,
+        `The chosen point is on land (${inland} m above sea level). Pick the sea or the shore where you fish.`,
+      ),
+      izvor: ref({ izvor: dubina?.izvor ?? "EMODnet Bathymetry" }, zp),
+    });
   let allowedHere = null as Set<string> | null;
   let lightsBanned = false;
   const d = p.date;
@@ -350,7 +357,7 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
     if (hit.layer === "hr_more") continue;
     const rule = areaRules.get(hit.rule_key);
     if (!rule) {
-      upozorenja.push({ razina: "zuto", tekst: T(`Nepoznato pravilo: ${hit.rule_key}`, `Unknown rule: ${hit.rule_key}`) });
+      console.warn(`zone without a known rule: layer=${hit.layer} rule_key=${hit.rule_key}`); // data problem, not for users
       continue;
     }
     if (!validOn(d, rule)) continue;
@@ -453,8 +460,8 @@ export async function evaluatePin(p: PinParams, deps: PinDeps): Promise<PinResul
     obavijesti.push({
       razina: "obavijest",
       tekst: T(
-        "Podaci o uzgajalištima nisu učitani: ribolov je zabranjen unutar 300 m od uzgajališta ribe i 50 m od uzgajališta školjkaša.",
-        "Fish-farm data not loaded: fishing is prohibited within 300 m of fish farms and 50 m of shellfish farms.",
+        "Ribolov je zabranjen unutar 300 m od uzgajališta ribe i 50 m od uzgajališta školjkaša.",
+        "Fishing is prohibited within 300 m of fish farms and 50 m of shellfish farms.",
       ),
       izvor: aref(areaRules.get("uzgajaliste_riba")!),
     });

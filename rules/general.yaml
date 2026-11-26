@@ -45,7 +45,7 @@ dnevna_ogranicenja:
   - key: psi_raze
     <<: *pravilnik
     clanak: "TODO"
-    tekst: { hr: "Morski psi i raže: 0 komada.", en: "Sharks and rays: none." }
+    tekst: { hr: "Morski psi i raže: ne smiju se zadržati (0 komada).", en: "Sharks and rays: may not be kept (0 per day)." }
 
 # Strojno čitljivi dnevni limiti (isti propisi kao tekstovi iznad), koristi ih „Moj ulov”.
 dnevni_limit:
